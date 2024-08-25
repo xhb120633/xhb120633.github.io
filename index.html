@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanbo Xie- Ph.D Student</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .header-text {
+            text-align: left;
+        }
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+        }
+        nav {
+            background-color: #34495e;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        main {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        .page {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .research-highlight {
+            background-color: #ecf0f1;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .publication-year {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .publication {
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .btn:hover, .btn.active {
+            background-color: #2980b9;
+        }
+        .year-publications {
+            display: block;
+        }
+        .collaborator-area {
+            margin-bottom: 30px;
+        }
+        .collaborator-area h3 {
+            color: #2c3e50;
+            border-bottom: 1px solid #3498db;
+            padding-bottom: 5px;
+        }
+        .collaborator-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .collaborator-list li {
+            margin-bottom: 5px;
+        }
+        .collaborator-list a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .collaborator-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-text">
+                <h1>Hanbo Xie, Ph.D. student</h1>
+                <p>Computational Cognitive Sciences</p>
+                <p>Georgia Institute of Technology</p>
+            </div>
+            <img src="/api/placeholder/150/150" alt="Your Name" class="profile-image">
+        </header>
+
+        <nav>
+            <ul>
+                <li><a onclick="showPage('about')">About</a></li>
+                <li><a onclick="showPage('research')">Research</a></li>
+                <li><a onclick="showPage('publications')">Publications</a></li>
+                <li><a onclick="showPage('collaborators')">Collaborators</a></li>
+                <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <div id="about" class="page active">
+                <h2>About Me</h2>
+                <p>I am a Ph.D student in Psychology program at Georgia Institute of Technology, specializing in computational cognitive sciences. My research focuses on using Large Langugage Models to understand how humans make decisions and learn in complex environments..</p>
+                <p>For more details about my academic background and achievements, please view my <a href="#" class="btn">Curriculum Vitae</a>.</p>
+            </div>
+
+            <div id="research" class="page">
+                <h2>Research Highlights</h2>
+                <div class="research-highlight">
+                    <h3>Project Title 1</h3>
+                    <p>Brief description of the project, its goals, and its potential impact. Highlight any significant findings or breakthroughs.</p>
+                </div>
+                <div class="research-highlight">
+                    <h3>Project Title 2</h3>
+                    <p>Description of another key research project, emphasizing its importance in the field and any collaborative aspects.</p>
+                </div>
+            </div>
+
+            <div id="publications" class="page">
+                <h2>Publications</h2>
+                <div id="publication-years">
+                    <button class="btn active" onclick="showPublications('all')">All Years</button>
+                    <button class="btn" onclick="showPublications('2024')">2024</button>
+                    <button class="btn" onclick="showPublications('2023')">2023</button>
+                    <button class="btn" onclick="showPublications('2022')">2022</button>
+                </div>
+                <div id="publications-container">
+                    <div class="publication-year">2024</div>
+                    <div class="publication">
+                        Smith, J., Johnson, A., & <strong>Your Name</strong>. (2024). Title of the paper. <em>Journal Name</em>, 15(2), 123-145.
+                    </div>
+                    <div class="publication">
+                        <strong>Your Name</strong>, & Brown, R. (2024). Another paper title. In <em>Proceedings of Conference Name</em> (pp. 78-92).
+                    </div>
+                    
+                    <div class="publication-year">2023</div>
+                    <div class="publication">
+                        <strong>Your Name</strong>, Davis, E., & Wilson, M. (2023). An interesting research topic. <em>Journal of Important Studies</em>, 8(4), 567-589.
+                    </div>
+                    
+                    <div class="publication-year">2022</div>
+                    <div class="publication">
+                        Lee, S., <strong>Your Name</strong>, & Taylor, G. (2022). Groundbreaking discovery in your field. <em>Nature</em>, 590, 241-245.
+                    </div>
+                </div>
+            </div>
+
+            <div id="collaborators" class="page">
+                <h2>Collaborators</h2>
+                
+                <div class="collaborator-area">
+                    <h3>Machine Learning and Artificial Intelligence</h3>
+                    <ul class="collaborator-list">
+                        <li><a href="https://example.com/collaborator1">Dr. Jane Smith</a>, Stanford University</li>
+                        <li><a href="https://example.com/collaborator2">Prof. John Doe</a>, MIT</li>
+                        <li>Dr. Emily Brown, Google Research</li>
+                    </ul>
+                </div>
+
+                <div class="collaborator-area">
+                    <h3>Data Science and Big Data Analytics</h3>
+                    <ul class="collaborator-list">
+                        <li><a href="https://example.com/collaborator3">Dr. Michael Johnson</a>, UC Berkeley</li>
+                        <li>Prof. Sarah Lee, Harvard University</li>
+                        <li><a href="https://example.com/collaborator4">Dr. David Chen</a>, IBM Research</li>
+                    </ul>
+                </div>
+
+                <div class="collaborator-area">
+                    <h3>Computer Vision and Image Processing</h3>
+                    <ul class="collaborator-list">
+                        <li><a href="https://example.com/collaborator5">Prof. Laura Martinez</a>, ETH Zurich</li>
+                        <li>Dr. Robert Taylor, NVIDIA Research</li>
+                        <li><a href="https://example.com/collaborator6">Dr. Sophia Kim</a>, Seoul National University</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="contact" class="page">
+                <h2>Contact</h2>
+                <p>Email: your.email@university.edu</p>
+                <p>Office: Building Name, Room Number</p>
+                <p>Address: Your University, City, State, ZIP</p>
+                <p>
+                    <a href="#" class="btn">Google Scholar</a>
+                    <a href="#" class="btn">Twitter</a>
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            var pages = document.getElementsByClassName('page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function showPublications(year) {
+            var publicationContainer = document.getElementById('publications-container');
+            var publications = publicationContainer.getElementsByClassName('publication');
+            var yearHeaders = publicationContainer.getElementsByClassName('publication-year');
+            
+            var yearButtons = document.getElementById('publication-years').getElementsByClassName('btn');
+            for (var i = 0; i < yearButtons.length; i++) {
+                yearButtons[i].classList.remove('active');
+            }
+            event.target.classList.add('active');
+
+            if (year === 'all') {
+                for (var i = 0; i < publications.length; i++) {
+                    publications[i].style.display = 'block';
+                }
+                for (var i = 0; i < yearHeaders.length; i++) {
+                    yearHeaders[i].style.display = 'block';
+                }
+            } else {
+                for (var i = 0; i < publications.length; i++) {
+                    if (publications[i].previousElementSibling.textContent === year) {
+                        publications[i].style.display = 'block';
+                    } else {
+                        publications[i].style.display = 'none';
+                    }
+                }
+                for (var i = 0; i < yearHeaders.length; i++) {
+                    if (yearHeaders[i].textContent === year) {
+                        yearHeaders[i].style.display = 'block';
+                    } else {
+                        yearHeaders[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
