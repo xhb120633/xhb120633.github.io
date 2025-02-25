@@ -189,100 +189,112 @@
                 <h2>Publications</h2>
                 <p><small>* Denotes equal contribution, † Denotes Correspondence, Underscored names denote mentee</small></p>
                 <div id="publication-years">
-                    <button class="btn active" onclick="showPublications('all')">All Years</button>
-                    <button class="btn" onclick="showPublications('2025')">2025</button>
-                    <button class="btn" onclick="showPublications('2024')">2024</button>
-                    <button class="btn" onclick="showPublications('2023')">2023</button>
-                    <button class="btn" onclick="showPublications('2022')">2022</button>
-                    <button class="btn" onclick="showPublications('2020')">2020</button>
+                    <button class="btn active" onclick="showPublications('all', this)">All Years</button>
+                    <button class="btn" onclick="showPublications('2025', this)">2025</button>
+                    <button class="btn" onclick="showPublications('2024', this)">2024</button>
+                    <button class="btn" onclick="showPublications('2023', this)">2023</button>
+                    <button class="btn" onclick="showPublications('2022', this)">2022</button>
+                    <button class="btn" onclick="showPublications('2020', this)">2020</button>
                 </div>
                 <div id="publications-container">
                     <!-- 2025 Publications -->
                     <div class="publication-year" data-year="2025">2025</div>
-                    <div class="publication" data-year="2025" data-type="journal">
+                    <div class="publication" data-year="2025">
                         Qiu, S., Tang, Y., Yu, H., <strong>Xie, H.</strong>, Dreher, J. C., Hu, Y., & Zhou, X. (2025). Toward a computational understanding of bribe‐taking behavior. <em>Annals of the New York Academy of Sciences</em>.
                     </div>
-                    <div class="publication" data-year="2025" data-type="preprint">
+                    <div class="publication" data-year="2025">
                         <span style="text-decoration: underline;">Pan, L.</span>*, <strong>Xie, H.</strong>*†, & Wilson, R. C. (2025). Large Language Models Think Too Fast To Explore Effectively. <em>arXiv preprint arXiv:2501.18009</em> (<em>submitted</em>).
                     </div>
-                    <div class="publication" data-year="2025" data-type="preprint">
+                    <div class="publication" data-year="2025">
                         <span style="text-decoration: underline;">Zhang, Z.</span>*, <strong>Xie, H.</strong>*, Baker, T., Peters, M., & Wilson, R. C. (2025). Linking strategies to think aloud in a stochastic learning task. (<em>submitted</em>)
                     </div>
                     
                     <!-- 2024 Publications -->
                     <div class="publication-year" data-year="2024">2024</div>
-                    <div class="publication" data-year="2024" data-type="journal">
+                    <div class="publication" data-year="2024">
                         Fang, Z., Zhao, M., Xu, T., Li, Y., <strong>Xie, H.</strong>, Quan, P., ... & Zhang, R. Y. (2024). Individuals with anxiety and depression use atypical decision strategies in an uncertain world. <em>eLife, 13</em>.
                     </div>
-                    <div class="publication" data-year="2024" data-type="conference">
+                    <div class="publication" data-year="2024">
                         <strong>Xie, H.</strong>, Xiong, H., & Wilson, R. C. (2024) From Strategic Narratives to Code-Like Cognitive Models: An LLM-Based Approach in A Sorting Task. <em>First Conference on Language Modeling (COLM)</em>.
                     </div>
-                    <div class="publication" data-year="2024" data-type="conference">
+                    <div class="publication" data-year="2024">
                         <strong>Xie, H.</strong>, Xiong, H., & Wilson, R. C. (2024) Evaluating Predictive Performance and Learning Efficiency of Large Language Models with Think Aloud in Risky Decision Making. <em>Computational Cognitive Neuroscience (CCN), MIT</em>.
                     </div>
                     
                     <!-- 2023 Publications -->
                     <div class="publication-year" data-year="2023">2023</div>
-                    <div class="publication" data-year="2023" data-type="journal">
+                    <div class="publication" data-year="2023">
                         <strong>Xie, H.</strong> (2023). The promising future of cognitive science and artificial intelligence. <em>Nat Rev Psychology</em>.
                     </div>
-                    <div class="publication" data-year="2023" data-type="conference">
+                    <div class="publication" data-year="2023">
                         <strong>Xie, H.</strong>, Xiong, H., & Wilson, R. C. (2023). Text2Decision: Decoding Latent Variables in Risky Decision Making from Think Aloud Text. <em>NeurIPS 2023 AI for Science Workshop</em>.
                     </div>
-                    <div class="publication" data-year="2023" data-type="conference">
+                    <div class="publication" data-year="2023">
                         <strong>Xie, H.</strong>, Xiong, H., & Wilson, R. C. (2023). Computational introspection: Can large language models reveal cognitive algorithms from human language? Poster session presented at the <em>5th Chinese Computational and Cognitive Neuroscience Conference, Beijing, China</em>.
                     </div>
                     
                     <!-- 2022 Publications -->
                     <div class="publication-year" data-year="2022">2022</div>
-                    <div class="publication" data-year="2022" data-type="conference">
+                    <div class="publication" data-year="2022">
                         Guo, Y., Song, S., <strong>Xie, H.</strong>, Gao, X., & Zhang, J. (2022, February). ARIMA and RNN for Selection Sequences Prediction in Iowa Gambling Task. In <em>2022 2nd International Conference on Artificial Intelligence and Signal Processing (AISP)</em> (pp. 1-6). IEEE.
                     </div>
                     
                     <!-- 2020 Publications -->
                     <div class="publication-year" data-year="2020">2020</div>
-                    <div class="publication" data-year="2020" data-type="conference">
+                    <div class="publication" data-year="2020">
                         Song, S.*, <strong>Xie, H.</strong>*, Speekenbrink, M., Zhang, J., Gao, X., & Zhou, X. (2020, October). The computational basis of individuals' learning under uncertainty in groups with collective goals. Oral presentation at the <em>Society for Neuroeconomics, Vancouver, Canada</em>.
                     </div>
                 </div>
             </div>
             
             <script>
-                function showPublications(year) {
-                    var publicationContainer = document.getElementById('publications-container');
-                    var publications = publicationContainer.getElementsByClassName('publication');
-                    var yearHeaders = publicationContainer.getElementsByClassName('publication-year');
+                function showPublications(year, buttonElement) {
+                    // Update active button
+                    const buttons = document.querySelectorAll('#publication-years .btn');
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    buttonElement.classList.add('active');
                     
-                    var yearButtons = document.getElementById('publication-years').getElementsByClassName('btn');
-                    for (var i = 0; i < yearButtons.length; i++) {
-                        yearButtons[i].classList.remove('active');
-                    }
-                    event.target.classList.add('active');
-            
+                    // Get all publications and year headers
+                    const publications = document.querySelectorAll('#publications-container .publication');
+                    const yearHeaders = document.querySelectorAll('#publications-container .publication-year');
+                    
+                    console.log(`Filtering for year: ${year}`);
+                    console.log(`Total publications: ${publications.length}`);
+                    
                     if (year === 'all') {
                         // Show all publications
-                        for (var i = 0; i < publications.length; i++) {
-                            publications[i].style.display = 'block';
-                        }
-                        for (var i = 0; i < yearHeaders.length; i++) {
-                            yearHeaders[i].style.display = 'block';
-                        }
+                        publications.forEach(pub => {
+                            pub.style.display = 'block';
+                        });
+                        yearHeaders.forEach(header => {
+                            header.style.display = 'block';
+                        });
                     } else {
+                        // Count matching publications for debugging
+                        let matchCount = 0;
+                        
                         // Filter by year
-                        for (var i = 0; i < publications.length; i++) {
-                            if (publications[i].getAttribute('data-year') === year) {
-                                publications[i].style.display = 'block';
+                        publications.forEach(pub => {
+                            const pubYear = pub.getAttribute('data-year');
+                            console.log(`Publication year: ${pubYear}`);
+                            
+                            if (pubYear === year) {
+                                pub.style.display = 'block';
+                                matchCount++;
                             } else {
-                                publications[i].style.display = 'none';
+                                pub.style.display = 'none';
                             }
-                        }
-                        for (var i = 0; i < yearHeaders.length; i++) {
-                            if (yearHeaders[i].getAttribute('data-year') === year) {
-                                yearHeaders[i].style.display = 'block';
+                        });
+                        
+                        console.log(`Found ${matchCount} publications for year ${year}`);
+                        
+                        yearHeaders.forEach(header => {
+                            if (header.getAttribute('data-year') === year) {
+                                header.style.display = 'block';
                             } else {
-                                yearHeaders[i].style.display = 'none';
+                                header.style.display = 'none';
                             }
-                        }
+                        });
                     }
                 }
             </script>
