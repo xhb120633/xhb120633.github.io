@@ -216,7 +216,13 @@
                         <span style="text-decoration: underline;">Pan, L.</span>*, <strong>Xie, H.</strong>*†, & Wilson, R. C. (2025). Large Language Models Think Too Fast To Explore Effectively. <em>arXiv preprint arXiv:2501.18009</em> (<em>submitted</em>).
                     </div>
                     <div class="publication" data-year="2025">
-                        <span style="text-decoration: underline;">Zhang, Z.</span>*, <strong>Xie, H.</strong>*, Baker, T., Peters, M., & Wilson, R. C. (2025). Linking strategies to think aloud in a stochastic learning task. (<em>submitted</em>)
+                        <span style="text-decoration: underline;">Zhang, Z.</span>*, <strong>Xie, H.</strong>*, Baker, T., Peters, M., & Wilson, R. C. (2025). Linking strategies to think aloud in a stochastic learning task. In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>.
+                    </div>
+                    <div class="publication" data-year="2025">
+                        Zhu, J.-Q.*, <strong>Xie, H.</strong>*, Arumugam, D., Wilson, R. C., & Griffiths, T. L. (2025). Using reinforcement learning to train large language models to explain human decisions. <em>arXiv preprint arXiv:2505.11614</em> (<em>submitted</em>).
+                    </div>
+                    <div class="publication" data-year="2025">
+                        <strong>Xie, H.</strong>*, & Zhu, J.* (2025, July 12). Centaur May Have Learned a Shortcut that Explains Away Psychological Tasks. <a href="https://doi.org/10.31234/osf.io/u7z4t_v1">https://doi.org/10.31234/osf.io/u7z4t_v1</a> (<em>submitted</em>).
                     </div>
                     
                     <!-- 2024 Publications -->
@@ -332,7 +338,7 @@
             document.getElementById(pageId).classList.add('active');
         }
 
-        function showPublications(year) {
+        function showPublications(year, buttonEl) {
             var publicationContainer = document.getElementById('publications-container');
             var publications = publicationContainer.getElementsByClassName('publication');
             var yearHeaders = publicationContainer.getElementsByClassName('publication-year');
@@ -341,7 +347,9 @@
             for (var i = 0; i < yearButtons.length; i++) {
                 yearButtons[i].classList.remove('active');
             }
-            event.target.classList.add('active');
+            if (buttonEl) {
+                buttonEl.classList.add('active');
+            }
 
             if (year === 'all') {
                 // Show all publications
