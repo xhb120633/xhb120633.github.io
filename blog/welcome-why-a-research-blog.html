@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome: Why a Research Blog? | Hanbo Xie</title>
+    <style>
+        :root {
+            --bg: #f7f9fc;
+            --surface: #ffffff;
+            --text: #1f2a37;
+            --muted: #526275;
+            --primary: #2f5cc8;
+            --primary-dark: #2448a0;
+            --border: #dbe3ef;
+            --shadow: 0 10px 30px rgba(36, 72, 160, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: radial-gradient(circle at top left, #eef3ff 0%, var(--bg) 40%);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 18px 40px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .meta {
+            color: var(--muted);
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 9px 14px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .share-row {
+            margin: 14px 0 8px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .share-row a {
+            color: var(--primary);
+            text-decoration: none;
+            margin-right: 12px;
+            font-weight: 600;
+        }
+
+        .share-row a:hover {
+            text-decoration: underline;
+        }
+
+        .comments-wrap {
+            margin-top: 18px;
+            border-top: 1px solid var(--border);
+            padding-top: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="btn" href="../index.html#blog">Back to Blog</a>
+
+        <article class="card">
+            <h1>Welcome: Why a Research Blog?</h1>
+            <p class="meta">Draft template post | July 2025</p>
+
+            <p>I will use this space to share in-progress thoughts on cognitive science, LLM evaluation, and scientific workflows.</p>
+            <p>Posts can be long-form essays, short project updates, or reading notes. The goal is to keep ideas transparent, iterative, and useful for collaborators and readers with similar interests.</p>
+            <p>In upcoming posts, I plan to write about think-aloud methods, model evaluation strategies, and practical lessons from building human-centered AI workflows in cognitive science projects.</p>
+
+            <div class="share-row">
+                <a href="https://twitter.com/intent/tweet?text=Welcome:%20Why%20a%20Research%20Blog?&url=https://xhb120633.github.io/blog/welcome-why-a-research-blog.html" target="_blank" rel="noopener noreferrer">Share on X</a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://xhb120633.github.io/blog/welcome-why-a-research-blog.html" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+                <a href="mailto:?subject=Welcome:%20Why%20a%20Research%20Blog?&body=https://xhb120633.github.io/blog/welcome-why-a-research-blog.html">Share by Email</a>
+            </div>
+
+            <div class="comments-wrap">
+                <h2>Comments</h2>
+                <p class="meta">Sign in with GitHub to comment. This post has its own comments thread.</p>
+                <script src="https://utteranc.es/client.js"
+                    repo="xhb120633/xhb120633.github.io"
+                    issue-term="pathname"
+                    label="blog-comment"
+                    theme="github-light"
+                    crossorigin="anonymous"
+                    async>
+                </script>
+            </div>
+        </article>
+    </div>
+</body>
+</html>

@@ -311,10 +311,12 @@
             margin-bottom: 18px;
         }
 
-        .comments-wrap {
-            margin-top: 14px;
-            border-top: 1px solid var(--border);
-            padding-top: 14px;
+        .blog-post h3 {
+            margin-bottom: 4px;
+        }
+
+        .blog-post .btn {
+            margin-top: 6px;
         }
 
         .share-row a {
@@ -603,33 +605,16 @@
 
                 <article class="card blog-post">
                     <h3>Welcome: Why a Research Blog?</h3>
-                    <p class="blog-meta">Draft template post | Replace this with your first real post.</p>
+                    <p class="blog-meta">Draft template post | July 2025</p>
                     <p>I will use this space to share in-progress thoughts on cognitive science, LLM evaluation, and scientific workflows. Posts can be long-form essays, short project updates, or reading notes.</p>
-                    <div class="share-row">
-                        <a href="https://twitter.com/intent/tweet?text=New%20post%20from%20Hanbo%20Xie" target="_blank" rel="noopener noreferrer">Share on X</a>
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://xhb120633.github.io/" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
-                        <a href="mailto:?subject=Interesting%20post&body=https://xhb120633.github.io/">Share by Email</a>
-                    </div>
-
-                    <div class="comments-wrap">
-                        <h3>Comments</h3>
-                        <p class="blog-meta">Sign in with GitHub to comment. Comments are stored as GitHub Issues via Utterances.</p>
-                        <script src="https://utteranc.es/client.js"
-                            repo="xhb120633/xhb120633.github.io"
-                            issue-term="pathname"
-                            label="blog-comment"
-                            theme="github-light"
-                            crossorigin="anonymous"
-                            async>
-                        </script>
-                    </div>
+                    <a class="btn" href="blog/welcome-why-a-research-blog.html">Read post</a>
                 </article>
 
                 <article class="card">
                     <h3>Engagement Features</h3>
-                    <p>The comment backend is now implemented with Utterances + GitHub Issues, which works well with static sites.</p>
+                    <p>Each blog post has its own standalone page with its own comments thread (Utterances + GitHub Issues), which keeps the main blog index lightweight and easy to browse.</p>
                     <ul>
-                        <li><strong>Comments backend:</strong> live via Utterances in the blog post above.</li>
+                        <li><strong>Comments backend:</strong> per-post threads via Utterances.</li>
                         <li><strong>Likes/Reactions:</strong> easiest next step is Giscus reactions (GitHub Discussions).</li>
                         <li><strong>Sharing:</strong> Included above with direct share links.</li>
                     </ul>
@@ -721,6 +706,28 @@
             if (navButton) {
                 navButton.classList.add("active");
             }
+
+            if (window.location.hash !== "#" + pageId) {
+                history.replaceState(null, "", "#" + pageId);
+            }
+        }
+
+        function initPageFromHash() {
+            var pageId = window.location.hash ? window.location.hash.substring(1) : "about";
+            var targetPage = document.getElementById(pageId);
+            if (!targetPage) {
+                pageId = "about";
+            }
+
+            var navButtons = document.getElementsByClassName("nav-btn");
+            var matchedButton = null;
+            for (var i = 0; i < navButtons.length; i++) {
+                if (navButtons[i].getAttribute("data-page") === pageId) {
+                    matchedButton = navButtons[i];
+                    break;
+                }
+            }
+            showPage(pageId, matchedButton);
         }
 
         function filterPublications(topic, topicButton) {
@@ -755,6 +762,8 @@
                 yearBlocks[y].style.display = visibleCount > 0 ? "block" : "none";
             }
         }
+
+        initPageFromHash();
     </script>
 </body>
 </html>
