@@ -3,311 +3,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hanbo Xie- Ph.D Student</title>
+    <title>Hanbo Xie | Ph.D. Student</title>
     <style>
+        :root {
+            --bg: #f7f9fc;
+            --surface: #ffffff;
+            --text: #1f2a37;
+            --muted: #526275;
+            --primary: #2f5cc8;
+            --primary-dark: #2448a0;
+            --border: #dbe3ef;
+            --shadow: 0 10px 30px rgba(36, 72, 160, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
             margin: 0;
-            padding: 0;
-            background-color: #f0f4f8;
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: radial-gradient(circle at top left, #eef3ff 0%, var(--bg) 40%);
         }
+
         .container {
-            max-width: 1000px;
+            max-width: 1080px;
             margin: 0 auto;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            padding: 24px 18px 48px;
         }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            display: flex;
+
+        .hero {
+            background: linear-gradient(135deg, #1f2a37 0%, #2f5cc8 85%);
+            color: #fff;
+            border-radius: 18px;
+            padding: 34px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 24px;
             align-items: center;
-            justify-content: space-around;
+            box-shadow: var(--shadow);
         }
-        .header-text {
-            text-align: left;
+
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: 2rem;
+            line-height: 1.2;
         }
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid white;
-        }
-        nav {
-            background-color: #34495e;
-            padding: 10px;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
+
+        .hero p {
             margin: 0;
+            color: #e7ecff;
+        }
+
+        .profile-image {
+            width: 148px;
+            height: 148px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.45);
+        }
+
+        nav {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            margin: 16px 0 20px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(31, 42, 55, 0.06);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 10px 12px;
             display: flex;
-            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
-        nav ul li {
-            margin: 0 10px;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
+
+        nav button {
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 9px;
+            padding: 8px 12px;
             cursor: pointer;
+            transition: 0.2s ease;
         }
-        main {
-            padding: 20px;
-            flex-grow: 1;
+
+        nav button:hover,
+        nav button.active {
+            background: #e9efff;
+            color: var(--primary-dark);
         }
+
         .page {
             display: none;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: var(--shadow);
         }
-        .active {
+
+        .page.active {
             display: block;
         }
+
         h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 6px;
+            font-size: 1.6rem;
         }
-        .research-highlight {
-            background-color: #ecf0f1;
-            border-left: 4px solid #3498db;
-            padding: 20px;
-            margin-bottom: 20px;
+
+        h3 {
+            margin-bottom: 8px;
+            color: #21324b;
         }
-        .publication-year {
-            font-weight: bold;
-            color: #2c3e50;
-            margin-top: 20px;
-            margin-bottom: 10px;
+
+        .subtitle {
+            margin-top: 0;
+            color: var(--muted);
         }
-        .publication {
-            margin-bottom: 10px;
-            padding-left: 20px;
+
+        .chip {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: #eaf0ff;
+            color: var(--primary-dark);
+            margin-right: 6px;
+            margin-top: 4px;
         }
+
         .btn {
             display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 10px 20px;
+            background: var(--primary);
+            color: #fff;
+            padding: 9px 14px;
+            border-radius: 9px;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            margin-right: 10px;
-            margin-bottom: 10px;
+            font-weight: 600;
+            border: none;
             cursor: pointer;
+            transition: 0.2s ease;
         }
-        .btn:hover, .btn.active {
-            background-color: #2980b9;
+
+        .btn:hover {
+            background: var(--primary-dark);
         }
-        .year-publications {
-            display: block;
+
+        .card {
+            background: #fbfcff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 14px;
         }
-        .collaborator-area {
-            margin-bottom: 30px;
+
+        .section-block {
+            margin-top: 24px;
         }
-        .collaborator-area h3 {
-            color: #2c3e50;
-            border-bottom: 1px solid #3498db;
-            padding-bottom: 5px;
+
+        .publication-list {
+            margin: 12px 0 0;
+            padding-left: 18px;
         }
+
+        .publication-list li {
+            margin-bottom: 12px;
+        }
+
+        .mentee {
+            text-decoration: underline;
+        }
+
         .collaborator-list {
-            list-style-type: none;
-            padding-left: 0;
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
+
         .collaborator-list li {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
+
         .collaborator-list a {
-            color: #3498db;
+            color: var(--primary);
             text-decoration: none;
         }
+
         .collaborator-list a:hover {
             text-decoration: underline;
+        }
+
+        .blog-meta {
+            color: var(--muted);
+            font-size: 0.92rem;
+            margin-bottom: 8px;
+        }
+
+        .share-row a {
+            color: var(--primary);
+            text-decoration: none;
+            margin-right: 12px;
+            font-weight: 600;
+        }
+
+        .share-row a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 760px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .page {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="header-text">
-                <h1>Hanbo Xie, Ph.D. student</h1>
-                <p>Computational Cognitive Sciences</p>
+        <header class="hero">
+            <div>
+                <h1>Hanbo Xie, Ph.D. Student</h1>
+                <p>Computational Cognitive Science</p>
                 <p>Georgia Institute of Technology</p>
+                <p>
+                    <span class="chip">Cognitive Modeling</span>
+                    <span class="chip">Large Language Models</span>
+                    <span class="chip">Human-AI Interaction</span>
+                </p>
             </div>
             <img src="images/photo.jpg" alt="Hanbo Xie" class="profile-image">
         </header>
 
         <nav>
             <ul>
-                <li><a onclick="showPage('about')">About</a></li>
-                <li><a onclick="showPage('research')">Research</a></li>
-                <li><a onclick="showPage('publications')">Publications</a></li>
-                <li><a onclick="showPage('collaborators')">Collaborators</a></li>
-                <li><a onclick="showPage('contact')">Contact</a></li>
+                <li><button class="nav-btn active" data-page="about" onclick="showPage('about', this)">About</button></li>
+                <li><button class="nav-btn" data-page="research" onclick="showPage('research', this)">Research</button></li>
+                <li><button class="nav-btn" data-page="publications" onclick="showPage('publications', this)">Publications</button></li>
+                <li><button class="nav-btn" data-page="blog" onclick="showPage('blog', this)">Blog</button></li>
+                <li><button class="nav-btn" data-page="collaborators" onclick="showPage('collaborators', this)">Collaborators</button></li>
+                <li><button class="nav-btn" data-page="contact" onclick="showPage('contact', this)">Contact</button></li>
             </ul>
         </nav>
 
         <main>
-            <div id="about" class="page active">
-                <h2>About Me</h2>
-                <p>I am a Ph.D. student in the Psychology program at the Georgia Institute of Technology, specializing in computational cognitive sciences. Prior to joining Georgia Tech, I earned an M.A. degree from the University of Arizona. I spent my entire master's and Ph.D. career under the supervision of Dr. Robert Wilson. Before that, I spent three years at Peking University as a full-time research assistant in CBCS. I earned my undergraduate degree in Human Resource Management from Southwestern University of Finance and Economics in China. Currently, I am visiting Tom Griffiths' <a href="https://cocosci.princeton.edu/">CoCoSci Lab</a> at Princeton University!</p>
-                
-                <p>My research interests broadly lie at the intersection of cognitive sciences and artificial intelligence. My thesis focuses on using Large Language Models (LLMs) to understand how humans think in decision-making and learning using the think-aloud protocol. I employ a variety of computational tools and tasks to explore this exciting topic. Additionally, I am curious about how AI models (e.g., LLMs, agents) behave and think, as well as how human experiences and data can be leveraged to enhance AI models and research. This includes human-AI interactions, AI interpretability, and even artificial general intelligence (AGI)!</p>
-                
-                <p>Beyond my research, I contribute to the broader research community. I co-founded <a href="https://rldmjc.github.io/">MindRL-Hub</a>, a community that facilitates the research and application of reinforcement learning in psychology and neuroscience. I am dedicated to promoting interdisciplinary research and collaboration, as well as fostering connections among early-career researchers.</p>
-                
-                <p>For more details about my academic background and achievements, please view my <a href="cv/Xie_CV_updated.pdf" class="btn">Curriculum Vitae</a>.</p>
-            </div>
-            
-            <div id="research" class="page">
+            <section id="about" class="page active">
+                <h2>About</h2>
+                <p class="subtitle">Computational approaches to understanding human cognition and improving AI systems.</p>
+                <p>I am a Ph.D. student in Psychology at Georgia Institute of Technology, specializing in computational cognitive science. Before Georgia Tech, I completed an M.A. at the University of Arizona, and previously spent three years at Peking University as a full-time research assistant in CBCS. I received my undergraduate degree in Human Resource Management from Southwestern University of Finance and Economics in China. I am currently visiting Tom Griffiths' <a href="https://cocosci.princeton.edu/">CoCoSci Lab</a> at Princeton University.</p>
+                <p>My research focuses on using large language models (LLMs) and computational tools to understand decision-making and learning, especially through think-aloud protocols. I am also interested in AI behavior, interpretability, human-AI interaction, and using human data to improve model alignment and scientific discovery.</p>
+                <p>I co-founded <a href="https://rldmjc.github.io/">MindRL-Hub</a>, a community supporting interdisciplinary reinforcement learning research in psychology and neuroscience.</p>
+                <p><a href="cv/Xie_CV_updated.pdf" class="btn">View Curriculum Vitae</a></p>
+            </section>
+
+            <section id="research" class="page">
                 <h2>Research Highlights</h2>
-                
-                <div class="research-highlight">
-                    <h3>Understanding Human Decision-Making and Learning from Think-Aloud Data with Large Language Models</h3>
-                    <p>The think-aloud protocol involves asking human participants to verbalize their thoughts while performing psychological tasks. Previous research primarily relied on behavioral measurements (typically button presses) to understand human cognitive processes. These mental models were typically proposed and tested by researchers themselves, which can introduce biases and limitations. By directly analyzing participants' thoughts, we gain a deeper probe into human cognition during tasks. However, past research on think-aloud data has heavily relied on subjective coding, where human experts manually label or interpret the content. This process is labor-intensive, subjective, and limited.</p>
-                    <p>With the advent of LLMs, we see an opportunity to revisit this protocol with novel approaches. LLMs can be leveraged to quantify, interpret, and even predict subsequent behaviors based on think-aloud data. Our work explores the feasibility of using LLMs for this purpose, paving the way for a more scalable and systematic approach to analyzing human thought processes.</p>
-                    <p><em>Representative publications:</em></p>
-                    <ul>
-                        <li><strong>Xie, H.</strong>, Xiong, H., & Wilson, R. C. (2023). Text2Decision: Decoding Latent Variables in Risky Decision Making from Think Aloud Text. <em>NeurIPS 2023 AI for Science Workshop</em>.</li>
-                        <li><strong>Xie, H.</strong>, Xiong, H., & Wilson, R. C. (2024). From Strategic Narratives to Code-Like Cognitive Models: An LLM-Based Approach in A Sorting Task. <em>First Conference on Language Modeling (COLM)</em>.</li>
-                        <li><strong>Xie, H.</strong>†, Xiong, H. D., & Wilson, R. C. (2025). Rethinking Think-Aloud in the Age of Language Models. <em>PsyArXiv</em>. <a href="https://osf.io/preprints/psyarxiv/6ta3z_v1">https://osf.io/preprints/psyarxiv/6ta3z_v1</a> (<em>submitted</em>).</li>
-                        <li><span style="text-decoration: underline;">Zhang, Z.</span>*, <strong>Xie, H.</strong>*, Baker, T., Peters, M., & Wilson, R. C. (2025). Linking strategies to think aloud in a stochastic learning task. In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>.</li>
-                    </ul>
-                </div>
-            
-                <div class="research-highlight">
-                    <h3>Reverse Engineering Human Thoughts</h3>
-                    <p>Human thoughts are difficult to define, capture, and model, yet they are fundamental to understanding human intelligence. Understanding thought processes across various tasks, identifying underlying principles, and generalizing these insights to predict thoughts are crucial in cognitive science and AI research. One of the major challenges is that thoughts are implicit, and language is highly diverse and nuanced. Thus, verbalized thoughts do not necessarily reflect the full spectrum of cognitive processing.</p>
-                    <p>Rather than a forward approach (i.e., how human thoughts generate behaviors), this project focuses on inference: given observed behaviors and other measurable data, can we reconstruct and infer the underlying thoughts? Our goal is to establish a strong, generalized connection between behaviors and thoughts to enhance our understanding of human cognition. Furthermore, this project aims to advance machine 'thought' understanding in a human-centered manner. If the computations of complex models (such as AlphaGo) can be approximated using human-trained models, we can gain insights into how AI models think and compute using natural language explanations. This could revolutionize human-AI interaction, enabling AI to teach humans new concepts and strategies!</p>
-                    <p>This project is currently in development and will be my primary research focus at Princeton University.</p>
-                    <p><em>Representative publications:</em></p>
-                    <ul>
-                        <li>Zhu, J.-Q.*, <strong>Xie, H.</strong>*, Arumugam, D., Wilson, R. C., & Griffiths, T. L. (2025). Using reinforcement learning to train large language models to explain human decisions. <em>arXiv preprint arXiv:2505.11614</em> (<em>submitted</em>).</li>
-                    </ul>
-                </div>
-            
-                <div class="research-highlight">
-                    <h3>Understanding and Improving Artificial Intelligence Through Human Insights</h3>
-                    <p>This project explores how AI can be understood through the lens of human psychology and neuroscience. By analyzing the strengths and weaknesses of AI compared to human intelligence, we can develop better models that are both more effective and more interpretable. Beyond solving complex problems, AI should have societal impact—improving human decision-making, education, and collaboration. Additionally, I believe humans can learn from advanced AI models if we develop appropriate frameworks to analyze and interpret their computations.</p>
-                    <p><em>Representative publications:</em></p>
-                    <ul>
-                        <li><span style="text-decoration: underline;">Pan, L.</span>*, <strong>Xie, H.</strong>*†, & Wilson, R. C. (2025). Large Language Models Think Too Fast To Explore Effectively. <em>arXiv preprint arXiv:2501.18009</em> (<em>submitted</em>).</li>
-                    </ul>
-                </div>
-            
-                <div class="research-highlight">
-                    <h3>Accelerating Scientific Discoveries in Cognitive Science</h3>
-                    <p>The human mind is fascinating and complex. While we experience thoughts, emotions, and actions daily, formally describing, interpreting, and predicting human cognition remains a significant challenge for cognitive scientists and psychologists. Many cognitive theories are inspired by human intuition and validated through experiments and computational models. However, traditional validation methods may not always extend beyond the predefined hypothesis space.</p>
-                    <p>In the era of AI, transforming research paradigms in cognitive science and psychology is crucial. LLMs possess extensive knowledge and inductive biases, potentially surpassing individual human expertise. State-of-the-art language-based reasoning models exhibit strong reasoning abilities—perhaps even beyond those of human scientists. Can we develop AI-driven pipelines to discover new phenomena, construct computational models, and generate scientific theories with minimal human bias? Investigating these possibilities alongside empirical research will be both exciting and transformative!</p>
-                    <p><em>Representative publications:</em></p>
-                    <ul>
-                        <li><strong>Xie, H.</strong>, Xiong, H., & Wilson, R. C. (2023). Text2Decision: Decoding Latent Variables in Risky Decision Making from Think Aloud Text. <em>NeurIPS 2023 AI for Science Workshop</em>.</li>
-                        <li><strong>Xie, H.</strong>, Xiong, H., & Wilson, R. C. (2024). From Strategic Narratives to Code-Like Cognitive Models: An LLM-Based Approach in A Sorting Task. <em>First Conference on Language Modeling (COLM)</em>.</li>
-                        <li>Zhu, J.-Q.*, <strong>Xie, H.</strong>*, Arumugam, D., Wilson, R. C., & Griffiths, T. L. (2025). Using reinforcement learning to train large language models to explain human decisions. <em>arXiv preprint arXiv:2505.11614</em> (<em>submitted</em>).</li>
-                        <li><strong>Xie, H.</strong>*, & Zhu, J.* (2025, July 12). Centaur May Have Learned a Shortcut that Explains Away Psychological Tasks. <a href="https://doi.org/10.31234/osf.io/u7z4t_v1">https://doi.org/10.31234/osf.io/u7z4t_v1</a> (<em>submitted</em>).</li>
-                    </ul>
-                </div>
-            </div>
+                <p class="subtitle">Selected themes and current directions.</p>
 
-            <div id="publications" class="page">
+                <div class="card">
+                    <h3>Think-Aloud Data and LLMs</h3>
+                    <p>I study how think-aloud verbal reports can be modeled computationally to reveal latent cognitive processes in decision-making and learning tasks. This line of work explores scalable alternatives to subjective manual coding and uses LLMs to interpret and predict behavior from language.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Reverse Engineering Human Thought</h3>
+                    <p>This direction asks whether underlying thought patterns can be reconstructed from behavior and language data. The broader goal is to establish a stronger bridge between observable actions and latent cognitive mechanisms, while making advanced model behavior more interpretable to humans.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Human Insights for Better AI</h3>
+                    <p>I investigate how methods from cognitive science can improve AI systems and, conversely, how AI systems can support theory building in psychology and neuroscience.</p>
+                </div>
+            </section>
+
+            <section id="publications" class="page">
                 <h2>Publications</h2>
-                <p><small>* Denotes equal contribution, † Denotes Correspondence, Underscored names denote mentee</small></p>
-                <div id="publication-years">
-                    <button class="btn active" onclick="showPublications('all', this)">All Years</button>
-                    <button class="btn" onclick="showPublications('2025', this)">2025</button>
-                    <button class="btn" onclick="showPublications('2024', this)">2024</button>
-                    <button class="btn" onclick="showPublications('2023', this)">2023</button>
-                    <button class="btn" onclick="showPublications('2022', this)">2022</button>
-                    <button class="btn" onclick="showPublications('2020', this)">2020</button>
-                </div>
-                <div id="publications-container">
-                    <!-- 2025 Publications -->
-                    <div class="publication-year" data-year="2025">2025</div>
-                    <div class="publication" data-year="2025">
-                        Qiu, S., Tang, Y., Yu, H., <strong>Xie, H.</strong>, Dreher, J. C., Hu, Y., & Zhou, X. (2025). Toward a computational understanding of bribe‐taking behavior. <em>Annals of the New York Academy of Sciences</em>.
-                    </div>
-                    <div class="publication" data-year="2025">
-                        <span style="text-decoration: underline;">Pan, L.</span>*, <strong>Xie, H.</strong>*†, & Wilson, R. C. (2025). Large Language Models Think Too Fast To Explore Effectively. <em>arXiv preprint arXiv:2501.18009</em>. NeurIPS 2025 Poster.
-                    </div>
-                    <div class="publication" data-year="2025">
-                        <strong>Xie, H.</strong>†, Zhu, J. Q., Xiong, H. D., Wilson, R. C., & Griffiths, T. L. (2025). Reasoning Across Minds and Machines. In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em> (Vol. 47).
-                    </div>
-                    <div class="publication" data-year="2025">
-                        <span style="text-decoration: underline;">Zhang, Z.</span>*, <strong>Xie, H.</strong>*, Baker, T., Peters, M., & Wilson, R. C. (2025). Linking strategies to think aloud in a stochastic learning task. In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>.
-                    </div>
-                    <div class="publication" data-year="2025">
-                        Zhu, J.-Q.*, <strong>Xie, H.</strong>*, Arumugam, D., Wilson, R. C., & Griffiths, T. L. (2025). Using reinforcement learning to train large language models to explain human decisions. <em>arXiv preprint arXiv:2505.11614</em> (<em>submitted</em>).
-                    </div>
-                    <div class="publication" data-year="2025">
-                        <strong>Xie, H.</strong>*, & Zhu, J.* (2025, July 12). Centaur May Have Learned a Shortcut that Explains Away Psychological Tasks. <a href="https://doi.org/10.31234/osf.io/u7z4t_v1">https://doi.org/10.31234/osf.io/u7z4t_v1</a> (<em>submitted</em>).
-                    </div>
-                    <div class="publication" data-year="2025">
-                        <strong>Xie, H.</strong>†, Xiong, H. D., & Wilson, R. C. (2025). Rethinking Think-Aloud in the Age of Language Models. <em>PsyArXiv</em>. <a href="https://osf.io/preprints/psyarxiv/6ta3z_v1">https://osf.io/preprints/psyarxiv/6ta3z_v1</a> (<em>submitted</em>).
-                    </div>
-                    
-                    <!-- 2024 Publications -->
-                    <div class="publication-year" data-year="2024">2024</div>
-                    <div class="publication" data-year="2024">
-                        Fang, Z., Zhao, M., Xu, T., Li, Y., <strong>Xie, H.</strong>, Quan, P., ... & Zhang, R. Y. (2024). Individuals with anxiety and depression use atypical decision strategies in an uncertain world. <em>eLife, 13</em>.
-                    </div>
-                    <div class="publication" data-year="2024">
-                        <strong>Xie, H.</strong>, Xiong, H., & Wilson, R. C. (2024) From Strategic Narratives to Code-Like Cognitive Models: An LLM-Based Approach in A Sorting Task. <em>First Conference on Language Modeling (COLM)</em>.
-                    </div>
-                    <div class="publication" data-year="2024">
-                        <strong>Xie, H.</strong>, Xiong, H., & Wilson, R. C. (2024) Evaluating Predictive Performance and Learning Efficiency of Large Language Models with Think Aloud in Risky Decision Making. <em>Computational Cognitive Neuroscience (CCN), MIT</em>.
-                    </div>
-                    
-                    <!-- 2023 Publications -->
-                    <div class="publication-year" data-year="2023">2023</div>
-                    <div class="publication" data-year="2023">
-                        <strong>Xie, H.</strong> (2023). The promising future of cognitive science and artificial intelligence. <em>Nat Rev Psychology</em>.
-                    </div>
-                    <div class="publication" data-year="2023">
-                        <strong>Xie, H.</strong>, Xiong, H., & Wilson, R. C. (2023). Text2Decision: Decoding Latent Variables in Risky Decision Making from Think Aloud Text. <em>NeurIPS 2023 AI for Science Workshop</em>.
-                    </div>
-                    <div class="publication" data-year="2023">
-                        <strong>Xie, H.</strong>, Xiong, H., & Wilson, R. C. (2023). Computational introspection: Can large language models reveal cognitive algorithms from human language? Poster session presented at the <em>5th Chinese Computational and Cognitive Neuroscience Conference, Beijing, China</em>.
-                    </div>
-                    
-                    <!-- 2022 Publications -->
-                    <div class="publication-year" data-year="2022">2022</div>
-                    <div class="publication" data-year="2022">
-                        Guo, Y., Song, S., <strong>Xie, H.</strong>, Gao, X., & Zhang, J. (2022, February). ARIMA and RNN for Selection Sequences Prediction in Iowa Gambling Task. In <em>2022 2nd International Conference on Artificial Intelligence and Signal Processing (AISP)</em> (pp. 1-6). IEEE.
-                    </div>
-                    
-                    <!-- 2020 Publications -->
-                    <div class="publication-year" data-year="2020">2020</div>
-                    <div class="publication" data-year="2020">
-                        Song, S.*, <strong>Xie, H.</strong>*, Speekenbrink, M., Zhang, J., Gao, X., & Zhou, X. (2020, October). The computational basis of individuals' learning under uncertainty in groups with collective goals. Oral presentation at the <em>Society for Neuroeconomics, Vancouver, Canada</em>.
-                    </div>
-                </div>
-            </div>
-            
-            
+                <p class="subtitle"><small>* Denotes equal contribution, † Denotes Correspondence, Underscore denotes mentee</small></p>
 
-            <div id="collaborators" class="page">
+                <div class="section-block">
+                    <h3>Journal Articles</h3>
+                    <ol class="publication-list">
+                        <li>Qiu, S., Tang, Y., Yu, H., <strong>Xie, H.</strong>, Dreher, J. C., Hu, Y., &amp; Zhou, X. (2025). Toward a computational understanding of bribe-taking behavior. <em>Annals of the New York Academy of Sciences</em>.</li>
+                        <li>Fang, Z., Zhao, M., Xu, T., Li, Y., <strong>Xie, H.</strong>, Quan, P., ... &amp; Zhang, R. Y. (2024). Individuals with anxiety and depression use atypical decision strategies in an uncertain world. <em>eLife, 13</em>.</li>
+                        <li><strong>Xie, H.</strong> (2023). The promising future of cognitive science and artificial intelligence. <em>Nat Rev Psychology</em>.</li>
+                    </ol>
+                </div>
+
+                <div class="section-block">
+                    <h3>Conference</h3>
+                    <ol class="publication-list">
+                        <li>Zhu, J.-Q.*, <strong>Xie, H.</strong>*, Arumugam, D., Wilson, R. C., &amp; Griffiths, T. L. (2025). Using reinforcement learning to train large language models to explain human decisions. <em>arXiv preprint arXiv:2505.11614</em>. ICLR 2026.</li>
+                        <li><span class="mentee">Pan, L.</span>*, <strong>Xie, H.</strong>*†, &amp; Wilson, R. C. (2025). Large Language Models Think Too Fast To Explore Effectively. <em>arXiv preprint arXiv:2501.18009</em>. NeurIPS 2025 Poster.</li>
+                        <li><strong>Xie, H.</strong>†, Zhu, J. Q., Xiong, H. D., Wilson, R., &amp; Griffiths, T. (2025). Reasoning Across Minds and Machines. In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em> (Vol. 47).</li>
+                        <li><span class="mentee">Zhang, Z.</span>*, <strong>Xie, H.</strong>*, Baker, T., Peters, M., &amp; Wilson, R. C. (2025). Linking strategies to think aloud in a stochastic learning task. In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>.</li>
+                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2024). From Strategic Narratives to Code-Like Cognitive Models: An LLM-Based Approach in A Sorting Task. <em>First Conference on Language Modeling (COLM)</em>.</li>
+                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2024). Evaluating Predictive Performance and Learning Efficiency of Large Language Models with Think Aloud in Risky Decision Making. <em>Computational Cognitive Neuroscience (CCN), MIT</em>.</li>
+                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2023). Text2Decision: Decoding Latent Variables in Risky Decision Making from Think Aloud Text. <em>NeurIPS 2023 AI for Science Workshop</em>.</li>
+                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2023). Computational introspection: Can large language models reveal cognitive algorithms from human language? Poster session presented at the <em>5th Chinese Computational and Cognitive Neuroscience Conference, Beijing, China</em>.</li>
+                        <li>Guo, Y., Song, S., <strong>Xie, H.</strong>, Gao, X., &amp; Zhang, J. (2022, February). ARIMA and RNN for Selection Sequences Prediction in Iowa Gambling Task. In <em>2022 2nd International Conference on Artificial Intelligence and Signal Processing (AISP)</em> (pp. 1-6). IEEE.</li>
+                        <li>Song, S*., <strong>Xie, H.</strong>*., Speekenbrink, M., Zhang, J., Gao, X., &amp; Zhou, X. (2020, October). The computational basis of individuals' learning under uncertainty in groups with collective goals. Oral presentation at the <em>Society for Neuroeconomics, Vancouver, Canada</em>.</li>
+                    </ol>
+                </div>
+
+                <div class="section-block">
+                    <h3>Preprints and Submitted Works</h3>
+                    <ol class="publication-list">
+                        <li><strong>Xie, H.</strong>*., &amp; Zhu, J*. (2025, July 12). Centaur May Have Learned a Shortcut that Explains Away Psychological Tasks. <a href="https://doi.org/10.31234/osf.io/u7z4t_v1">https://doi.org/10.31234/osf.io/u7z4t_v1</a> (submitted).</li>
+                        <li><strong>Xie, H.</strong>†., Xiong, H. D., &amp; Wilson, R. C. (2025). Rethinking Think-Aloud in the Age of Language Models. <em>PsyArXiv</em>. <a href="https://osf.io/preprints/psyarxiv/6ta3z_v1">https://osf.io/preprints/psyarxiv/6ta3z_v1</a> (submitted).</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section id="blog" class="page">
+                <h2>Blog</h2>
+                <p class="subtitle">A place for research notes, project updates, and ideas in progress.</p>
+
+                <article class="card">
+                    <h3>Welcome: Why a Research Blog?</h3>
+                    <p class="blog-meta">Draft template post | Replace this with your first real post.</p>
+                    <p>I will use this space to share in-progress thoughts on cognitive science, LLM evaluation, and scientific workflows. Posts can be long-form essays, short project updates, or reading notes.</p>
+                    <div class="share-row">
+                        <a href="https://twitter.com/intent/tweet?text=New%20post%20from%20Hanbo%20Xie" target="_blank" rel="noopener noreferrer">Share on X</a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://xhb120633.github.io/" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+                        <a href="mailto:?subject=Interesting%20post&body=https://xhb120633.github.io/">Share by Email</a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <h3>Engagement Features</h3>
+                    <p>You can support comments/likes on this site even with GitHub Pages:</p>
+                    <ul>
+                        <li><strong>Comments:</strong> Giscus or Utterances (GitHub Discussions/Issues based, no custom backend needed).</li>
+                        <li><strong>Likes/Reactions:</strong> Giscus reactions, or third-party counters like Clap/Like widgets.</li>
+                        <li><strong>Sharing:</strong> Included above with direct share links.</li>
+                    </ul>
+                    <p>If you want, I can set up Giscus directly in this page next.</p>
+                </article>
+            </section>
+
+            <section id="collaborators" class="page">
                 <h2>Collaborators</h2>
 
-                <div class="collaborator-area">
+                <div class="card">
                     <h3>Mentor and Committee</h3>
                     <ul class="collaborator-list">
                         <li><a href="https://psychology.gatech.edu/people/robert-wilson">Dr. Robert C. Wilson</a> (Supervisor), Georgia Tech</li>
                         <li><a href="https://cocosci.princeton.edu/tom/index.php">Dr. Thomas Griffiths</a>, Princeton University</li>
-                        <li><a href="https://anna-ivanova.net/">Dr. Anna Ivanova</a>, Gerogia Tech</li>
-                        <li><a href="https://psychology.gatech.edu/people/sashank-varma">Dr. Varma Sashank</a>, Gerogia Tech</li>
+                        <li><a href="https://anna-ivanova.net/">Dr. Anna Ivanova</a>, Georgia Tech</li>
+                        <li><a href="https://psychology.gatech.edu/people/sashank-varma">Dr. Varma Sashank</a>, Georgia Tech</li>
                         <li><a href="https://neurostimlab.com/">Dr. Travis Baker</a>, Rutgers University</li>
                     </ul>
                 </div>
 
-                <div class="collaborator-area">
+                <div class="card">
                     <h3>Social Cognition</h3>
                     <ul class="collaborator-list">
                         <li><a href="https://faculty.ecnu.edu.cn/_s9/zxl%EF%BC%88x%EF%BC%89/main.psp">Prof. Xiaolin Zhou</a>, East China Normal University</li>
@@ -318,7 +386,7 @@
                     </ul>
                 </div>
 
-                <div class="collaborator-area">
+                <div class="card">
                     <h3>Think Aloud</h3>
                     <ul class="collaborator-list">
                         <li><a href="https://sasn.rutgers.edu/travis-baker">Dr. Travis Baker</a>, Rutgers University</li>
@@ -328,7 +396,7 @@
                     </ul>
                 </div>
 
-                <div class="collaborator-area">
+                <div class="card">
                     <h3>Large Language Models and Neural Networks</h3>
                     <ul class="collaborator-list">
                         <li><a href="https://sakimarquis.github.io/">Hua-Dong Xiong</a>, Georgia Tech</li>
@@ -337,7 +405,7 @@
                     </ul>
                 </div>
 
-                <div class="collaborator-area">
+                <div class="card">
                     <h3>Mentees</h3>
                     <ul class="collaborator-list">
                         <li>Zhenlong Zhang, Johns Hopkins University</li>
@@ -345,75 +413,37 @@
                         <li>Yangtong Feng, Wash U St. Louis</li>
                     </ul>
                 </div>
-            </div>
+            </section>
 
-            <div id="contact" class="page">
+            <section id="contact" class="page">
                 <h2>Contact</h2>
                 <p>Email: hanboxie1997@gatech.edu</p>
                 <p>Address: 750 Ferst Drive, Atlanta, GA 30332</p>
                 <p>
-                    <a href="https://x.com/PsychBoyH" class="btn">Twitter</a>
+                    <a href="https://x.com/PsychBoyH" class="btn">X</a>
                     <a href="https://github.com/xhb120633" class="btn">GitHub</a>
                     <a href="https://scholar.google.com/citations?user=-ZpfFT8AAAAJ&hl=en" class="btn">Google Scholar</a>
                 </p>
-            </div>
+            </section>
         </main>
     </div>
 
     <script>
-        function showPage(pageId) {
-            var pages = document.getElementsByClassName('page');
+        function showPage(pageId, navButton) {
+            var pages = document.getElementsByClassName("page");
+            var buttons = document.getElementsByClassName("nav-btn");
+
             for (var i = 0; i < pages.length; i++) {
-                pages[i].classList.remove('active');
-            }
-            document.getElementById(pageId).classList.add('active');
-        }
-
-        function showPublications(year, buttonEl) {
-            var publicationContainer = document.getElementById('publications-container');
-            var publications = publicationContainer.getElementsByClassName('publication');
-            var yearHeaders = publicationContainer.getElementsByClassName('publication-year');
-            
-            var yearButtons = document.getElementById('publication-years').getElementsByClassName('btn');
-            for (var i = 0; i < yearButtons.length; i++) {
-                yearButtons[i].classList.remove('active');
-            }
-            if (buttonEl) {
-                buttonEl.classList.add('active');
+                pages[i].classList.remove("active");
             }
 
-            if (year === 'all') {
-                // Show all publications
-                for (var i = 0; i < publications.length; i++) {
-                    publications[i].style.display = 'block';
-                }
-                for (var i = 0; i < yearHeaders.length; i++) {
-                    yearHeaders[i].style.display = 'block';
-                }
-            } else {
-                // First hide all publications and year headers
-                for (var i = 0; i < publications.length; i++) {
-                    publications[i].style.display = 'none';
-                }
-                for (var i = 0; i < yearHeaders.length; i++) {
-                    yearHeaders[i].style.display = 'none';
-                }
+            for (var j = 0; j < buttons.length; j++) {
+                buttons[j].classList.remove("active");
+            }
 
-                // Show the selected year header
-                for (var i = 0; i < yearHeaders.length; i++) {
-                    if (yearHeaders[i].textContent === year) {
-                        yearHeaders[i].style.display = 'block';
-                        
-                        // Show all publications that follow this year header until the next year header
-                        var current = yearHeaders[i].nextElementSibling;
-                        while (current && !current.classList.contains('publication-year')) {
-                            if (current.classList.contains('publication')) {
-                                current.style.display = 'block';
-                            }
-                            current = current.nextElementSibling;
-                        }
-                    }
-                }
+            document.getElementById(pageId).classList.add("active");
+            if (navButton) {
+                navButton.classList.add("active");
             }
         }
     </script>
