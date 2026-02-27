@@ -183,6 +183,101 @@
             margin-bottom: 12px;
         }
 
+        .topic-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 18px;
+        }
+
+        .topic-btn {
+            border: 1px solid var(--border);
+            background: #f7f9ff;
+            color: #2a3d5a;
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-size: 0.83rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .topic-btn:hover,
+        .topic-btn.active {
+            background: #e4edff;
+            color: var(--primary-dark);
+            border-color: #c8d9ff;
+        }
+
+        .pub-year {
+            margin-top: 18px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+        }
+
+        .pub-year h3 {
+            margin-bottom: 4px;
+        }
+
+        .publication-list.compact {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .publication-list.compact li {
+            margin-bottom: 14px;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #fcfdff;
+        }
+
+        .label-row {
+            margin-bottom: 6px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-right: 6px;
+            color: #fff;
+        }
+
+        .tag-type {
+            background: #6b7280;
+        }
+
+        .tag-thinkaloud {
+            background: #d97706;
+        }
+
+        .tag-llm {
+            background: #2563eb;
+        }
+
+        .tag-decision {
+            background: #b91c1c;
+        }
+
+        .tag-social {
+            background: #0f766e;
+        }
+
+        .tag-learning {
+            background: #4f46e5;
+        }
+
+        .tag-ai {
+            background: #6d28d9;
+        }
+
+        .tag-clinical {
+            background: #be185d;
+        }
+
         .mentee {
             text-decoration: underline;
         }
@@ -210,6 +305,16 @@
             color: var(--muted);
             font-size: 0.92rem;
             margin-bottom: 8px;
+        }
+
+        .blog-post {
+            margin-bottom: 18px;
+        }
+
+        .comments-wrap {
+            margin-top: 14px;
+            border-top: 1px solid var(--border);
+            padding-top: 14px;
         }
 
         .share-row a {
@@ -270,9 +375,9 @@
             <section id="about" class="page active">
                 <h2>About</h2>
                 <p class="subtitle">Computational approaches to understanding human cognition and improving AI systems.</p>
-                <p>I am a Ph.D. student in Psychology at Georgia Institute of Technology, specializing in computational cognitive science. Before Georgia Tech, I completed an M.A. at the University of Arizona, and previously spent three years at Peking University as a full-time research assistant in CBCS. I received my undergraduate degree in Human Resource Management from Southwestern University of Finance and Economics in China. I am currently visiting Tom Griffiths' <a href="https://cocosci.princeton.edu/">CoCoSci Lab</a> at Princeton University.</p>
-                <p>My research focuses on using large language models (LLMs) and computational tools to understand decision-making and learning, especially through think-aloud protocols. I am also interested in AI behavior, interpretability, human-AI interaction, and using human data to improve model alignment and scientific discovery.</p>
-                <p>I co-founded <a href="https://rldmjc.github.io/">MindRL-Hub</a>, a community supporting interdisciplinary reinforcement learning research in psychology and neuroscience.</p>
+                <p>I am a Ph.D. student in the Psychology program at the Georgia Institute of Technology, specializing in computational cognitive sciences. Prior to joining Georgia Tech, I earned an M.A. degree from the University of Arizona. I spent my entire master's and Ph.D. career under the supervision of Dr. Robert Wilson. Before that, I spent three years at Peking University as a full-time research assistant in CBCS. I earned my undergraduate degree in Human Resource Management from Southwestern University of Finance and Economics in China. Currently, I am visiting Tom Griffiths' <a href="https://cocosci.princeton.edu/">CoCoSci Lab</a> at Princeton University.</p>
+                <p>My research interests broadly lie at the intersection of cognitive sciences and artificial intelligence. My thesis focuses on using Large Language Models (LLMs) to understand how humans think in decision-making and learning using the think-aloud protocol. I employ a variety of computational tools and tasks to explore this exciting topic. Additionally, I am curious about how AI models (e.g., LLMs, agents) behave and think, as well as how human experiences and data can be leveraged to enhance AI models and research. This includes human-AI interactions, AI interpretability, and even artificial general intelligence (AGI).</p>
+                <p>Beyond my research, I contribute to the broader research community. I co-founded <a href="https://rldmjc.github.io/">MindRL-Hub</a>, a community that facilitates the research and application of reinforcement learning in psychology and neuroscience. I am dedicated to promoting interdisciplinary research and collaboration, as well as fostering connections among early-career researchers.</p>
                 <p><a href="cv/Xie_CV_updated.pdf" class="btn">View Curriculum Vitae</a></p>
             </section>
 
@@ -281,56 +386,214 @@
                 <p class="subtitle">Selected themes and current directions.</p>
 
                 <div class="card">
-                    <h3>Think-Aloud Data and LLMs</h3>
-                    <p>I study how think-aloud verbal reports can be modeled computationally to reveal latent cognitive processes in decision-making and learning tasks. This line of work explores scalable alternatives to subjective manual coding and uses LLMs to interpret and predict behavior from language.</p>
+                    <h3>Understanding Human Decision-Making and Learning from Think-Aloud Data with Large Language Models</h3>
+                    <p>The think-aloud protocol involves asking human participants to verbalize their thoughts while performing psychological tasks. Previous research primarily relied on behavioral measurements (typically button presses) to understand human cognitive processes. These mental models were typically proposed and tested by researchers themselves, which can introduce biases and limitations. By directly analyzing participants' thoughts, we gain a deeper probe into human cognition during tasks. However, past research on think-aloud data has heavily relied on subjective coding, where human experts manually label or interpret the content. This process is labor-intensive, subjective, and limited.</p>
+                    <p>With the advent of LLMs, we see an opportunity to revisit this protocol with novel approaches. LLMs can be leveraged to quantify, interpret, and even predict subsequent behaviors based on think-aloud data. Our work explores the feasibility of using LLMs for this purpose, paving the way for a more scalable and systematic approach to analyzing human thought processes.</p>
+                    <p><em>Representative publications:</em></p>
+                    <ul>
+                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2023). Text2Decision: Decoding Latent Variables in Risky Decision Making from Think Aloud Text. <em>NeurIPS 2023 AI for Science Workshop</em>.</li>
+                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2024). From Strategic Narratives to Code-Like Cognitive Models: An LLM-Based Approach in A Sorting Task. <em>First Conference on Language Modeling (COLM)</em>.</li>
+                        <li><strong>Xie, H.</strong>†, Xiong, H. D., &amp; Wilson, R. C. (2025). Rethinking Think-Aloud in the Age of Language Models. <em>PsyArXiv</em>. <a href="https://osf.io/preprints/psyarxiv/6ta3z_v1">https://osf.io/preprints/psyarxiv/6ta3z_v1</a> (<em>submitted</em>).</li>
+                        <li><span class="mentee">Zhang, Z.</span>*, <strong>Xie, H.</strong>*, Baker, T., Peters, M., &amp; Wilson, R. C. (2025). Linking strategies to think aloud in a stochastic learning task. In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>.</li>
+                    </ul>
                 </div>
 
                 <div class="card">
-                    <h3>Reverse Engineering Human Thought</h3>
-                    <p>This direction asks whether underlying thought patterns can be reconstructed from behavior and language data. The broader goal is to establish a stronger bridge between observable actions and latent cognitive mechanisms, while making advanced model behavior more interpretable to humans.</p>
+                    <h3>Reverse Engineering Human Thoughts</h3>
+                    <p>Human thoughts are difficult to define, capture, and model, yet they are fundamental to understanding human intelligence. Understanding thought processes across various tasks, identifying underlying principles, and generalizing these insights to predict thoughts are crucial in cognitive science and AI research. One of the major challenges is that thoughts are implicit, and language is highly diverse and nuanced. Thus, verbalized thoughts do not necessarily reflect the full spectrum of cognitive processing.</p>
+                    <p>Rather than a forward approach (i.e., how human thoughts generate behaviors), this project focuses on inference: given observed behaviors and other measurable data, can we reconstruct and infer the underlying thoughts? Our goal is to establish a strong, generalized connection between behaviors and thoughts to enhance our understanding of human cognition. Furthermore, this project aims to advance machine 'thought' understanding in a human-centered manner. If the computations of complex models (such as AlphaGo) can be approximated using human-trained models, we can gain insights into how AI models think and compute using natural language explanations. This could revolutionize human-AI interaction, enabling AI to teach humans new concepts and strategies.</p>
+                    <p>This project is currently in development and will be my primary research focus at Princeton University.</p>
+                    <p><em>Representative publications:</em></p>
+                    <ul>
+                        <li>Zhu, J.-Q.*, <strong>Xie, H.</strong>*, Arumugam, D., Wilson, R. C., &amp; Griffiths, T. L. (2025). Using reinforcement learning to train large language models to explain human decisions. <em>arXiv preprint arXiv:2505.11614</em>.</li>
+                    </ul>
                 </div>
 
                 <div class="card">
-                    <h3>Human Insights for Better AI</h3>
-                    <p>I investigate how methods from cognitive science can improve AI systems and, conversely, how AI systems can support theory building in psychology and neuroscience.</p>
+                    <h3>Understanding and Improving Artificial Intelligence Through Human Insights</h3>
+                    <p>This project explores how AI can be understood through the lens of human psychology and neuroscience. By analyzing the strengths and weaknesses of AI compared to human intelligence, we can develop better models that are both more effective and more interpretable. Beyond solving complex problems, AI should have societal impact - improving human decision-making, education, and collaboration. Additionally, I believe humans can learn from advanced AI models if we develop appropriate frameworks to analyze and interpret their computations.</p>
+                    <p><em>Representative publications:</em></p>
+                    <ul>
+                        <li><span class="mentee">Pan, L.</span>*, <strong>Xie, H.</strong>*†, &amp; Wilson, R. C. (2025). Large Language Models Think Too Fast To Explore Effectively. <em>arXiv preprint arXiv:2501.18009</em>. NeurIPS 2025 Poster.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Accelerating Scientific Discoveries in Cognitive Science</h3>
+                    <p>The human mind is fascinating and complex. While we experience thoughts, emotions, and actions daily, formally describing, interpreting, and predicting human cognition remains a significant challenge for cognitive scientists and psychologists. Many cognitive theories are inspired by human intuition and validated through experiments and computational models. However, traditional validation methods may not always extend beyond the predefined hypothesis space.</p>
+                    <p>In the era of AI, transforming research paradigms in cognitive science and psychology is crucial. LLMs possess extensive knowledge and inductive biases, potentially surpassing individual human expertise. State-of-the-art language-based reasoning models exhibit strong reasoning abilities - perhaps even beyond those of human scientists. Can we develop AI-driven pipelines to discover new phenomena, construct computational models, and generate scientific theories with minimal human bias? Investigating these possibilities alongside empirical research will be both exciting and transformative.</p>
+                    <p><em>Representative publications:</em></p>
+                    <ul>
+                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2023). Text2Decision: Decoding Latent Variables in Risky Decision Making from Think Aloud Text. <em>NeurIPS 2023 AI for Science Workshop</em>.</li>
+                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2024). From Strategic Narratives to Code-Like Cognitive Models: An LLM-Based Approach in A Sorting Task. <em>First Conference on Language Modeling (COLM)</em>.</li>
+                        <li>Zhu, J.-Q.*, <strong>Xie, H.</strong>*, Arumugam, D., Wilson, R. C., &amp; Griffiths, T. L. (2025). Using reinforcement learning to train large language models to explain human decisions. <em>arXiv preprint arXiv:2505.11614</em>. ICLR 2026.</li>
+                        <li><strong>Xie, H.</strong>*, &amp; Zhu, J*. (2025, July 12). Centaur May Have Learned a Shortcut that Explains Away Psychological Tasks. <a href="https://doi.org/10.31234/osf.io/u7z4t_v1">https://doi.org/10.31234/osf.io/u7z4t_v1</a> (submitted).</li>
+                    </ul>
                 </div>
             </section>
 
             <section id="publications" class="page">
                 <h2>Publications</h2>
-                <p class="subtitle"><small>* Denotes equal contribution, † Denotes Correspondence, Underscore denotes mentee</small></p>
+                <p class="subtitle"><small>* Denotes equal contribution, † Denotes Correspondence, Underscore denotes mentee. Use topic filters to navigate.</small></p>
 
-                <div class="section-block">
-                    <h3>Journal Articles</h3>
-                    <ol class="publication-list">
-                        <li>Qiu, S., Tang, Y., Yu, H., <strong>Xie, H.</strong>, Dreher, J. C., Hu, Y., &amp; Zhou, X. (2025). Toward a computational understanding of bribe-taking behavior. <em>Annals of the New York Academy of Sciences</em>.</li>
-                        <li>Fang, Z., Zhao, M., Xu, T., Li, Y., <strong>Xie, H.</strong>, Quan, P., ... &amp; Zhang, R. Y. (2024). Individuals with anxiety and depression use atypical decision strategies in an uncertain world. <em>eLife, 13</em>.</li>
-                        <li><strong>Xie, H.</strong> (2023). The promising future of cognitive science and artificial intelligence. <em>Nat Rev Psychology</em>.</li>
-                    </ol>
+                <div class="topic-filter" id="topic-filter">
+                    <button class="topic-btn active" onclick="filterPublications('all', this)">All Topics</button>
+                    <button class="topic-btn" onclick="filterPublications('thinkaloud', this)">Think-Aloud</button>
+                    <button class="topic-btn" onclick="filterPublications('llm', this)">LLM</button>
+                    <button class="topic-btn" onclick="filterPublications('decision', this)">Decision Making</button>
+                    <button class="topic-btn" onclick="filterPublications('social', this)">Social Cognition</button>
+                    <button class="topic-btn" onclick="filterPublications('learning', this)">Learning</button>
+                    <button class="topic-btn" onclick="filterPublications('ai', this)">AI Perspective</button>
+                    <button class="topic-btn" onclick="filterPublications('clinical', this)">Clinical</button>
                 </div>
 
-                <div class="section-block">
-                    <h3>Conference</h3>
-                    <ol class="publication-list">
-                        <li>Zhu, J.-Q.*, <strong>Xie, H.</strong>*, Arumugam, D., Wilson, R. C., &amp; Griffiths, T. L. (2025). Using reinforcement learning to train large language models to explain human decisions. <em>arXiv preprint arXiv:2505.11614</em>. ICLR 2026.</li>
-                        <li><span class="mentee">Pan, L.</span>*, <strong>Xie, H.</strong>*†, &amp; Wilson, R. C. (2025). Large Language Models Think Too Fast To Explore Effectively. <em>arXiv preprint arXiv:2501.18009</em>. NeurIPS 2025 Poster.</li>
-                        <li><strong>Xie, H.</strong>†, Zhu, J. Q., Xiong, H. D., Wilson, R., &amp; Griffiths, T. (2025). Reasoning Across Minds and Machines. In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em> (Vol. 47).</li>
-                        <li><span class="mentee">Zhang, Z.</span>*, <strong>Xie, H.</strong>*, Baker, T., Peters, M., &amp; Wilson, R. C. (2025). Linking strategies to think aloud in a stochastic learning task. In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>.</li>
-                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2024). From Strategic Narratives to Code-Like Cognitive Models: An LLM-Based Approach in A Sorting Task. <em>First Conference on Language Modeling (COLM)</em>.</li>
-                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2024). Evaluating Predictive Performance and Learning Efficiency of Large Language Models with Think Aloud in Risky Decision Making. <em>Computational Cognitive Neuroscience (CCN), MIT</em>.</li>
-                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2023). Text2Decision: Decoding Latent Variables in Risky Decision Making from Think Aloud Text. <em>NeurIPS 2023 AI for Science Workshop</em>.</li>
-                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2023). Computational introspection: Can large language models reveal cognitive algorithms from human language? Poster session presented at the <em>5th Chinese Computational and Cognitive Neuroscience Conference, Beijing, China</em>.</li>
-                        <li>Guo, Y., Song, S., <strong>Xie, H.</strong>, Gao, X., &amp; Zhang, J. (2022, February). ARIMA and RNN for Selection Sequences Prediction in Iowa Gambling Task. In <em>2022 2nd International Conference on Artificial Intelligence and Signal Processing (AISP)</em> (pp. 1-6). IEEE.</li>
-                        <li>Song, S*., <strong>Xie, H.</strong>*., Speekenbrink, M., Zhang, J., Gao, X., &amp; Zhou, X. (2020, October). The computational basis of individuals' learning under uncertainty in groups with collective goals. Oral presentation at the <em>Society for Neuroeconomics, Vancouver, Canada</em>.</li>
-                    </ol>
+                <div class="pub-year">
+                    <h3>2025</h3>
+                    <ul class="publication-list compact">
+                        <li class="pub-item" data-topics="decision,social">
+                            <div class="label-row">
+                                <span class="tag tag-type">Journal</span>
+                                <span class="tag tag-decision">Decision</span>
+                                <span class="tag tag-social">Social</span>
+                            </div>
+                            Qiu, S., Tang, Y., Yu, H., <strong>Xie, H.</strong>, Dreher, J. C., Hu, Y., &amp; Zhou, X. (2025). Toward a computational understanding of bribe-taking behavior. <em>Annals of the New York Academy of Sciences</em>.
+                        </li>
+                        <li class="pub-item" data-topics="llm,decision">
+                            <div class="label-row">
+                                <span class="tag tag-type">Conference</span>
+                                <span class="tag tag-llm">LLM</span>
+                                <span class="tag tag-decision">Decision</span>
+                            </div>
+                            Zhu, J.-Q.*, <strong>Xie, H.</strong>*, Arumugam, D., Wilson, R. C., &amp; Griffiths, T. L. (2025). Using reinforcement learning to train large language models to explain human decisions. <em>arXiv preprint arXiv:2505.11614</em>. ICLR 2026.
+                        </li>
+                        <li class="pub-item" data-topics="llm,decision">
+                            <div class="label-row">
+                                <span class="tag tag-type">Conference</span>
+                                <span class="tag tag-llm">LLM</span>
+                                <span class="tag tag-decision">Decision</span>
+                            </div>
+                            <span class="mentee">Pan, L.</span>*, <strong>Xie, H.</strong>*†, &amp; Wilson, R. C. (2025). Large Language Models Think Too Fast To Explore Effectively. <em>arXiv preprint arXiv:2501.18009</em>. NeurIPS 2025 Poster.
+                        </li>
+                        <li class="pub-item" data-topics="llm,ai">
+                            <div class="label-row">
+                                <span class="tag tag-type">Conference</span>
+                                <span class="tag tag-llm">LLM</span>
+                                <span class="tag tag-ai">AI</span>
+                            </div>
+                            <strong>Xie, H.</strong>†, Zhu, J. Q., Xiong, H. D., Wilson, R., &amp; Griffiths, T. (2025). Reasoning Across Minds and Machines. In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em> (Vol. 47).
+                        </li>
+                        <li class="pub-item" data-topics="thinkaloud,learning">
+                            <div class="label-row">
+                                <span class="tag tag-type">Conference</span>
+                                <span class="tag tag-thinkaloud">Think-Aloud</span>
+                                <span class="tag tag-learning">Learning</span>
+                            </div>
+                            <span class="mentee">Zhang, Z.</span>*, <strong>Xie, H.</strong>*, Baker, T., Peters, M., &amp; Wilson, R. C. (2025). Linking strategies to think aloud in a stochastic learning task. In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>.
+                        </li>
+                        <li class="pub-item" data-topics="thinkaloud,llm">
+                            <div class="label-row">
+                                <span class="tag tag-type">Preprint</span>
+                                <span class="tag tag-thinkaloud">Think-Aloud</span>
+                                <span class="tag tag-llm">LLM</span>
+                            </div>
+                            <strong>Xie, H.</strong>*, &amp; Zhu, J*. (2025, July 12). Centaur May Have Learned a Shortcut that Explains Away Psychological Tasks. <a href="https://doi.org/10.31234/osf.io/u7z4t_v1">https://doi.org/10.31234/osf.io/u7z4t_v1</a> (submitted).
+                        </li>
+                        <li class="pub-item" data-topics="thinkaloud,llm">
+                            <div class="label-row">
+                                <span class="tag tag-type">Preprint</span>
+                                <span class="tag tag-thinkaloud">Think-Aloud</span>
+                                <span class="tag tag-llm">LLM</span>
+                            </div>
+                            <strong>Xie, H.</strong>†, Xiong, H. D., &amp; Wilson, R. C. (2025). Rethinking Think-Aloud in the Age of Language Models. <em>PsyArXiv</em>. <a href="https://osf.io/preprints/psyarxiv/6ta3z_v1">https://osf.io/preprints/psyarxiv/6ta3z_v1</a> (submitted).
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="section-block">
-                    <h3>Preprints and Submitted Works</h3>
-                    <ol class="publication-list">
-                        <li><strong>Xie, H.</strong>*., &amp; Zhu, J*. (2025, July 12). Centaur May Have Learned a Shortcut that Explains Away Psychological Tasks. <a href="https://doi.org/10.31234/osf.io/u7z4t_v1">https://doi.org/10.31234/osf.io/u7z4t_v1</a> (submitted).</li>
-                        <li><strong>Xie, H.</strong>†., Xiong, H. D., &amp; Wilson, R. C. (2025). Rethinking Think-Aloud in the Age of Language Models. <em>PsyArXiv</em>. <a href="https://osf.io/preprints/psyarxiv/6ta3z_v1">https://osf.io/preprints/psyarxiv/6ta3z_v1</a> (submitted).</li>
-                    </ol>
+                <div class="pub-year">
+                    <h3>2024</h3>
+                    <ul class="publication-list compact">
+                        <li class="pub-item" data-topics="decision,clinical">
+                            <div class="label-row">
+                                <span class="tag tag-type">Journal</span>
+                                <span class="tag tag-decision">Decision</span>
+                                <span class="tag tag-clinical">Clinical</span>
+                            </div>
+                            Fang, Z., Zhao, M., Xu, T., Li, Y., <strong>Xie, H.</strong>, Quan, P., ... &amp; Zhang, R. Y. (2024). Individuals with anxiety and depression use atypical decision strategies in an uncertain world. <em>eLife, 13</em>.
+                        </li>
+                        <li class="pub-item" data-topics="thinkaloud,llm">
+                            <div class="label-row">
+                                <span class="tag tag-type">Conference</span>
+                                <span class="tag tag-thinkaloud">Think-Aloud</span>
+                                <span class="tag tag-llm">LLM</span>
+                            </div>
+                            <strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2024). From Strategic Narratives to Code-Like Cognitive Models: An LLM-Based Approach in A Sorting Task. <em>First Conference on Language Modeling (COLM)</em>.
+                        </li>
+                        <li class="pub-item" data-topics="thinkaloud,decision">
+                            <div class="label-row">
+                                <span class="tag tag-type">Conference</span>
+                                <span class="tag tag-thinkaloud">Think-Aloud</span>
+                                <span class="tag tag-decision">Decision</span>
+                            </div>
+                            <strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2024). Evaluating Predictive Performance and Learning Efficiency of Large Language Models with Think Aloud in Risky Decision Making. <em>Computational Cognitive Neuroscience (CCN), MIT</em>.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pub-year">
+                    <h3>2023</h3>
+                    <ul class="publication-list compact">
+                        <li class="pub-item" data-topics="ai">
+                            <div class="label-row">
+                                <span class="tag tag-type">Journal</span>
+                                <span class="tag tag-ai">AI</span>
+                            </div>
+                            <strong>Xie, H.</strong> (2023). The promising future of cognitive science and artificial intelligence. <em>Nat Rev Psychology</em>.
+                        </li>
+                        <li class="pub-item" data-topics="thinkaloud,decision">
+                            <div class="label-row">
+                                <span class="tag tag-type">Conference</span>
+                                <span class="tag tag-thinkaloud">Think-Aloud</span>
+                                <span class="tag tag-decision">Decision</span>
+                            </div>
+                            <strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2023). Text2Decision: Decoding Latent Variables in Risky Decision Making from Think Aloud Text. <em>NeurIPS 2023 AI for Science Workshop</em>.
+                        </li>
+                        <li class="pub-item" data-topics="thinkaloud,llm">
+                            <div class="label-row">
+                                <span class="tag tag-type">Conference</span>
+                                <span class="tag tag-thinkaloud">Think-Aloud</span>
+                                <span class="tag tag-llm">LLM</span>
+                            </div>
+                            <strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2023). Computational introspection: Can large language models reveal cognitive algorithms from human language? Poster session presented at the <em>5th Chinese Computational and Cognitive Neuroscience Conference, Beijing, China</em>.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pub-year">
+                    <h3>2022</h3>
+                    <ul class="publication-list compact">
+                        <li class="pub-item" data-topics="decision,learning">
+                            <div class="label-row">
+                                <span class="tag tag-type">Conference</span>
+                                <span class="tag tag-decision">Decision</span>
+                                <span class="tag tag-learning">Learning</span>
+                            </div>
+                            Guo, Y., Song, S., <strong>Xie, H.</strong>, Gao, X., &amp; Zhang, J. (2022, February). ARIMA and RNN for Selection Sequences Prediction in Iowa Gambling Task. In <em>2022 2nd International Conference on Artificial Intelligence and Signal Processing (AISP)</em> (pp. 1-6). IEEE.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pub-year">
+                    <h3>2020</h3>
+                    <ul class="publication-list compact">
+                        <li class="pub-item" data-topics="social,learning">
+                            <div class="label-row">
+                                <span class="tag tag-type">Conference</span>
+                                <span class="tag tag-social">Social</span>
+                                <span class="tag tag-learning">Learning</span>
+                            </div>
+                            Song, S*., <strong>Xie, H.</strong>*., Speekenbrink, M., Zhang, J., Gao, X., &amp; Zhou, X. (2020, October). The computational basis of individuals' learning under uncertainty in groups with collective goals. Oral presentation at the <em>Society for Neuroeconomics, Vancouver, Canada</em>.
+                        </li>
+                    </ul>
                 </div>
             </section>
 
@@ -338,7 +601,7 @@
                 <h2>Blog</h2>
                 <p class="subtitle">A place for research notes, project updates, and ideas in progress.</p>
 
-                <article class="card">
+                <article class="card blog-post">
                     <h3>Welcome: Why a Research Blog?</h3>
                     <p class="blog-meta">Draft template post | Replace this with your first real post.</p>
                     <p>I will use this space to share in-progress thoughts on cognitive science, LLM evaluation, and scientific workflows. Posts can be long-form essays, short project updates, or reading notes.</p>
@@ -347,17 +610,30 @@
                         <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://xhb120633.github.io/" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
                         <a href="mailto:?subject=Interesting%20post&body=https://xhb120633.github.io/">Share by Email</a>
                     </div>
+
+                    <div class="comments-wrap">
+                        <h3>Comments</h3>
+                        <p class="blog-meta">Sign in with GitHub to comment. Comments are stored as GitHub Issues via Utterances.</p>
+                        <script src="https://utteranc.es/client.js"
+                            repo="xhb120633/xhb120633.github.io"
+                            issue-term="title"
+                            label="blog-comment"
+                            theme="github-light"
+                            crossorigin="anonymous"
+                            async>
+                        </script>
+                    </div>
                 </article>
 
                 <article class="card">
                     <h3>Engagement Features</h3>
-                    <p>You can support comments/likes on this site even with GitHub Pages:</p>
+                    <p>The comment backend is now implemented with Utterances + GitHub Issues, which works well with static sites.</p>
                     <ul>
-                        <li><strong>Comments:</strong> Giscus or Utterances (GitHub Discussions/Issues based, no custom backend needed).</li>
-                        <li><strong>Likes/Reactions:</strong> Giscus reactions, or third-party counters like Clap/Like widgets.</li>
+                        <li><strong>Comments backend:</strong> live via Utterances in the blog post above.</li>
+                        <li><strong>Likes/Reactions:</strong> easiest next step is Giscus reactions (GitHub Discussions).</li>
                         <li><strong>Sharing:</strong> Included above with direct share links.</li>
                     </ul>
-                    <p>If you want, I can set up Giscus directly in this page next.</p>
+                    <p>If you want, I can switch from Utterances to Giscus and include emoji reactions/likes directly.</p>
                 </article>
             </section>
 
@@ -444,6 +720,39 @@
             document.getElementById(pageId).classList.add("active");
             if (navButton) {
                 navButton.classList.add("active");
+            }
+        }
+
+        function filterPublications(topic, topicButton) {
+            var items = document.getElementsByClassName("pub-item");
+            var yearBlocks = document.getElementsByClassName("pub-year");
+            var topicButtons = document.getElementById("topic-filter").getElementsByClassName("topic-btn");
+
+            for (var b = 0; b < topicButtons.length; b++) {
+                topicButtons[b].classList.remove("active");
+            }
+            if (topicButton) {
+                topicButton.classList.add("active");
+            }
+
+            for (var i = 0; i < items.length; i++) {
+                var topics = items[i].getAttribute("data-topics");
+                if (topic === "all" || (topics && topics.indexOf(topic) !== -1)) {
+                    items[i].style.display = "block";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+
+            for (var y = 0; y < yearBlocks.length; y++) {
+                var visibleCount = 0;
+                var yearItems = yearBlocks[y].getElementsByClassName("pub-item");
+                for (var k = 0; k < yearItems.length; k++) {
+                    if (yearItems[k].style.display !== "none") {
+                        visibleCount += 1;
+                    }
+                }
+                yearBlocks[y].style.display = visibleCount > 0 ? "block" : "none";
             }
         }
     </script>
