@@ -246,44 +246,29 @@
             </div>
 
             <div class="comments-wrap">
-                <h2>Comments</h2>
-                <p class="meta">Sign in with GitHub to comment. This post has its own comments thread.</p>
-                <div id="utterances-container"></div>
-                <div id="comment-fallback" class="comment-help" style="display: none;">
-                    Comments widget did not load in this browser. You can still comment directly on
-                    <a href="https://github.com/xhb120633/xhb120633.github.io/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.
-                    If needed, disable ad/tracker blocking for <code>utteranc.es</code> and allow third-party content.
+                <h2>Comments &amp; Reactions</h2>
+                <p class="meta">Sign in with GitHub to comment or leave emoji reactions.</p>
+                <script src="https://giscus.app/client.js"
+                    data-repo="xhb120633/xhb120633.github.io"
+                    data-repo-id="R_kgDOJWNfMw"
+                    data-category="General"
+                    data-category-id="DIC_kwDOJWNfM84C3Vu6"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="1"
+                    data-emit-metadata="0"
+                    data-input-position="bottom"
+                    data-theme="preferred_color_scheme"
+                    data-lang="zh-CN"
+                    crossorigin="anonymous"
+                    async>
+                </script>
+                <div class="comment-help">
+                    If the widget above does not appear, ensure GitHub Discussions and Giscus are configured for
+                    <code>xhb120633/xhb120633.github.io</code>, and disable any blockers for <code>giscus.app</code>.
                 </div>
             </div>
         </article>
     </div>
-    <script>
-        (function () {
-            var container = document.getElementById("utterances-container");
-            if (!container) {
-                return;
-            }
-
-            var script = document.createElement("script");
-            script.src = "https://utteranc.es/client.js";
-            script.setAttribute("repo", "xhb120633/xhb120633.github.io");
-            script.setAttribute("issue-term", "pathname");
-            script.setAttribute("label", "blog-comment");
-            script.setAttribute("theme", "github-light");
-            script.setAttribute("crossorigin", "anonymous");
-            script.async = true;
-            container.appendChild(script);
-
-            window.setTimeout(function () {
-                var widget = document.querySelector("iframe.utterances-frame, iframe.utterances");
-                if (!widget) {
-                    var fallback = document.getElementById("comment-fallback");
-                    if (fallback) {
-                        fallback.style.display = "block";
-                    }
-                }
-            }, 2500);
-        })();
-    </script>
 </body>
 </html>
