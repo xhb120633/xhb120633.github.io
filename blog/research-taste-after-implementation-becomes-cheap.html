@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Taste After Implementation Becomes Cheap | Hanbo Xie</title>
+    <meta name="description" content="Why AI makes problem selection and evaluation more important as implementation becomes cheaper.">
+    <style>
+        :root {
+            --bg: #f6f7f5;
+            --surface: #ffffff;
+            --surface-soft: #f9faf8;
+            --text: #202426;
+            --muted: #5f686d;
+            --primary: #265f73;
+            --primary-dark: #174555;
+            --accent: #a95d35;
+            --border: #d9dedb;
+            --shadow: 0 18px 45px rgba(24, 42, 48, 0.09);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            line-height: 1.78;
+            color: var(--text);
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(246, 247, 245, 0.94) 42%, var(--bg) 100%);
+        }
+
+        a {
+            color: var(--primary);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid rgba(169, 93, 53, 0.28);
+            outline-offset: 2px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px 18px 48px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 9px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            color: #ffffff;
+        }
+
+        .lang-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 8px 22px rgba(24, 42, 48, 0.06);
+        }
+
+        .lang-switch button {
+            border: 0;
+            background: transparent;
+            color: var(--muted);
+            border-radius: 6px;
+            padding: 7px 10px;
+            font: inherit;
+            font-size: 0.92rem;
+            font-weight: 750;
+            cursor: pointer;
+        }
+
+        .lang-switch button.active {
+            background: #e7f0f2;
+            color: var(--primary-dark);
+        }
+
+        .post {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: clamp(24px, 5vw, 46px);
+            box-shadow: var(--shadow);
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2.1rem, 4.4vw, 3.25rem);
+            line-height: 1.12;
+            letter-spacing: 0;
+        }
+
+        .subtitle {
+            margin: 12px 0 0;
+            color: #344147;
+            font-size: 1.1rem;
+            line-height: 1.55;
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.94rem;
+            margin: 12px 0 0;
+        }
+
+        .lead-box {
+            margin: 24px 0 18px;
+            padding: 18px 20px;
+            border: 1px solid #cfdde1;
+            border-radius: 8px;
+            background: #f2f7f8;
+            color: #26393f;
+        }
+
+        .lead-box p {
+            margin: 0;
+        }
+
+        .thesis-card {
+            margin: 18px 0 36px;
+            padding: 18px 20px;
+            border: 1px solid #efd1bd;
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff8f3;
+        }
+
+        .thesis-card .kicker {
+            margin: 0 0 6px;
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 850;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .thesis-card .slogan {
+            margin: 0;
+            color: #26393f;
+            font-size: clamp(1.18rem, 2.2vw, 1.52rem);
+            font-weight: 820;
+            line-height: 1.42;
+        }
+
+        .pullquote {
+            max-width: 760px;
+            margin: 32px auto;
+            padding: 4px 0 4px 22px;
+            border-left: 4px solid var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .pullquote p {
+            margin: 0;
+            font-size: 1.18rem;
+            font-weight: 780;
+            line-height: 1.55;
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin: 22px 0 34px;
+            padding: 18px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .framework-step {
+            padding: 0 14px;
+            border-left: 3px solid #cfdde1;
+        }
+
+        .framework-step:first-child {
+            border-left-color: var(--accent);
+        }
+
+        .framework-step span {
+            display: block;
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 850;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+
+        .framework-step h3 {
+            margin: 0 0 6px;
+            color: #26393f;
+            font-size: 1rem;
+            line-height: 1.25;
+        }
+
+        .framework-step p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .post-content {
+            display: none;
+        }
+
+        .post-content.active {
+            display: block;
+        }
+
+        h2 {
+            margin-top: 2.25em;
+            margin-bottom: 0.35em;
+            color: #26393f;
+            font-size: 1.56rem;
+            line-height: 1.25;
+            letter-spacing: 0;
+        }
+
+        p {
+            margin: 1em 0;
+        }
+
+        .question-list {
+            margin: 1.25em 0 1.6em;
+            padding: 18px 22px 18px 38px;
+            border: 1px solid #efd1bd;
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: #fff8f3;
+        }
+
+        .question-list li {
+            margin: 0.5em 0;
+            padding-left: 2px;
+        }
+
+        .references {
+            margin-top: 34px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .share-row {
+            margin: 26px 0 8px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .share-row a {
+            color: var(--primary);
+            text-decoration: none;
+            margin-right: 12px;
+            font-weight: 700;
+        }
+
+        .share-row a:hover {
+            text-decoration: underline;
+        }
+
+        .comments-wrap {
+            margin-top: 26px;
+            border-top: 1px solid var(--border);
+            padding-top: 14px;
+        }
+
+        .comment-help {
+            margin-top: 10px;
+            padding: 10px 12px;
+            border: 1px solid #f0c7a1;
+            border-radius: 8px;
+            background: #fff7ed;
+            color: #7c2d12;
+            font-size: 0.92rem;
+        }
+
+        .comment-help a {
+            color: #9a3412;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .comment-help a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 680px) {
+            .container {
+                padding: 16px 12px 34px;
+            }
+
+            .topbar {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+
+            .lang-switch {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                width: 100%;
+            }
+
+            .lang-switch button {
+                width: 100%;
+            }
+
+            .post {
+                padding: 22px 18px;
+            }
+
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .framework-step {
+                padding: 0 0 0 14px;
+            }
+        }
+    </style>
+</head>
+<body data-lang="en">
+    <div class="container">
+        <div class="topbar">
+            <a class="btn" href="../index.html#blog">Back to Blog</a>
+            <div class="lang-switch" role="group" aria-label="Language">
+                <button type="button" class="active" data-lang-button="en" aria-pressed="true">English</button>
+                <button type="button" data-lang-button="zh" aria-pressed="false">中文</button>
+            </div>
+        </div>
+
+        <article class="post">
+            <header class="post-content active" data-lang="en">
+                <p class="eyebrow">AI-era research</p>
+                <h1>Research Taste After Implementation Becomes Cheap</h1>
+                <p class="subtitle">Why AI Makes Problem Selection and Evaluation More Important</p>
+                <p class="meta">Author: Hanbo Xie | Georgia Institute of Technology | July 1, 2026</p>
+                <div class="lead-box">
+                    <p>AI has made the visible parts of research cheaper: coding, annotation, visualization, literature search, model comparison, and writing. This is a real advance. But it also creates a subtle failure mode: work can look more complete without becoming more conceptually grounded or better evaluated. I find it useful to think of research as having three layers: choosing an important problem, defining what would count as solving it, and implementing a system or study. AI mainly accelerates the third layer. As implementation becomes cheap, research taste becomes more important: knowing what is worth building, what would count as progress, and when a polished artifact is being mistaken for understanding.</p>
+                </div>
+                <div class="thesis-card">
+                    <p class="kicker">Core claim</p>
+                    <p class="slogan">AI makes research easier to build. It also makes weak ideas easier to stage.</p>
+                </div>
+            </header>
+
+            <header class="post-content" data-lang="zh">
+                <p class="eyebrow">AI 时代的研究</p>
+                <h1>当实现变得廉价之后，研究品味变得重要</h1>
+                <p class="subtitle">为什么 AI 让问题选择和评价变得更重要</p>
+                <p class="meta">作者：Hanbo Xie | Georgia Institute of Technology | 2026 年 7 月 1 日</p>
+                <div class="lead-box">
+                    <p>AI 已经让研究中最可见的部分变便宜了：写代码、做标注、画图、搜文献、比较模型、写作。这当然是进步。但它也带来一个很隐蔽的失败模式：一项工作可以看起来更完整，却没有变得更有概念根基，也没有经过更好的评价。我觉得可以把研究分成三层：选择一个重要的问题，定义什么才算解决它，以及实现一个系统或一项研究。AI 主要加速的是第三层。当实现变得廉价之后，研究品味反而更重要：知道什么值得做，什么才算进展，以及什么时候我们把一个打磨得很漂亮的研究产物误认为理解。</p>
+                </div>
+                <div class="thesis-card">
+                    <p class="kicker">核心主张</p>
+                    <p class="slogan">AI 让研究更容易被搭建，也让不够扎实的想法更容易被包装成完整的样子。</p>
+                </div>
+            </header>
+
+            <section class="post-content active" data-lang="en">
+                <h2>The Strange Feeling of AI-Era Research</h2>
+                <p>A lot of research feels faster now.</p>
+                <p>We can ask AI to write code, clean data, summarize papers, generate labels, draft prompts, produce figures, compare models, and turn scattered notes into something readable. These are not small things. Many parts of research used to be slow simply because they were tedious.</p>
+                <p>But I also find myself having a strange reaction to some AI-era research. The work can look very complete. There is a dataset, a pipeline, a benchmark, a visualization, a model comparison, maybe even an agent loop. Everything is there.</p>
+                <p>And yet something still feels unresolved.</p>
+                <p>Usually the problem is not that the authors did nothing. They often did a lot. The problem is that visible work does not always answer the deeper question. What exactly was solved? Why does it matter? What would have counted as a nontrivial solution? What shortcuts were ruled out?</p>
+                <p>AI does not only make research easier to do. It makes research easier to stage.</p>
+                <aside class="pullquote">
+                    <p>Implementation can make a project look complete before the question has become clear.</p>
+                </aside>
+
+                <h2>Three Layers of Scientific Work</h2>
+                <p>I find it useful to separate research into three layers.</p>
+                <div class="framework-grid" aria-label="Three layers of scientific work">
+                    <div class="framework-step">
+                        <span>01</span>
+                        <h3>Value</h3>
+                        <p>What is worth asking, and why does it matter?</p>
+                    </div>
+                    <div class="framework-step">
+                        <span>02</span>
+                        <h3>Evaluation</h3>
+                        <p>What would count as solving it, and what shortcuts are ruled out?</p>
+                    </div>
+                    <div class="framework-step">
+                        <span>03</span>
+                        <h3>Implementation</h3>
+                        <p>How do we build the study, model, benchmark, or system?</p>
+                    </div>
+                </div>
+                <p>The first is the <em>value layer</em>: what problem is worth asking, and why does it matter? Battleday and Gershman distinguish between the "easy problem" of AI for science, solving well-specified optimization problems, and the "hard problem" of formulating the problem itself <a href="#ref-battleday-en">[1]</a>. A good research problem is not just doable. It should change how we understand something, or how the world can operate.</p>
+                <p>The second is the <em>evaluation layer</em>: what would count as solving the problem? What evidence would show that the answer is not a shortcut, artifact, or post-hoc story? This layer becomes especially important when the problem is under-specified. Understanding, explanation, mechanism, transfer, scientific discovery, and human-AI interaction do not come with natural loss functions.</p>
+                <p>The third is the <em>implementation layer</em>: how do we build the experiment, dataset, model, analysis, benchmark, or system?</p>
+                <p>All three layers matter. Implementation is not "just engineering." Without implementation, ideas remain empty. But the layers are not interchangeable. A strong implementation does not automatically answer an important question. A benchmark score does not automatically validate an evaluation. A polished artifact does not automatically imply conceptual progress.</p>
+
+                <h2>What AI Makes Cheap</h2>
+                <p>AI has transformed the third layer.</p>
+                <p>This is mostly good. It means we can try more ideas, build faster prototypes, analyze more data, and explore directions that would previously have been too costly. It lowers friction. It makes research less bottlenecked by boilerplate.</p>
+                <p>But it also changes how we should read research.</p>
+                <p>When implementation was expensive, visible effort often carried some signal. A large pipeline, a complex analysis, or a carefully assembled benchmark suggested real investment. Now that signal is weaker. AI makes it much easier to produce research-like artifacts: taxonomies, annotations, heatmaps, comparisons, summaries, and polished narratives.</p>
+                <p>That does not make these artifacts useless. It means we should ask more carefully what they show.</p>
+                <p>AI makes it easier to build. It does not automatically make it easier to know what is worth building.</p>
+                <aside class="pullquote">
+                    <p>As implementation gets cheaper, taste becomes the scarce resource.</p>
+                </aside>
+
+                <h2>When Value Claims Drift</h2>
+                <p>One kind of drift happens at the value layer. A narrow result is attached to a much larger vision.</p>
+                <p>This often happens in areas like NeuroAI, human-AI comparison, and biologically inspired AI. A study may show that an artificial model resembles human behavior or neural responses in some setting. Another may build a small functional demo inspired by a cognitive or neural principle. These results can be interesting. Similarities can be surprising. Demos can be useful.</p>
+                <p>The question is how much weight the result should carry.</p>
+                <p>Showing that a model resembles the brain in one setting is not the same as explaining the brain. Showing that a model resembles human behavior is not the same as explaining cognition. Building a toy system inspired by a cognitive principle is not the same as showing a scalable design principle for AI.</p>
+                <p>The missing question is simple: what would make this matter beyond the demonstration itself?</p>
+                <p>If the goal is to inspire AI, what conditions would make the idea useful for AI systems? Does it improve robustness, efficiency, transfer, interpretability, or control? If the goal is to understand cognition, what phenomena does it organize? What alternatives does it rule out? What would the next few studies need to show?</p>
+                <p>A serious impact claim needs a path. One paper does not need to realize the entire vision, but it should make clear how the local result connects to the larger promise. Otherwise, a grand vision becomes a reusable wrapper: today the work points toward human-like AI, tomorrow toward scientific discovery, the day after toward understanding intelligence.</p>
+                <p>Ambition is not the problem. Unearned ambition is: using a large destination to sell a local step without specifying the bridge.</p>
+
+                <h2>When Evaluation Claims Drift</h2>
+                <p>A second kind of drift happens at the evaluation layer. The system does something measurable, but the measurement does not quite match the claim.</p>
+                <p>Consider automated systems that generate executable models, fit them to data, design experiments, collect observations, and propose improved successors. This is a real implementation advance. It may accelerate model discovery.</p>
+                <p>But if this is framed as theory-level progress, the evaluation target changes.</p>
+                <p>Model refinement can be evaluated by fit, loss, prediction, or performance on new data. Theory-level progress asks for something else: what became more general, explanatory, falsifiable, or better scoped? Did the successor organize phenomena more effectively? Did it distinguish competing accounts? Did failure teach us something conceptually?</p>
+                <p>This distinction matters because the standard can drift with the artifact.</p>
+                <p>We do not call an opaque predictive model a theory simply because it predicts behavior well. A readable executable model should not automatically receive theory status either. Readability and executability are useful. They make models easier to inspect, modify, and compare. But they do not replace conceptual commitments, scope conditions, or tests that distinguish explanation from fit.</p>
+                <p>Executable models are valuable. The issue is not the artifact itself. The issue is when the evaluation remains at the level of model fit while the language moves to the level of theory refinement.</p>
+                <p>In that case, implementation has borrowed a higher-level claim.</p>
+
+                <h2>Research Taste</h2>
+                <p>This is why research taste matters more after implementation becomes cheap.</p>
+                <p>Taste is not just having clever ideas. It is knowing which problems deserve effort. It is sensing when a result is genuinely important and when it is mostly well-packaged. It is asking whether the evaluation matches the claim. It is noticing when a metric is standing in for a concept that has not been defined.</p>
+                <p>A simple test I increasingly find useful is:</p>
+                <ul class="question-list">
+                    <li>What is the actual problem?</li>
+                    <li>Why does it matter?</li>
+                    <li>What would count as solving it?</li>
+                    <li>What shortcut could make the result look successful?</li>
+                    <li>Does the evaluation rule out that shortcut?</li>
+                    <li>Does the implementation serve the question, or mainly make the work look complete?</li>
+                </ul>
+                <p>These questions are not new. They are basic scientific questions. But they become more urgent when AI can produce convincing research-like artifacts quickly.</p>
+
+                <h2>Conclusion</h2>
+                <p>AI is making research faster. That is good. But speed changes what we should value.</p>
+                <p>When implementation was expensive, visible effort could sometimes be mistaken for depth. In the age of cheap implementation, that mistake becomes more dangerous. A project can have more models, more annotations, more figures, more baselines, and more polished writing without becoming a better answer to an important question.</p>
+                <p>The scarce resource is not implementation alone. It is research taste: choosing consequential problems, defining honest evaluations, and distinguishing polished artifacts from understanding.</p>
+                <p>AI can help us build more. The harder question is whether we know what is worth building, and how to tell when we have built it.</p>
+
+                <div class="references">
+                    <h2>Reference</h2>
+                    <p id="ref-battleday-en">[1] Battleday, R. M., &amp; Gershman, S. J. (2024). <em>Artificial intelligence for science: the easy and hard problems</em>. arXiv preprint arXiv:2408.14508. <a href="https://arxiv.org/abs/2408.14508">https://arxiv.org/abs/2408.14508</a></p>
+                </div>
+            </section>
+
+            <section class="post-content" data-lang="zh">
+                <h2>AI 时代研究里的那种奇怪感觉</h2>
+                <p>现在，很多研究都变快了。</p>
+                <p>我们可以让 AI 写代码、清理数据、总结论文、生成标签、起草提示词、做图、比较模型，也可以把零散的笔记整理成一段能读的文字。这些都不是小事。过去研究里很多慢的地方，其实只是因为它们很繁琐。</p>
+                <p>但我也常常对一些 AI 时代的研究有一种奇怪的反应。它们看起来非常完整。有数据集，有流程，有基准测试，有可视化，有模型比较，甚至还有智能体循环。所有东西似乎都在。</p>
+                <p>可是，仍然有什么东西没有被真正解决。</p>
+                <p>问题通常不是作者什么都没做。很多时候他们做了很多。问题是，可见的工作不一定回答了更深的问题：到底解决了什么？为什么这件事重要？什么才算一个非平凡的解决？哪些捷径被排除了？</p>
+                <p>AI 不只是让研究更容易被完成。它也让研究更容易被搭出一种完整的样子。</p>
+                <aside class="pullquote">
+                    <p>实现可以让项目看起来已经完整，即使问题本身还没有真正变清楚。</p>
+                </aside>
+
+                <h2>科学工作的三层</h2>
+                <p>我觉得可以把研究分成三层。</p>
+                <div class="framework-grid" aria-label="科学工作的三层">
+                    <div class="framework-step">
+                        <span>01</span>
+                        <h3>价值</h3>
+                        <p>什么问题值得问？它为什么重要？</p>
+                    </div>
+                    <div class="framework-step">
+                        <span>02</span>
+                        <h3>评价</h3>
+                        <p>什么才算解决它？哪些捷径被排除了？</p>
+                    </div>
+                    <div class="framework-step">
+                        <span>03</span>
+                        <h3>实现</h3>
+                        <p>如何搭建研究、模型、基准测试或系统？</p>
+                    </div>
+                </div>
+                <p>第一层是 <em>价值层</em>：什么问题值得问？它为什么重要？Battleday 和 Gershman 区分了 AI for science 里的“容易问题”，也就是解决定义清楚的优化问题，和“困难问题”，也就是提出问题本身 <a href="#ref-battleday-zh">[1]</a>。一个好的研究问题不只是可做。它应该改变我们理解某件事的方式，或者改变世界可以如何运转。</p>
+                <p>第二层是 <em>评价层</em>：什么才算解决了这个问题？什么证据能说明答案不是捷径、研究产物造成的假象，或者事后的故事？当问题本身定义不够清楚时，这一层尤其重要。理解、解释、机制、迁移、科学发现、人机交互，这些东西都没有天然的损失函数。</p>
+                <p>第三层是 <em>实现层</em>：我们如何搭建实验、数据集、模型、分析、基准测试，或者系统？</p>
+                <p>三层都重要。实现不是“只是工程”。没有实现，想法会是空的。但这三层不能互相替代。一个强的实现，不会自动回答一个重要问题。一个基准测试分数，不会自动证明评价是对的。一个漂亮的研究产物，也不自动意味着概念上的进展。</p>
+
+                <h2>AI 让什么变便宜了</h2>
+                <p>AI 改变最大的是第三层。</p>
+                <p>这总体上是好事。它意味着我们可以尝试更多想法，更快地搭建原型，分析更多数据，也可以探索以前成本太高的方向。它降低了研究的阻力，让研究不那么容易被样板代码和琐碎流程卡住。</p>
+                <p>但它也改变了我们应该如何阅读研究。</p>
+                <p>当实现很贵的时候，可见的工作量本身多少带有一些信号。一个大型流程，一套复杂分析，或者一个精心整理的基准测试，通常意味着真实投入。现在这个信号变弱了。AI 让我们更容易生产出很像研究的东西：分类体系、标注、热力图、比较、总结，以及打磨过的叙事。</p>
+                <p>这不是说这些研究产物没用。而是说，我们需要更仔细地问：它们到底说明了什么？</p>
+                <p>AI 让搭建变容易了。它并不会自动让我们知道什么值得搭建。</p>
+                <aside class="pullquote">
+                    <p>当实现变便宜，品味的门槛反而变高。</p>
+                </aside>
+
+                <h2>当价值主张发生漂移</h2>
+                <p>一种漂移发生在价值层：一个很窄的结果，被接到了一个很大的愿景上。</p>
+                <p>这在 NeuroAI、人类与 AI 比较、受生物启发的 AI 这些领域里很常见。一项研究可能显示某个 AI 模型在某个任务里像人类行为，或者像某些神经反应。另一项研究可能搭了一个受认知或神经原则启发的小演示系统。这些结果可以很有趣。相似性可以令人惊讶。演示系统也可以有用。</p>
+                <p>问题是，这个结果应该承载多大的重量。</p>
+                <p>证明一个模型在某个情境下像大脑，不等于解释了大脑。证明一个模型像人类行为，不等于解释了认知。搭建一个受认知原则启发的玩具系统，不等于证明了一个可扩展的 AI 设计原则。</p>
+                <p>缺失的问题其实很简单：除了演示本身之外，什么会让这件事真的重要？</p>
+                <p>如果目标是启发 AI，那么这个想法在什么条件下会对 AI 系统有用？它是否提高了稳健性、效率、迁移能力、可解释性，或者控制能力？如果目标是理解认知，它组织了哪些现象？排除了哪些替代理论？接下来几项研究需要证明什么？</p>
+                <p>一个严肃的影响力主张需要一条路径。一篇论文不需要实现整个愿景，但它需要说明局部结果如何连接到更大的承诺。否则，一个宏大的愿景会变成可重复使用的包装：今天这项工作指向类人 AI，明天指向科学发现，后天又指向理解智能。</p>
+                <p>有野心本身不是问题。问题是没有挣来的野心：用一个巨大的目的地来包装局部的一步，却没有说明中间的桥在哪里。</p>
+
+                <h2>当评价主张发生漂移</h2>
+                <p>第二种漂移发生在评价层。系统做出了某种可测量的事情，但这个测量并不完全匹配它声称的东西。</p>
+                <p>想象一些自动化系统：它们生成可执行模型，把模型拟合到数据上，设计实验，收集观察结果，然后提出改进后的后继模型。这是真实的实现进步。它可能加速模型发现。</p>
+                <p>但如果它被描述成理论层面的进展，那么评价目标就变了。</p>
+                <p>模型改进可以用拟合程度、损失、预测，或者新数据上的表现来评价。理论层面的进展要问的是另一类问题：什么东西变得更一般、更有解释力、更可证伪，或者适用范围更清楚了？新的后继模型是否更好地组织了现象？它是否区分了竞争性的解释？失败是否在概念上教会了我们什么？</p>
+                <p>这个区分重要，是因为标准会跟着研究产物一起漂移。</p>
+                <p>我们不会因为一个不透明的预测模型能很好地预测行为，就把它叫作理论。一个可读的可执行模型也不应该自动获得理论地位。可读性和可执行性是有用的。它们让模型更容易被检查、修改和比较。但它们不能取代概念承诺、适用范围，或者区分解释和拟合的测试。</p>
+                <p>可执行模型是有价值的。问题不是研究产物本身。问题是当评价仍然停留在模型拟合的层面，而语言已经移动到了理论改进的层面。</p>
+                <p>在这种情况下，实现借用了一个更高层次的主张。</p>
+
+                <h2>研究品味</h2>
+                <p>这就是为什么，当实现变得廉价之后，研究品味变得更重要。</p>
+                <p>品味不只是有聪明的点子。它是知道哪些问题值得投入。它是能感觉到一个结果什么时候真的重要，什么时候主要只是包装得好。它是追问评价是否匹配主张。它也是注意到，一个指标什么时候正在代替一个尚未被定义清楚的概念。</p>
+                <p>我越来越觉得，一个简单的测试很有用：</p>
+                <ul class="question-list">
+                    <li>真正的问题是什么？</li>
+                    <li>它为什么重要？</li>
+                    <li>什么才算解决了它？</li>
+                    <li>什么捷径会让结果看起来成功？</li>
+                    <li>评价是否排除了这个捷径？</li>
+                    <li>实现是在服务问题，还是主要让工作看起来完整？</li>
+                </ul>
+                <p>这些问题并不新。它们是很基本的科学问题。但当 AI 可以快速生产出很有说服力的、像研究一样的产物时，它们变得更紧迫了。</p>
+
+                <h2>结论</h2>
+                <p>AI 正在让研究变快。这是好事。但速度会改变我们应该重视什么。</p>
+                <p>当实现很贵的时候，可见的努力有时会被误认为深度。在实现变得廉价的时代，这个误认更危险。一个项目可以有更多模型、更多标注、更多图表、更多基线、更精致的写作，却并没有更好地回答一个重要问题。</p>
+                <p>稀缺资源不只是实现。真正稀缺的是研究品味：选择重要的问题，定义诚实的评价，并且区分打磨过的研究产物和真正的理解。</p>
+                <p>AI 可以帮助我们搭建更多东西。更难的问题是，我们是否知道什么值得搭建，以及如何判断我们已经真的搭建出来了。</p>
+
+                <div class="references">
+                    <h2>参考文献</h2>
+                    <p id="ref-battleday-zh">[1] Battleday, R. M., &amp; Gershman, S. J. (2024). <em>Artificial intelligence for science: the easy and hard problems</em>. arXiv preprint arXiv:2408.14508. <a href="https://arxiv.org/abs/2408.14508">https://arxiv.org/abs/2408.14508</a></p>
+                </div>
+            </section>
+
+            <div class="share-row">
+                <a href="https://twitter.com/intent/tweet?text=Research%20Taste%20After%20Implementation%20Becomes%20Cheap&url=https://xhb120633.github.io/blog/research-taste-after-implementation-becomes-cheap.html" target="_blank" rel="noopener noreferrer">Share on X</a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://xhb120633.github.io/blog/research-taste-after-implementation-becomes-cheap.html" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+                <a href="mailto:?subject=Research%20Taste%20After%20Implementation%20Becomes%20Cheap&body=https://xhb120633.github.io/blog/research-taste-after-implementation-becomes-cheap.html">Share by Email</a>
+            </div>
+
+            <div class="comments-wrap">
+                <h2>Comments &amp; Reactions</h2>
+                <p class="meta">Sign in with GitHub to comment or leave emoji reactions.</p>
+                <script src="https://giscus.app/client.js"
+                    data-repo="xhb120633/xhb120633.github.io"
+                    data-repo-id="R_kgDOJWNfMw"
+                    data-category="General"
+                    data-category-id="DIC_kwDOJWNfM84C3Vu6"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="1"
+                    data-emit-metadata="0"
+                    data-input-position="bottom"
+                    data-theme="preferred_color_scheme"
+                    data-lang="zh-CN"
+                    crossorigin="anonymous"
+                    async>
+                </script>
+                <div class="comment-help">
+                    If the widget above does not appear, ensure GitHub Discussions and Giscus are configured for
+                    <code>xhb120633/xhb120633.github.io</code>, and disable any blockers for <code>giscus.app</code>.
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            var blocks = document.querySelectorAll(".post-content");
+            var buttons = document.querySelectorAll("[data-lang-button]");
+
+            document.body.setAttribute("data-lang", lang);
+            document.documentElement.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
+
+            for (var i = 0; i < blocks.length; i++) {
+                blocks[i].classList.toggle("active", blocks[i].getAttribute("data-lang") === lang);
+            }
+
+            for (var j = 0; j < buttons.length; j++) {
+                var isActive = buttons[j].getAttribute("data-lang-button") === lang;
+                buttons[j].classList.toggle("active", isActive);
+                buttons[j].setAttribute("aria-pressed", isActive ? "true" : "false");
+            }
+
+            try {
+                window.localStorage.setItem("blogLanguage", lang);
+            } catch (error) {
+                return;
+            }
+        }
+
+        function initialLanguage() {
+            var params = new URLSearchParams(window.location.search);
+            var fromQuery = params.get("lang");
+            if (fromQuery === "zh" || fromQuery === "en") {
+                return fromQuery;
+            }
+
+            try {
+                var saved = window.localStorage.getItem("blogLanguage");
+                if (saved === "zh" || saved === "en") {
+                    return saved;
+                }
+            } catch (error) {
+                return "en";
+            }
+
+            return "en";
+        }
+
+        var langButtons = document.querySelectorAll("[data-lang-button]");
+        for (var i = 0; i < langButtons.length; i++) {
+            langButtons[i].addEventListener("click", function(event) {
+                setLanguage(event.currentTarget.getAttribute("data-lang-button"));
+            });
+        }
+
+        setLanguage(initialLanguage());
+    </script>
+</body>
+</html>
