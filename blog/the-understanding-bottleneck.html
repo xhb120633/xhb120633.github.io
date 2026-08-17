@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI can accelerate complex work faster than people can build the shared understanding needed to review and act on it.">
+<title>The Understanding Bottleneck | Hanbo Xie</title>
+<style>
+:root {
+    --bg: #f6f7f5;
+    --surface: #ffffff;
+    --surface-soft: #f9faf8;
+    --text: #202426;
+    --muted: #5f686d;
+    --primary: #265f73;
+    --primary-dark: #174555;
+    --accent: #a95d35;
+    --border: #d9dedb;
+    --shadow: 0 18px 45px rgba(24, 42, 48, 0.09);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    color: var(--text);
+    background: linear-gradient(180deg, rgba(255,255,255,.88) 0%, rgba(246,247,245,.94) 42%, var(--bg) 100%);
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.78;
+}
+
+a { color: var(--primary); }
+a:hover { color: var(--primary-dark); }
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid rgba(169, 93, 53, .28);
+    outline-offset: 2px;
+}
+
+.shell {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.back {
+    display: inline-block;
+    padding: 9px 14px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #fff;
+    background: var(--primary);
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.back:hover {
+    color: #fff;
+    background: var(--primary-dark);
+}
+
+.back::before { content: none; }
+
+.switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(255,255,255,.88);
+    box-shadow: 0 8px 22px rgba(24,42,48,.06);
+}
+
+.switch button {
+    border: 0;
+    border-radius: 6px;
+    padding: 7px 10px;
+    color: var(--muted);
+    background: transparent;
+    font: inherit;
+    font-size: .92rem;
+    font-weight: 750;
+    cursor: pointer;
+}
+
+.switch button.active {
+    color: var(--primary-dark);
+    background: #e7f0f2;
+}
+
+.article {
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.hero {
+    padding: clamp(28px, 5vw, 46px) clamp(24px, 5vw, 46px) 22px;
+    color: var(--text);
+    background: transparent;
+}
+
+.hero::before { content: none; }
+
+.eyebrow {
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+h1 {
+    max-width: 800px;
+    margin: 0;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size: clamp(2.1rem, 4.4vw, 3.25rem);
+    font-weight: 750;
+    line-height: 1.12;
+    letter-spacing: 0;
+    text-wrap: balance;
+}
+
+.dek {
+    max-width: 720px;
+    margin: 12px 0 0;
+    color: #344147;
+    font-size: 1.1rem;
+    line-height: 1.55;
+}
+
+.meta {
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: .94rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.body {
+    width: auto;
+    margin: 0;
+    padding: 8px clamp(24px, 5vw, 46px) 42px;
+}
+
+.body > p:first-child::first-letter {
+    float: none;
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+p { margin: 0 0 1.15em; }
+
+h2 {
+    margin: 2em 0 .55em;
+    color: var(--text);
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size: 1.55rem;
+    font-weight: 750;
+    line-height: 1.3;
+    letter-spacing: 0;
+}
+
+h2::before { content: none; }
+
+.signal {
+    max-width: 88%;
+    margin: 22px auto;
+    padding: 8px 18px;
+    border-left: 4px solid var(--primary);
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+    font-size: 1.12rem;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.65;
+}
+
+.definition {
+    margin: 22px 0;
+    padding: 18px 20px;
+    border: 1px solid #cfdde1;
+    border-radius: 8px;
+    color: #26393f;
+    background: #f2f7f8;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.definition::before {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-size: .76rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    content: "Definition";
+}
+
+body[data-lang="zh"] .definition::before { content: "定义"; }
+
+.closing {
+    margin-top: 2.2em;
+    padding-top: 1.6em;
+    border-top: 1px solid var(--border);
+}
+
+.closing p:last-child {
+    margin-bottom: 0;
+    color: var(--primary-dark);
+    font-size: 1.08rem;
+    font-weight: 700;
+}
+
+.post-content { display: none; }
+.post-content.active { display: block; }
+
+[data-lang="zh"] {
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Inter", sans-serif;
+}
+
+.footer {
+    padding: 24px clamp(24px, 5vw, 46px) 30px;
+    border-top: 1px solid var(--border);
+    background: var(--surface-soft);
+}
+
+.share {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+}
+
+.share a {
+    font-size: .92rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.share a:hover { text-decoration: underline; }
+
+.comments {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+}
+
+.comments h2 {
+    margin: 0 0 4px;
+    font-size: 1.4rem;
+}
+
+.comments .meta { margin: 0 0 16px; }
+
+@media (max-width: 640px) {
+    body { font-size: 16px; }
+    .shell { padding: 14px 10px 32px; }
+    .topbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+    .back { align-self: flex-start; }
+    .switch { align-self: flex-start; }
+    .hero { padding: 26px 22px 18px; }
+    .body { padding: 6px 22px 34px; }
+    .footer { padding: 22px; }
+    .signal { max-width: 100%; margin: 20px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body data-lang="en">
+<main class="shell">
+<div class="topbar"><a class="back" href="../index.html#blog">Back to Blog</a><div class="switch" role="group" aria-label="Language"><button type="button" class="active" data-lang-button="en" aria-pressed="true">English</button><button type="button" data-lang-button="zh" aria-pressed="false">中文</button></div></div>
+<article class="article">
+<header class="hero post-content active" data-lang="en"><p class="eyebrow">AI, collaboration &amp; responsibility</p><h1>The Understanding Bottleneck</h1><p class="dek">Useful work can now arrive faster than the shared understanding needed to judge it responsibly.</p><p class="meta">Hanbo Xie &nbsp;·&nbsp; Georgia Institute of Technology &nbsp;·&nbsp; August 17, 2026</p></header>
+<header class="hero post-content" data-lang="zh"><p class="eyebrow">AI、协作与责任</p><h1>理解的瓶颈</h1><p class="dek">有用的工作产出得越来越快，但形成负责任判断所需的共同理解却没有同步加速。</p><p class="meta">Hanbo Xie &nbsp;·&nbsp; Georgia Institute of Technology &nbsp;·&nbsp; 2026 年 8 月 17 日</p></header>
+
+<section class="body post-content active" data-lang="en">
+<p>A while ago, I asked Codex to help me run code submitted by participants in an automated evaluation. Because the code was untrusted, Codex warned me that it should not be allowed to access the internet.</p>
+<p>That sounded reasonable. I assumed it would run the submitted code inside a sandbox and block network access there. So when Codex asked for permission, I approved it.</p>
+<p>Instead, it disabled the internet connection for my entire computer.</p>
+<p>The submitted code still did not run. Worse, I could no longer connect to Codex to ask what had happened or to have it undo the change. I spent the next part of the day figuring out how to restore the connection myself.</p>
+<p>What bothered me was not simply that an AI tool had made a mistake. In a literal sense, Codex had done something close to what it said it would do: remove network access. The problem was that the action I thought I had approved was not the action it understood itself to be taking.</p>
+<div class="signal">We had agreement without shared understanding.</div>
+<p>I have started noticing the same pattern in much less absurd situations.</p>
+<p>I use AI heavily in research. An idea can sometimes turn into an analysis, an implementation, and even a short paper over a weekend. During that process I may have dozens or hundreds of interactions with AI: trying alternatives, checking assumptions, fixing implementation details, discarding failed approaches, and updating my own view of the problem.</p>
+<p>But before a paper is submitted, someone else may still need to understand and approve it. That can require long conversations about background, methods, implementation details, and why certain choices were made. The paper itself may be short. The context required to judge it responsibly is not.</p>
+<p>This is not because the other person is slow. If we had accumulated the same context along the way, the conversation would be much easier. The problem is that AI can compress the path from idea to output without equally compressing the path by which another human reconstructs the context needed to understand that output.</p>
+<div class="signal">The work moves faster than shared understanding.</div>
+<p>I think this is becoming a distinct bottleneck in AI-assisted work.</p>
+<h2>When the output arrives before the understanding</h2>
+<p>In the past, producing complex work usually forced someone to move through much of the reasoning required to construct it. Writing code meant deciding how the pieces fit together. Running an analysis meant making a sequence of choices. Building an argument meant working through intermediate steps.</p>
+<p>AI weakens that coupling.</p>
+<p>Many intermediate steps can now be delegated, compressed, or traversed so quickly that the final artifact appears before the corresponding human understanding has fully formed.</p>
+<p>Sometimes the understanding catches up later. Sometimes it remains partial. Sometimes the artifact is already being reviewed, approved, deployed, or built upon while the people responsible for the next step are still reconstructing what happened.</p>
+<div class="signal">The artifact arrives before the understanding does.</div>
+<p>I call the resulting gap the <em>understanding bottleneck</em>:</p>
+<div class="definition">The understanding bottleneck appears when useful actions or artifacts can be produced faster than the people responsible for them can understand them well enough to take the next step.</div>
+<p>The important phrase is <em>well enough</em>. Nobody needs to understand every detail of every system they use. What matters is whether a person has an understanding sufficient for the judgment or action they are responsible for.</p>
+<h2>More information is not necessarily more understanding</h2>
+<p>This is not simply information overload.</p>
+<p>Information overload is a problem of quantity: there is too much to read, inspect, or remember. The understanding bottleneck can happen even when there is only one thing in front of us.</p>
+<p>In my Codex example, the critical message was only a sentence or two. I had access to it. I had read it. I had approved it. What was missing was a sufficiently aligned picture of what the action actually meant.</p>
+<p>The same can happen with more complex artifacts. A short proof may be easy to follow line by line while its central idea remains unclear. A piece of code may pass every test while the person maintaining it still lacks the understanding needed to change it safely.</p>
+<p>The bottleneck is not just access to information. It is building enough of the right context to act reliably.</p>
+<h2>Correctness is not always enough</h2>
+<p>Better verification helps, but it does not remove the bottleneck.</p>
+<p>A program can pass every test. A proof can be formally verified. An analysis can reproduce exactly. In many situations, that may be enough.</p>
+<p>But when someone must review, modify, explain, approve, or take responsibility for an artifact, correctness alone may not provide the understanding required for that role.</p>
+<p>A system can be correct enough to use and still poorly understood by the person responsible for what happens next.</p>
+<h2>Individual acceleration, collective delay</h2>
+<p>The problem becomes especially visible in collaborative work.</p>
+<p>AI can make one person dramatically faster without making everyone around that person equally faster at understanding what has been done. The faster one person accumulates context through repeated interaction with AI, the larger the gap can become between that person and everyone else.</p>
+<div class="signal">Individual productivity can rise while coordination becomes harder.</div>
+<p>The researcher finishes the analysis faster, but approval becomes the slow step. The engineer generates more code, but review becomes the bottleneck. A team produces more experiments and documents while maintaining a shared picture of what has been done and why becomes increasingly difficult.</p>
+<div class="signal">As production gets cheaper, shared context can become more expensive.</div>
+<div class="closing"><p>The bottleneck has not disappeared. It has moved downstream—from producing the work to reviewing it, aligning around it, and deciding who can responsibly act on it.</p><p>AI is making the production of complex intellectual work dramatically faster. It is much less clear that it is making the human understanding required to review, communicate, and take responsibility for that work equally fast.</p><p>The work is getting faster. Understanding is becoming the slow step.</p></div>
+</section>
+
+<section class="body post-content" data-lang="zh">
+<p>前段时间，我让 Codex 帮我运行自动化评估中参与者提交的代码。因为这些代码并不可信，Codex 提醒我，不应该允许它们访问互联网。</p>
+<p>这听起来很合理。我以为它会把提交的代码放进沙箱，并在那里阻断网络访问。所以，当 Codex 请求权限时，我批准了。</p>
+<p>结果，它关闭了我整台电脑的网络连接。</p>
+<p>提交的代码依然没有运行。更糟的是，我已经无法连接 Codex，既问不了发生了什么，也无法让它撤销这个改动。接下来的大半天，我都在自己摸索如何恢复网络。</p>
+<p>真正让我在意的，不只是一个 AI 工具犯了错。从字面上说，Codex 做的事情与它声称要做的很接近：移除网络访问。问题在于，我以为自己批准的操作，并不是它所理解的那个操作。</p>
+<div class="signal">我们达成了一致，却没有形成共同理解。</div>
+<p>后来我开始在许多没有这么荒诞的场景里注意到同样的模式。</p>
+<p>我在研究中大量使用 AI。一个想法有时可以在一个周末内变成分析、实现，甚至一篇短论文。在这个过程中，我可能会与 AI 交互几十次乃至几百次：尝试不同方案、检查假设、修正实现细节、放弃失败的路径，并不断更新自己对问题的看法。</p>
+<p>但在论文提交之前，往往仍需要另一个人理解并批准它。这可能意味着围绕背景、方法、实现细节，以及某些选择背后的原因进行长时间讨论。论文也许很短，但要负责任地判断它，所需要的上下文并不短。</p>
+<p>这不是因为对方理解得慢。如果我们一路积累了相同的上下文，沟通就会容易得多。问题在于，AI 可以压缩从想法到产出的路径，却没有同样压缩另一个人重建上下文、进而理解这个产出的路径。</p>
+<div class="signal">工作的推进速度，超过了共同理解形成的速度。</div>
+<p>我认为，这正逐渐成为 AI 辅助工作中一种独立的瓶颈。</p>
+<h2>当产出先于理解到达</h2>
+<p>过去，完成复杂工作通常会迫使人经历构建它所需要的大部分推理。写代码意味着决定各个部分如何配合；做分析意味着依次作出许多选择；搭建论证意味着走过中间的思考步骤。</p>
+<p>AI 削弱了这种耦合。</p>
+<p>现在，许多中间步骤可以被委托、压缩，或以极快的速度走完。于是，最终产物出现时，相应的人类理解可能还没有完全形成。</p>
+<p>有时，理解会在之后赶上来；有时，它始终是不完整的；还有些时候，产物已经在被审阅、批准、部署或继续使用，而负责下一步的人仍在努力还原之前发生了什么。</p>
+<div class="signal">产物已经抵达，理解却还在路上。</div>
+<p>我把由此产生的缺口称为 <em>理解的瓶颈</em>：</p>
+<div class="definition">当有用的行动或产物生成得如此之快，以至于对它们负责的人无法及时形成足以推进下一步的理解时，理解的瓶颈就出现了。</div>
+<p>这里重要的是“足以”。没有人需要理解自己使用的每个系统的全部细节。真正重要的是，一个人的理解是否足以支撑他所负责的判断或行动。</p>
+<h2>更多信息不一定带来更多理解</h2>
+<p>这并不只是信息过载。</p>
+<p>信息过载是数量问题：要读、要检查、要记住的东西太多。而理解的瓶颈，即使眼前只有一件事，也可能发生。</p>
+<p>在我的 Codex 例子里，关键提示只有一两句话。我看到了，也读过了，还批准了。缺少的不是信息，而是双方对这个操作究竟意味着什么，有一幅足够一致的图景。</p>
+<p>更复杂的产物也一样。一份简短的证明可能逐行都能读懂，中心思想却仍不清晰；一段代码可能通过所有测试，但维护它的人依然不具备安全修改它所需的理解。</p>
+<p>瓶颈不只是能不能接触信息，而是能否建立足够多、足够正确的上下文，从而可靠地行动。</p>
+<h2>正确并不总是足够</h2>
+<p>更好的验证会有帮助，但它不能消除这个瓶颈。</p>
+<p>一个程序可以通过所有测试，一个证明可以被形式化验证，一项分析也可以精确复现。在许多场景里，这也许已经足够。</p>
+<p>但当一个人必须审阅、修改、解释、批准某个产物，或为它承担责任时，仅仅正确，未必能提供这一角色所需要的理解。</p>
+<p>一个系统可以正确到足以使用，却仍没有被负责下一步的人充分理解。</p>
+<h2>个体加速，集体延迟</h2>
+<p>这个问题在协作中尤其明显。</p>
+<p>AI 可以让一个人快很多，却不会让他周围的每个人都同样更快地理解已经完成的工作。一个人通过反复与 AI 互动而积累上下文的速度越快，他与其他人之间的差距就可能越大。</p>
+<div class="signal">个体生产力可以上升，而协调却变得更困难。</div>
+<p>研究者更快完成分析，但审批成了缓慢的一环；工程师生成更多代码，但评审成了瓶颈；团队产出更多实验和文档，却越来越难维持一幅关于“做了什么、为什么这样做”的共同图景。</p>
+<div class="signal">当生产变得更廉价，共享上下文反而可能变得更昂贵。</div>
+<div class="closing"><p>瓶颈并没有消失。它只是移到了下游——从产出工作，移到审阅它、围绕它达成一致，以及决定谁能够负责任地采取行动。</p><p>AI 正在显著加快复杂智力工作的生产速度。但它是否也以同样的速度，提升了人类审阅、沟通并为这些工作承担责任所需的理解，还远不清楚。</p><p>工作越来越快。理解正在成为最慢的那一步。</p></div>
+</section>
+
+<footer class="footer">
+<div class="share"><a href="https://twitter.com/intent/tweet?text=The%20Understanding%20Bottleneck&amp;url=https://xhb120633.github.io/blog/the-understanding-bottleneck.html" target="_blank" rel="noopener noreferrer">Share on X</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https://xhb120633.github.io/blog/the-understanding-bottleneck.html" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a><a href="mailto:?subject=The%20Understanding%20Bottleneck&amp;body=https://xhb120633.github.io/blog/the-understanding-bottleneck.html">Share by Email</a></div>
+<div class="comments"><h2>Comments &amp; Reactions</h2><p class="meta">Sign in with GitHub to comment or leave emoji reactions.</p><script src="https://giscus.app/client.js" data-repo="xhb120633/xhb120633.github.io" data-repo-id="R_kgDOJWNfMw" data-category="General" data-category-id="DIC_kwDOJWNfM84C3Vu6" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async></script></div>
+</footer>
+</article>
+</main>
+<script>
+function setLanguage(lang){var blocks=document.querySelectorAll(".post-content");var buttons=document.querySelectorAll("[data-lang-button]");document.body.setAttribute("data-lang",lang);document.documentElement.setAttribute("lang",lang==="zh"?"zh-CN":"en");for(var i=0;i<blocks.length;i++)blocks[i].classList.toggle("active",blocks[i].getAttribute("data-lang")===lang);for(var j=0;j<buttons.length;j++){var active=buttons[j].getAttribute("data-lang-button")===lang;buttons[j].classList.toggle("active",active);buttons[j].setAttribute("aria-pressed",active?"true":"false")}try{localStorage.setItem("blogLanguage",lang)}catch(error){}}
+function initialLanguage(){var q=new URLSearchParams(location.search).get("lang");if(q==="zh"||q==="en")return q;try{var saved=localStorage.getItem("blogLanguage");if(saved==="zh"||saved==="en")return saved}catch(error){}return"en"}
+var buttons=document.querySelectorAll("[data-lang-button]");for(var i=0;i<buttons.length;i++)buttons[i].addEventListener("click",function(e){setLanguage(e.currentTarget.getAttribute("data-lang-button"))});setLanguage(initialLanguage());
+</script>
+</body>
+</html>
