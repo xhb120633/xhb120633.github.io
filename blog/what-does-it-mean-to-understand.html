@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Understanding as a question-relative, evidence-grounded mental model that preserves the right structure for reasoning and action.">
+<title>What Does It Mean to Understand? | Hanbo Xie</title>
+<style>
+:root {
+    --bg: #f6f7f5;
+    --surface: #ffffff;
+    --surface-soft: #f9faf8;
+    --text: #202426;
+    --muted: #5f686d;
+    --primary: #265f73;
+    --primary-dark: #174555;
+    --accent: #a95d35;
+    --border: #d9dedb;
+    --shadow: 0 18px 45px rgba(24, 42, 48, 0.09);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    color: var(--text);
+    background: linear-gradient(180deg, rgba(255,255,255,.88) 0%, rgba(246,247,245,.94) 42%, var(--bg) 100%);
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.78;
+}
+
+a { color: var(--primary); }
+a:hover { color: var(--primary-dark); }
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid rgba(169, 93, 53, .28);
+    outline-offset: 2px;
+}
+
+.shell {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.back {
+    display: inline-block;
+    padding: 9px 14px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #fff;
+    background: var(--primary);
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.back:hover {
+    color: #fff;
+    background: var(--primary-dark);
+}
+
+.back::before { content: none; }
+
+.switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(255,255,255,.88);
+    box-shadow: 0 8px 22px rgba(24,42,48,.06);
+}
+
+.switch button {
+    border: 0;
+    border-radius: 6px;
+    padding: 7px 10px;
+    color: var(--muted);
+    background: transparent;
+    font: inherit;
+    font-size: .92rem;
+    font-weight: 750;
+    cursor: pointer;
+}
+
+.switch button.active {
+    color: var(--primary-dark);
+    background: #e7f0f2;
+}
+
+.article {
+    overflow: visible;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.hero {
+    padding: clamp(28px, 5vw, 46px) clamp(24px, 5vw, 46px) 22px;
+    color: var(--text);
+    background: transparent;
+}
+
+.hero::before { content: none; }
+
+.eyebrow {
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-size: .82rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+h1 {
+    max-width: 800px;
+    margin: 0;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size: clamp(2.1rem, 4.4vw, 3.25rem);
+    font-weight: 750;
+    line-height: 1.12;
+    letter-spacing: 0;
+    text-wrap: balance;
+}
+
+.dek {
+    max-width: 720px;
+    margin: 12px 0 0;
+    color: #344147;
+    font-size: 1.1rem;
+    line-height: 1.55;
+}
+
+.meta {
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: .94rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.body {
+    width: auto;
+    margin: 0;
+    padding: 8px clamp(24px, 5vw, 46px) 42px;
+}
+
+.body > p:first-child::first-letter {
+    float: none;
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+p { margin: 0 0 1.15em; }
+
+h2 {
+    margin: 2em 0 .55em;
+    color: var(--text);
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size: 1.55rem;
+    font-weight: 750;
+    line-height: 1.3;
+    letter-spacing: 0;
+}
+
+h2::before { content: none; }
+
+.signal {
+    max-width: 88%;
+    margin: 22px auto;
+    padding: 8px 18px;
+    border-left: 4px solid var(--primary);
+    color: var(--text);
+    font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+    font-size: 1.12rem;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.65;
+}
+
+.definition {
+    margin: 22px 0;
+    padding: 18px 20px;
+    border: 1px solid #cfdde1;
+    border-radius: 8px;
+    color: #26393f;
+    background: #f2f7f8;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.definition::before {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-size: .76rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    content: "Definition";
+}
+
+body[data-lang="zh"] .definition::before { content: "定义"; }
+
+.closing {
+    margin-top: 2.2em;
+    padding-top: 1.6em;
+    border-top: 1px solid var(--border);
+}
+
+.closing p:last-child {
+    margin-bottom: 0;
+    color: var(--primary-dark);
+    font-size: 1.08rem;
+    font-weight: 700;
+}
+
+.post-content { display: none; }
+.post-content.active { display: block; }
+
+[data-lang="zh"] {
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Inter", sans-serif;
+}
+
+.footer {
+    padding: 24px clamp(24px, 5vw, 46px) 30px;
+    border-top: 1px solid var(--border);
+    background: var(--surface-soft);
+}
+
+.share {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+}
+
+.share a {
+    font-size: .92rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.share a:hover { text-decoration: underline; }
+
+.comments {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+}
+
+.comments h2 {
+    margin: 0 0 4px;
+    font-size: 1.4rem;
+}
+
+.comments .meta { margin: 0 0 16px; }
+
+@media (max-width: 640px) {
+    body { font-size: 16px; }
+    .shell { padding: 14px 10px 32px; }
+    .topbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+    .back { align-self: flex-start; }
+    .switch { align-self: flex-start; }
+    .hero { padding: 26px 22px 18px; }
+    .body { padding: 6px 22px 34px; }
+    .footer { padding: 22px; }
+    .signal { max-width: 100%; margin: 20px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+</style><style>
+figure { margin: 28px 0 30px; }
+figure img { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+figcaption { margin-top: 10px; color: var(--muted); font-size: .88rem; line-height: 1.55; }
+.question-list { margin: 8px 0 24px; padding-left: 1.4em; }
+.question-list li { margin-bottom: .42em; }
+</style>
+</head>
+<body data-lang="en">
+<main class="shell">
+<div class="topbar">
+<a class="back" href="../index.html#blog">Back to Blog</a>
+<div class="switch" role="group" aria-label="Language">
+<button type="button" class="active" data-lang-button="en" aria-pressed="true">English</button>
+<button type="button" data-lang-button="zh" aria-pressed="false">中文</button>
+</div>
+</div>
+
+<article class="article">
+<header class="hero post-content active" data-lang="en">
+<p class="eyebrow">AI, cognition &amp; explanation</p>
+<h1>What Does It Mean to Understand?</h1>
+<p class="dek">Understanding may not require one true representation. It may require the right structure for the questions that matter.</p>
+<p class="meta">Hanbo Xie &nbsp;·&nbsp; Georgia Institute of Technology &nbsp;·&nbsp; August 19, 2026</p>
+</header>
+
+<header class="hero post-content" data-lang="zh">
+<p class="eyebrow">AI、认知与解释</p>
+<h1>理解，究竟意味着什么？</h1>
+<p class="dek">理解也许并不要求一种唯一真实的表征，而是要为重要的问题保留正确的结构。</p>
+<p class="meta">Hanbo Xie &nbsp;·&nbsp; Georgia Institute of Technology &nbsp;·&nbsp; 2026 年 8 月 19 日</p>
+</header>
+
+<section class="body post-content active" data-lang="en">
+<p>What does it mean to understand something?</p>
+<p>This question appears in surprisingly different parts of AI and cognitive science.</p>
+<p>Does NeuroAI actually help us understand the brain, or does it only give us better predictive models?</p>
+<p>Does an LLM have a world model, or is it producing convincing behavior without understanding?</p>
+<p>What does interpretability need to reveal before we can say we understand how a model works?</p>
+<p>And if automatic model discovery finds a compact model that predicts behavior well, has it discovered a scientific explanation—or only another predictor?</p>
+<p>These debates use different methods and vocabularies. But underneath them is the same question:</p>
+<div class="signal">What counts as understanding?</div>
+<p>I do not think the answer is “the one true representation.”</p>
+<p>Truth matters. A completely false understanding will eventually fail. But in most interesting cases, we do not have direct access to final truth. We have evidence, and we build representations that are revised as evidence changes.</p>
+<p>So perhaps a more useful question is:</p>
+<div class="signal">What can this representation reliably help us answer?</div>
+
+<h2>Understanding depends on the question</h2>
+<p>Consider a neuron.</p>
+<p>We can model it as a simple unit that either fires or does not fire. We can use a more detailed model that tracks voltage over time. Or we can model ion channels and their dynamics.</p>
+<p>Which one is the correct model?</p>
+<p>That depends partly on the question.</p>
+<p>If I only want to predict whether the neuron will fire, a simple model may be enough. If I want to understand the effect of a particular ion channel, the same model may be useless.</p>
+<p>Kevin Murphy recently illustrated this idea nicely with different levels of neuronal models: choose the most abstract model that is still sufficient for the query of interest.</p>
+
+<figure>
+<img src="assets/kevin-murphy-levels-of-abstraction.jpg" alt="Kevin Murphy slide comparing neuronal models at different levels of abstraction, from McCulloch–Pitts to stochastic single-channel models.">
+<figcaption><strong>Figure 1.</strong> Different levels of abstraction in neuronal models. The appropriate level depends on the query: use the most abstract model that remains sufficient for the target query. Adapted from a lecture slide by Kevin Murphy.</figcaption>
+</figure>
+
+<p>I think the same logic applies naturally to understanding.</p>
+<p>More detail does not automatically mean more understanding.</p>
+<p>A good understanding preserves enough of the right structure for the questions that matter.</p>
+
+<h2>Understanding is a cognitive compression problem</h2>
+<p>For a human, there is one more constraint.</p>
+<p>A scientific model can be arbitrarily complicated in principle. A human mental model cannot.</p>
+<p>We have limited attention, limited working memory, limited time, and very different prior knowledge.</p>
+<p>So the problem is not only:</p>
+<div class="signal">What representation is sufficient for the question?</div>
+<p>It is also:</p>
+<div class="signal">What representation can this person actually acquire and use?</div>
+<p>This turns understanding into a cognitive compression problem.</p>
+<p>A subway map is a useful example. It is a terrible reconstruction of a city: distances are distorted, streets disappear, buildings and terrain are omitted.</p>
+<p>But if your goal is to get from one station to another, those omissions are exactly what make the map useful.</p>
+<p>A satellite image contains far more information, yet may support that task worse.</p>
+<p>Human understanding often works the same way.</p>
+<p>We do not copy reality into our heads. We build mental models that leave most things out while preserving the structure needed for reasoning and action.</p>
+<p>So one useful way to think about understanding is:</p>
+<div class="definition">To understand something is to build a mental model that preserves enough of its structure to answer the questions that matter.</div>
+<p>The depth of an understanding can then be partly described by the range of questions it supports.</p>
+<p>A narrow understanding may work only in familiar cases. A deeper one may support prediction, transfer, intervention, modification, or explanation across new situations.</p>
+<p>This also clarifies why human understanding can become a bottleneck.</p>
+<p>In the previous post, I called the growing gap between the speed at which complex work can be produced and the speed at which people can build the understanding needed to act on it the <a href="the-understanding-bottleneck.html"><em>understanding bottleneck</em></a>.</p>
+<p>That bottleneck exists precisely because human cognition is bounded.</p>
+<p>If we had unlimited attention, memory, and time, we could simply absorb everything.</p>
+<p>We do not.</p>
+<p>Every act of understanding therefore requires compression: deciding what structure must be preserved and what can safely be left out.</p><h2>Truth constrains understanding; usefulness makes it observable</h2>
+<p>This is where I find the idea of usefulness helpful.</p>
+<p>By usefulness, I do not mean economic value or the idea that knowledge matters only when it produces an immediate practical gain.</p>
+<p>An understanding can be useful because it helps someone predict a new case, recognize a boundary, notice a contradiction, ask a better question, modify something safely, or explain an idea to another person.</p>
+<p>These are all things an understanding enables.</p>
+<p>Truth still matters. If a mental model is completely disconnected from reality, its usefulness will eventually collapse.</p>
+<p>But we rarely have a direct measurement of how close a mental model is to some final truth.</p>
+<p>What we can observe is how it behaves under evidence.</p>
+<ul class="question-list">
+<li>Does it generalize?</li>
+<li>Does it survive changes in context?</li>
+<li>Does it reveal where it should fail?</li>
+<li>Does it support transfer?</li>
+<li>Does new evidence force us to revise it?</li>
+</ul>
+<p>In this sense:</p>
+<div class="signal">Truth constrains understanding. Usefulness makes understanding observable.</div>
+<p>Usefulness does not replace truth. It gives us a way to measure and update understanding when the final truth itself is not directly available.</p>
+
+<h2>What about AI understanding?</h2>
+<p>This framing changes how I think about the familiar question:</p>
+<div class="signal">Does AI understand?</div>
+<p>Perhaps that question is too coarse.</p>
+<p>A more informative one is:</p>
+<div class="signal">For what set of queries are the model’s internal representations sufficient?</div>
+<p>If a representation reliably supports prediction, generalization, planning, or successful action, then it has captured some structure of the problem.</p>
+<p>That representation may look nothing like a human one.</p>
+<p>It may use dimensions we do not have names for or combine features in ways that feel unnatural to us.</p>
+<p>But unfamiliarity alone does not show that there is no understanding.</p>
+<p>The important questions are what the representation allows the system to do, how broadly it generalizes, and where it fails.</p>
+<p>If we define “real understanding” as a representation that looks like ours, then the debate becomes partly circular.</p>
+<p>We are no longer asking whether the system has learned useful structure.</p>
+<p>We are asking whether it has learned that structure in a human-recognizable form.</p>
+<p>Those are different questions.</p>
+
+<h2>From AI understanding to human-centered understanding</h2>
+<p>Even if an AI has an understanding sufficient for its own task, a human problem remains.</p>
+<p>The representation that allows an AI to produce an answer is not necessarily the representation a human needs to work with that answer.</p>
+<p>An AI may have enough understanding to generate code, while the engineer reviewing it needs a mental model of the architecture and failure points.</p>
+<p>An AI may discover a proof, while a mathematician needs the central idea well enough to connect it to another result.</p>
+<p>A neural network may predict behavior extremely well, while a scientist needs to understand what structure it has captured before deciding what experiment to run next.</p>
+<p>The AI and the human are answering different queries.</p>
+<p>And because humans have limited cognitive resources, we cannot solve this simply by giving the human everything the AI knows.</p>
+<p>This is why I think <em>human-centered understanding</em> is not just a preference or a slogan.</p>
+<p>It is a practical problem created by bounded cognition.</p>
+<p>For a human, the right mental model depends on the object, but also on the person’s prior knowledge, cognitive resources, and goal.</p>
+<p>A reviewer, a builder, a learner, and a decision-maker may need very different understandings of exactly the same system.</p>
+<p>So the problem becomes:</p>
+<div class="definition">Given a person and a goal, what is the smallest evidence-grounded mental model that is sufficient for the questions or actions that person needs to handle?</div>
+<p>If cognition were unlimited, this problem would be much less interesting. We could simply transfer everything.</p>
+<p>But cognition is limited.</p>
+<p>Too little structure, and the person cannot act reliably.</p>
+<p>Too much irrelevant structure, and the representation consumes cognitive resources without improving what the person can actually do.</p>
+<p>The goal is therefore not to maximize information transfer.</p>
+<p>It is to preserve the right information.</p><h2>From a philosophical question to a cognitive problem</h2>
+<p>This perspective does not resolve every philosophical debate about understanding.</p>
+<p>But it changes the form of the problem.</p>
+<p>Instead of asking whether a model, theory, AI, or person possesses some hidden certificate called “real understanding,” we can ask:</p>
+<ul class="question-list"><li>What mental model has been constructed?</li><li>What queries can it support?</li><li>What evidence grounds it?</li><li>How much cognitive resource does it require?</li><li>Where does it fail?</li></ul>
+<p>And for human understanding, we can ask an even more concrete question:</p>
+<div class="definition">What is the minimal mental model this person needs in order to reliably do what they are responsible for doing?</div>
+<p>This is where the abstract debate over understanding becomes a cognitive problem.</p>
+<p>The <a href="the-understanding-bottleneck.html"><em>understanding bottleneck</em></a> is the constraint: complex knowledge and artifacts can increasingly exceed the rate at which humans can build useful mental models of them.</p>
+<p><em>Human-centered understanding</em> is the corresponding problem: how to construct the right mental model for a particular human, goal, and cognitive budget.</p>
+<div class="closing"><p>Understanding is not about putting more of the world into a mind.</p><p>It is about preserving the right structure for what that mind needs to do.</p></div></section>
+
+<section class="body post-content" data-lang="zh">
+<p>理解一件事，究竟意味着什么？</p>
+<p>这个问题出现在 AI 与认知科学中许多看似完全不同的领域。</p>
+<p>NeuroAI 真的帮助我们理解了大脑，还是只是给了我们预测能力更强的模型？</p>
+<p>大语言模型是否拥有世界模型，还是只是在不理解的情况下表现出令人信服的行为？</p>
+<p>可解释性研究必须揭示什么，我们才能说自己理解了一个模型如何运作？</p>
+<p>如果自动模型发现找到了一个紧凑、且能很好预测行为的模型，它发现的是科学解释，还是仅仅又一个预测器？</p>
+<p>这些争论使用不同的方法和词汇，但它们背后其实是同一个问题：</p>
+<div class="signal">什么才算理解？</div>
+<p>我不认为答案是“那个唯一真实的表征”。</p>
+<p>真实当然重要。一种完全错误的理解最终一定会失败。但在大多数有趣的问题中，我们无法直接接触最终的真相。我们拥有的是证据，并根据证据建立表征；当证据变化时，我们也修改这些表征。</p>
+<p>因此，也许一个更有用的问题是：</p>
+<div class="signal">这个表征能够可靠地帮助我们回答什么？</div>
+
+<h2>理解取决于问题</h2>
+<p>以一个神经元为例。</p>
+<p>我们可以把它建模成一个只会放电或不放电的简单单元；也可以使用一个更细致、追踪电压随时间变化的模型；还可以进一步模拟离子通道及其动力学。</p>
+<p>哪一个才是正确的模型？</p>
+<p>这在一定程度上取决于我们提出的问题。</p>
+<p>如果我只想预测神经元是否会放电，一个简单模型也许已经足够。但如果我想理解某一种离子通道的作用，同一个模型可能毫无用处。</p>
+<p>Kevin Murphy 最近用不同层次的神经元模型很好地说明了这一点：选择对于目标问题而言仍然充分的、最抽象的模型。</p>
+
+<figure>
+<img src="assets/kevin-murphy-levels-of-abstraction.jpg" alt="Kevin Murphy 的幻灯片，对比从 McCulloch–Pitts 模型到随机单通道模型等不同抽象层次的神经元模型。">
+<figcaption><strong>图 1。</strong> 神经元模型的不同抽象层次。合适的层次取决于问题：应使用对于目标问题仍然充分的最抽象模型。改编自 Kevin Murphy 的讲座幻灯片。</figcaption>
+</figure>
+
+<p>我认为，同样的逻辑也很自然地适用于理解。</p>
+<p>更多细节并不自动意味着更多理解。</p>
+<p>好的理解，会为重要的问题保留足够多的正确结构。</p>
+
+<h2>理解是一个认知压缩问题</h2>
+<p>对人类而言，还存在另一重约束。</p>
+<p>原则上，一个科学模型可以任意复杂。但人的心智模型不行。</p>
+<p>我们的注意力、工作记忆和时间都有限，而且每个人拥有的先验知识非常不同。</p>
+<p>因此，问题不只是：</p>
+<div class="signal">什么表征对于这个问题是充分的？</div>
+<p>还包括：</p>
+<div class="signal">这个人实际上能够获得并使用什么表征？</div>
+<p>这使理解成为一个认知压缩问题。</p>
+<p>地铁图是一个很好的例子。如果把它当作城市的重建，它糟糕透顶：距离被扭曲，道路消失，建筑和地形都被省略了。</p>
+<p>但如果你的目标是从一个车站到达另一个车站，恰恰是这些省略让地图变得有用。</p>
+<p>卫星图像包含多得多的信息，却可能更不适合完成这个任务。</p>
+<p>人类理解往往也是如此。</p>
+<p>我们不会把现实原封不动地复制进脑中。我们建立的心智模型省略了绝大多数内容，同时保留推理和行动所需要的结构。</p>
+<p>因此，理解可以被这样描述：</p>
+<div class="definition">理解一件事，就是建立一个心智模型，使它保留足够多的对象结构，从而回答那些重要的问题。</div>
+<p>这样一来，理解的深度就可以部分地由它能够支持的问题范围来描述。</p>
+<p>狭窄的理解也许只在熟悉的情境中有效；更深的理解则可能支持跨越新情境的预测、迁移、干预、修改或解释。</p>
+<p>这也解释了为什么人类理解会成为一种瓶颈。</p>
+<p>在上一篇文章中，我把复杂工作产出的速度与人们建立行动所需理解的速度之间不断扩大的差距，称为<a href="the-understanding-bottleneck.html"><em>理解的瓶颈</em></a>。</p>
+<p>这个瓶颈之所以存在，恰恰是因为人类认知存在边界。</p>
+<p>如果我们拥有无限的注意力、记忆和时间，就可以直接吸收所有内容。</p>
+<p>但我们没有。</p>
+<p>因此，每一次理解都需要压缩：决定哪些结构必须保留，哪些内容可以安全地省略。</p><h2>真实约束理解；有用性让理解变得可观察</h2>
+<p>正是在这里，我觉得“有用性”这个概念很有帮助。</p>
+<p>我所说的有用，并不是经济价值，也不是说知识只有在带来即时实际收益时才重要。</p>
+<p>一种理解之所以有用，可以是因为它帮助一个人预测新情况、识别边界、发现矛盾、提出更好的问题、安全地修改某样东西，或者向另一个人解释一个想法。</p>
+<p>这些都是理解让人能够做到的事情。</p>
+<p>真实仍然重要。如果一个心智模型与现实完全脱节，它的有用性最终会崩溃。</p>
+<p>但我们很少能够直接测量一个心智模型距离某种最终真相有多近。</p>
+<p>我们能够观察的，是它面对证据时的表现。</p>
+<ul class="question-list">
+<li>它能够泛化吗？</li>
+<li>情境改变之后，它还能成立吗？</li>
+<li>它能揭示自己应该在哪里失效吗？</li>
+<li>它支持迁移吗？</li>
+<li>新证据会迫使我们修改它吗？</li>
+</ul>
+<p>从这个意义上说：</p>
+<div class="signal">真实约束理解；有用性让理解变得可观察。</div>
+<p>有用性并不取代真实。当最终真相本身无法被直接获得时，它为我们提供了一种衡量并更新理解的方式。</p>
+
+<h2>那么，AI 的理解呢？</h2>
+<p>这个框架改变了我思考那个熟悉问题的方式：</p>
+<div class="signal">AI 理解吗？</div>
+<p>也许这个问题过于粗略。</p>
+<p>一个信息量更大的问法是：</p>
+<div class="signal">对于哪些问题，模型的内部表征是充分的？</div>
+<p>如果一种表征能够可靠地支持预测、泛化、规划或成功行动，那么它就捕捉到了问题的某些结构。</p>
+<p>这种表征可能与人类表征截然不同。</p>
+<p>它可能使用我们尚未命名的维度，或以让我们感到不自然的方式组合特征。</p>
+<p>但仅仅因为它陌生，并不能证明其中不存在理解。</p>
+<p>重要的问题是，这种表征让系统能够做什么，它能在多大范围内泛化，又会在哪里失败。</p>
+<p>如果我们把“真正的理解”定义为一种看起来与人类表征相似的东西，那么争论在某种程度上就变成了循环论证。</p>
+<p>我们问的不再是系统是否学到了有用的结构。</p>
+<p>我们问的是，它是否以一种人类可以识别的形式学到了这种结构。</p>
+<p>这是两个不同的问题。</p>
+
+<h2>从 AI 的理解到以人为中心的理解</h2>
+<p>即使 AI 拥有对其自身任务而言充分的理解，人类的问题仍然存在。</p>
+<p>让 AI 能够生成答案的表征，不一定是人类处理这个答案时所需要的表征。</p>
+<p>AI 也许拥有足够的理解来生成代码，而审查代码的工程师需要的是关于架构和失效点的心智模型。</p>
+<p>AI 也许能够发现一个证明，而数学家需要充分理解其核心思想，才能把它与另一个结果联系起来。</p>
+<p>神经网络也许能够极其准确地预测行为，而科学家需要先理解它捕捉到了什么结构，才能决定下一步应该进行什么实验。</p>
+<p>AI 和人类正在回答不同的问题。</p>
+<p>而且，由于人类的认知资源有限，我们不能简单地把 AI 知道的一切都交给人类来解决这个问题。</p>
+<p>因此，我认为<em>以人为中心的理解</em>并不只是一种偏好或一句口号。</p>
+<p>它是有限认知所产生的一个实际问题。</p>
+<p>对人类来说，正确的心智模型取决于对象，也取决于这个人的先验知识、认知资源和目标。</p>
+<p>审阅者、建造者、学习者和决策者，对于完全相同的系统可能需要非常不同的理解。</p>
+<p>于是，问题变成：</p>
+<div class="definition">给定一个人和一个目标，什么是最小的、以证据为基础的心智模型，并且足以支持这个人需要处理的问题或行动？</div>
+<p>如果认知资源是无限的，这个问题就不会如此重要。我们可以直接传递一切。</p>
+<p>但认知资源是有限的。</p>
+<p>结构太少，人就无法可靠地行动。</p>
+<p>无关结构太多，表征就会消耗认知资源，却不能改善这个人实际能够做的事情。</p>
+<p>因此，目标不是让信息传递最大化。</p>
+<p>而是保留正确的信息。</p><h2>从哲学问题到认知问题</h2>
+<p>这个视角并不能解决关于理解的所有哲学争论。</p>
+<p>但它改变了问题的形式。</p>
+<p>与其追问一个模型、一套理论、一个 AI 或一个人是否拥有某张名为“真正理解”的隐形证书，我们不如问：</p>
+<ul class="question-list"><li>建立了什么样的心智模型？</li><li>它能够支持哪些问题？</li><li>什么证据为它提供基础？</li><li>它需要多少认知资源？</li><li>它会在哪里失败？</li></ul>
+<p>对于人类理解，我们还可以提出一个更具体的问题：</p>
+<div class="definition">为了可靠地完成自己负责的事情，这个人最少需要什么样的心智模型？</div>
+<p>正是在这里，关于理解的抽象争论变成了一个认知问题。</p>
+<p><a href="the-understanding-bottleneck.html"><em>理解的瓶颈</em></a>是其中的约束：复杂知识与产物的增长速度，正在越来越多地超过人类为它们建立有用心智模型的速度。</p>
+<p><em>以人为中心的理解</em>是与之对应的问题：如何针对特定的人、目标和认知预算，构建正确的心智模型。</p>
+<div class="closing"><p>理解，不是把更多世界装进一个头脑。</p><p>理解，是为这个头脑需要完成的事情，保留正确的结构。</p></div></section>
+
+<footer class="footer">
+<div class="share">
+<a href="https://twitter.com/intent/tweet?text=What%20Does%20It%20Mean%20to%20Understand%3F&amp;url=https://xhb120633.github.io/blog/what-does-it-mean-to-understand.html" target="_blank" rel="noopener noreferrer">Share on X</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https://xhb120633.github.io/blog/what-does-it-mean-to-understand.html" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a>
+<a href="mailto:?subject=What%20Does%20It%20Mean%20to%20Understand%3F&amp;body=https://xhb120633.github.io/blog/what-does-it-mean-to-understand.html">Share by Email</a>
+</div>
+<div class="comments">
+<h2>Comments &amp; Reactions</h2>
+<p class="meta">Sign in with GitHub to comment or leave emoji reactions.</p>
+<script src="https://giscus.app/client.js" data-repo="xhb120633/xhb120633.github.io" data-repo-id="R_kgDOJWNfMw" data-category="General" data-category-id="DIC_kwDOJWNfM84C3Vu6" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async></script>
+</div>
+</footer>
+</article>
+</main>
+
+<script>
+function setLanguage(lang){var blocks=document.querySelectorAll(".post-content");var buttons=document.querySelectorAll("[data-lang-button]");document.body.setAttribute("data-lang",lang);document.documentElement.setAttribute("lang",lang==="zh"?"zh-CN":"en");for(var i=0;i<blocks.length;i++)blocks[i].classList.toggle("active",blocks[i].getAttribute("data-lang")===lang);for(var j=0;j<buttons.length;j++){var active=buttons[j].getAttribute("data-lang-button")===lang;buttons[j].classList.toggle("active",active);buttons[j].setAttribute("aria-pressed",active?"true":"false")}try{localStorage.setItem("blogLanguage",lang)}catch(error){}}
+function initialLanguage(){var q=new URLSearchParams(location.search).get("lang");if(q==="zh"||q==="en")return q;try{var saved=localStorage.getItem("blogLanguage");if(saved==="zh"||saved==="en")return saved}catch(error){}return"en"}
+var buttons=document.querySelectorAll("[data-lang-button]");for(var i=0;i<buttons.length;i++)buttons[i].addEventListener("click",function(e){setLanguage(e.currentTarget.getAttribute("data-lang-button"))});setLanguage(initialLanguage());
+</script>
+</body>
+</html>
