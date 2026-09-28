@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI can accelerate scientific problem solving. What happens to understanding and the formation of new questions when answers become cheap?">
+<title>The Future of AI for Science | Hanbo Xie</title>
+<style>
+:root {
+    --bg: #f6f7f5;
+    --surface: #fff;
+    --surface-soft: #f9faf8;
+    --text: #202426;
+    --muted: #5f686d;
+    --primary: #265f73;
+    --primary-dark: #174555;
+    --accent: #a95d35;
+    --border: #d9dedb;
+    --shadow: 0 18px 45px rgba(24, 42, 48, .09);
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,.88), var(--bg) 42%);
+    color: var(--text);
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.78;
+}
+a { color: var(--primary); }
+a:hover { color: var(--primary-dark); }
+a:focus-visible, button:focus-visible { outline: 3px solid rgba(169,93,53,.28); outline-offset: 2px; }
+.shell { max-width: 960px; margin: 0 auto; padding: 24px 18px 48px; }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
+.back { display: inline-block; padding: 9px 14px; border-radius: 6px; color: #fff; background: var(--primary); font-weight: 700; line-height: 1.2; text-decoration: none; white-space: nowrap; }
+.back:hover { color: #fff; background: var(--primary-dark); }
+.switch { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+.switch button { border: 0; border-radius: 6px; padding: 7px 10px; color: var(--muted); background: transparent; font: inherit; font-size: .92rem; font-weight: 700; cursor: pointer; }
+.switch button.active { color: var(--primary-dark); background: #e7f0f2; }
+.article { border: 1px solid var(--border); border-radius: 8px; background: var(--surface); box-shadow: var(--shadow); }
+.hero { padding: clamp(28px, 5vw, 46px) clamp(24px, 5vw, 46px) 20px; }
+.eyebrow { margin: 0 0 8px; color: var(--accent); font-size: .82rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+h1 { max-width: 800px; margin: 0; font-size: clamp(2.05rem, 4.4vw, 3.2rem); line-height: 1.14; font-weight: 750; text-wrap: balance; }
+.dek { max-width: 730px; margin: 13px 0 0; color: #344147; font-size: 1.12rem; line-height: 1.55; }
+.meta { margin: 12px 0 0; color: var(--muted); font-size: .94rem; line-height: 1.5; }
+.body { padding: 8px clamp(24px, 5vw, 46px) 44px; }
+.body p { margin: 0 0 1.15em; }
+h2 { margin: 2.1em 0 .55em; font-size: 1.55rem; line-height: 1.3; font-weight: 750; }
+.signal { max-width: 88%; margin: 26px auto; padding: 7px 18px; border-left: 4px solid var(--primary); color: var(--primary-dark); font-family: Georgia, "Times New Roman", "Noto Serif SC", serif; font-size: 1.15rem; font-style: italic; line-height: 1.6; }
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 23px 0 28px; padding: 18px 20px; border: 1px solid #cfdde1; border-radius: 8px; background: #f2f7f8; font-size: .96rem; font-weight: 650; line-height: 1.5; }
+.flow span { white-space: normal; }
+.flow b { color: var(--accent); font-size: 1.1rem; font-weight: 700; }
+.flow.compact { border-color: #efd1bd; background: #fff8f3; }
+.duality { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 23px 0 28px; }
+.duality div { padding: 18px 20px; border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: 6px; background: var(--surface-soft); }
+.duality div:last-child { border-left-color: var(--accent); }
+.duality small { display: block; margin-bottom: 8px; color: var(--muted); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; }
+.duality strong { display: block; font-size: 1.02rem; line-height: 1.5; }
+.question-list { margin: 20px 0 28px; padding: 18px 22px 18px 42px; border: 1px solid #efd1bd; border-left: 4px solid var(--accent); border-radius: 8px; background: #fff8f3; }
+.question-list li { margin: .48em 0; padding-left: 2px; }
+.closing { margin-top: 2.3em; padding-top: 1.5em; border-top: 1px solid var(--border); }
+.closing p:last-child { margin-bottom: 0; color: var(--primary-dark); font-size: 1.08rem; font-weight: 700; }
+.sources { margin-top: 2em; padding-top: 1em; border-top: 1px solid var(--border); color: var(--muted); font-size: .91rem; }
+.sources h2 { margin: 0 0 8px; font-size: 1.08rem; }
+.sources ol { margin: 0; padding-left: 1.3em; }
+.sources li { margin: 5px 0; overflow-wrap: anywhere; }
+.post-content { display: none; }
+.post-content.active { display: block; }
+[data-lang="zh"] { font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Inter", sans-serif; }
+.footer { padding: 24px clamp(24px, 5vw, 46px) 30px; border-top: 1px solid var(--border); background: var(--surface-soft); }
+.share { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+.share a { font-size: .92rem; font-weight: 700; text-decoration: none; }
+.comments { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border); }
+.comments h2 { margin: 0 0 4px; font-size: 1.4rem; }
+.comments .meta { margin: 0 0 16px; }
+@media (max-width: 640px) {
+    body { font-size: 16px; }
+    .shell { padding: 14px 10px 32px; }
+    .topbar { align-items: flex-start; flex-direction: column; }
+    .hero { padding: 26px 22px 18px; }
+    .body { padding: 6px 22px 34px; }
+    .footer { padding: 22px; }
+    .signal { max-width: 100%; }
+    .duality { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body data-lang="en">
+<main class="shell">
+<div class="topbar"><a class="back" href="../index.html#blog">Back to Blog</a><div class="switch" role="group" aria-label="Language"><button type="button" class="active" data-lang-button="en" aria-pressed="true">English</button><button type="button" data-lang-button="zh" aria-pressed="false">中文</button></div></div>
+<article class="article">
+<header class="hero post-content active" data-lang="en">
+<p class="eyebrow">AI, science &amp; understanding</p>
+<h1>The Future of AI for Science: From Problem Solving to Problem Formation</h1>
+<p class="dek">When answers become easier to find, understanding must help us ask better questions.</p>
+<p class="meta">Hanbo Xie</p>
+</header>
+<header class="hero post-content" data-lang="zh">
+<p class="eyebrow">AI、科学与理解</p>
+<h1>AI for Science 的未来：从解决问题到提出问题</h1>
+<p class="dek">当答案越来越容易得到，理解要帮助我们提出更好的问题。</p>
+<p class="meta">Hanbo Xie</p>
+</header>
+
+<section class="body post-content active" data-lang="en">
+<p>Recent advances in AI-generated mathematics have triggered an unusually strong reaction from mathematicians.</p>
+<p>OpenAI has reported solutions or substantial advances on a growing number of long-standing mathematical problems, including a proposed solution to the Navier–Stokes existence and smoothness problem, one of the Millennium Prize Problems.<sup><a href="#source-en-1">1</a></sup> These results have been met not only with excitement, but also with concern. Some mathematicians have argued that treating famous open problems primarily as benchmarks risks confusing the goals of mathematics with the production of correct answers.<sup><a href="#source-en-2">2</a></sup></p>
+<p>The anxiety is understandable.</p>
+<p>Modern science has built much of its incentive system around solving problems. A perspective may be influential, and a good question may shape a field, but the heaviest currency of a scientific career is still usually an empirical result, a theorem, an experiment, or a solved problem.</p>
+<p>Historically, this made sense. Problem solving was expensive. A single question could require years of experiments, difficult proofs, new instruments, large collaborations, or thousands of failed attempts.</p>
+<p>AI is now becoming unusually strong precisely at this part of the scientific pipeline:</p>
+<div class="flow"><span>Well-defined problem</span><b>→</b><span>Search, experiment, proof</span><b>→</b><span>New result</span></div>
+<p>So the disruption is real. But it may be less a threat to science itself than to a system in which scientific value has been heavily tied to the scarcity of problem-solving ability.</p>
+
+<h2>Problem Solving Was Never Just About the Answer</h2>
+<p>The deeper issue is that solving a problem historically did more than produce a result.</p>
+<div class="signal">It also produced understanding.</div>
+<p>In mathematics, attempts to solve polynomial equations did not merely yield better formulas. The study of cubic equations helped force mathematicians to take complex quantities seriously. Later, the failure to find a general radical formula for quintic equations led to a much deeper question:</p>
+<div class="signal">What structural properties determine whether an equation is solvable?</div>
+<p>That change of question helped lead to Galois theory and group-theoretic thinking.</p>
+<p>The important point is not the historical detail itself. It is the pattern:</p>
+<div class="flow compact"><span>Solve a problem</span><b>→</b><span>Encounter an anomaly</span><b>→</b><span>Change representation</span><b>→</b><span>Create a new problem space</span></div>
+<p>Scientific progress often comes from exactly these transitions.</p>
+<p>A failed method reveals that the wrong variable is being optimized.</p>
+<p>An awkward intermediate object becomes a new concept.</p>
+<p>Two separate problems turn out to share the same underlying structure.</p>
+<p>The process of solving one question changes what future questions can even be expressed.</p>
+
+<h2>AI Separates Discovery From Understanding</h2>
+<p>Automated science changes this relationship.</p>
+<p>The traditional process looked roughly like this:</p>
+<div class="flow"><span>Problem</span><b>→</b><span>Human investigation</span><b>→</b><span>Discovery</span></div>
+<p>But the middle term carried enormous epistemic value. Human investigation generated failed hypotheses, alternative representations, intuitions about difficulty, reusable techniques, and connections to other problems.</p>
+<p>AI can increasingly compress this into:</p>
+<div class="flow compact"><span>Problem</span><b>→</b><span>Machine search</span><b>→</b><span>Result</span></div>
+<p>The result may be correct. It may even be formally verified.</p>
+<p>But the scientific community has not necessarily acquired the understanding that historically emerged through producing that result.</p>
+<p>This creates a new danger in AI for Science: not that discovery stops, but that discovery and understanding become decoupled.</p>
+<div class="signal">The shortest path to an answer may bypass the most scientifically fertile parts of the search.</div>
+<p>A numerical solver could make a polynomial-root problem practically disappear. But the reason an expected formula fails to exist may be far more important than the roots themselves.</p>
+<p>This suggests an important distinction:</p>
+<div class="duality"><div><small>Solving the task</small><strong>Task utility</strong></div><div><small>Opening new questions</small><strong>Epistemic fertility</strong></div></div>
+<p><strong>Task utility ≠ epistemic fertility.</strong></p>
+<p>The solution that best satisfies the current objective is not necessarily the one that teaches us the most.</p>
+
+<h2>Science Advances by Changing the Space</h2>
+<p>Current AI systems are becoming very good at searching within a problem space. But foundational science often advances by changing the space itself.</p>
+<div class="duality"><div><small>Search within a space, S</small><strong>Given the current representation and objective, what is the best answer?</strong></div><div><small>Change the space, S → S′</small><strong>Is this the right representation of the problem at all?</strong></div></div>
+<p>That second move can create new objects, new abstractions, new connections, and entirely new families of questions.</p>
+<p>This is why understanding matters.</p>
+<p>Understanding is not merely a preference humans have after a discovery has been made. It is part of the mechanism by which one discovery changes our representation of the world and generates the next generation of questions.</p>
+<p>A more complete scientific loop is:</p>
+<div class="flow"><span>Understanding</span><b>→</b><span>Question</span><b>→</b><span>Discovery</span><b>→</b><span>New understanding</span><b>→</b><span>New question</span></div>
+<p>AI is rapidly reducing the cost of the middle step: question to discovery. That makes the surrounding steps more important.</p>
+
+<h2>From Problem Solving to Problem Formation</h2>
+<p>The future of AI for Science should therefore not be framed as a competition over whether humans or machines are better at solving problems.</p>
+<p>AI may become vastly better at search, proof, simulation, coding, and experimentation. That could be enormously beneficial.</p>
+<p>It may free scientists from large amounts of technical labor and give them more capacity to ask speculative questions, connect distant fields, test unusual representations, and explore ideas that were previously too expensive to pursue.</p>
+<p>But this only works if discoveries are turned back into understanding.</p>
+<p>When an AI system produces a theorem, mechanism, algorithm, or experimental result, the next scientific questions should include:</p>
+<ul class="question-list"><li>Why did this approach work?</li><li>What alternatives failed?</li><li>What is specific to this problem and what is general?</li><li>Is there a better representation of the result?</li><li>What existing ideas does it connect?</li><li>What new questions become possible once we understand it?</li></ul>
+<p>This is not simply “explaining the AI.” It is recovering the epistemic value that can be lost when discovery becomes automated.</p>
+<div class="signal">AI can automate the search for answers. Understanding turns answers into new representations of the world. Those representations make genuinely new questions possible.</div>
+<div class="closing"><p>If that is right, the future of AI for Science should not be judged only by how many problems machines can solve.</p><p>It should also be judged by whether those discoveries expand the space of questions that humans and machines are capable of asking next.</p></div>
+<div class="sources"><h2>Sources</h2><ol><li id="source-en-1"><a href="https://openai.com/index/navier-stokes-solution/">OpenAI, “On the Navier–Stokes Millennium Prize Problem”</a></li><li id="source-en-2"><a href="https://leidendeclaration.ai/">Leiden Declaration on Artificial Intelligence and Mathematics</a></li></ol></div>
+</section>
+
+<section class="body post-content" data-lang="zh">
+<p>最近，AI 在数学研究中取得的一系列进展，引发了数学界格外强烈的反应。</p>
+<p>OpenAI 报告称，AI 已经解决或大幅推进了越来越多悬而未决的数学问题，其中包括对千禧年大奖难题之一——纳维－斯托克斯方程解的存在性与光滑性问题——提出的解答。<sup><a href="#source-zh-1">1</a></sup> 人们既兴奋，也不安。一些数学家担心，如果主要把著名的开放问题当成衡量 AI 能力的基准，就可能把数学的目标误认为只是产出正确答案。<sup><a href="#source-zh-2">2</a></sup></p>
+<p>这种不安不难理解。</p>
+<p>现代科学的激励机制，很大程度上围绕“解决问题”建立。一个视角可以很有影响力，一个好问题也可以塑造整个领域，但在科研生涯中最被看重的，往往仍是一项实证结果、一条定理、一个实验，或者一个被解决的问题。</p>
+<p>过去这样做有其道理。解题的成本很高：一个问题可能需要多年的实验、艰难的证明、新仪器、大规模合作，或者上千次失败的尝试。</p>
+<p>而 AI 正在科学流程的这一环节变得格外强大：</p>
+<div class="flow"><span>定义清楚的问题</span><b>→</b><span>搜索、实验、证明</span><b>→</b><span>新的结果</span></div>
+<p>所以，冲击是真实的。但受到挑战的，也许不只是科学本身，更是那套把科研价值与解题能力的稀缺性紧紧绑定的体系。</p>
+
+<h2>解决问题，从来不只是得到答案</h2>
+<p>更深一层的问题是：过去，解决问题带来的不只是结果。</p>
+<div class="signal">它也带来了理解。</div>
+<p>在数学史上，求解多项式方程的努力并不只是带来了更好的公式。研究三次方程时，数学家不得不认真面对复数；后来，寻找五次方程的通用根式解失败，又把人们带向一个更深的问题：</p>
+<div class="signal">什么样的结构性质，决定了一个方程能否用根式求解？</div>
+<p>正是这种提问方式的转变，推动了伽罗瓦理论和群论式的思考。</p>
+<p>这里重要的不是某个历史细节，而是背后的模式：</p>
+<div class="flow compact"><span>解决问题</span><b>→</b><span>遇到异常</span><b>→</b><span>改变表征</span><b>→</b><span>开辟新的问题空间</span></div>
+<p>科学进步常常就发生在这些转折处。</p>
+<p>一种方法失败了，我们才发现原来一直在优化错误的变量。</p>
+<p>一个看起来别扭的中间产物，后来成为新的概念。</p>
+<p>两个原本独立的问题，显露出相同的底层结构。</p>
+<p>解决一个问题的过程，改变了我们接下来能够提出什么问题。</p>
+
+<h2>AI 让发现与理解分开</h2>
+<p>自动化科学正在改变这种关系。</p>
+<p>传统的过程大致是：</p>
+<div class="flow"><span>问题</span><b>→</b><span>人的探索</span><b>→</b><span>发现</span></div>
+<p>中间这一步有巨大的认知价值。人在探索时，会留下失败的假设、其他可能的表征、对难点的直觉、可以复用的方法，以及与其他问题的联系。</p>
+<p>AI 越来越能把它压缩成：</p>
+<div class="flow compact"><span>问题</span><b>→</b><span>机器搜索</span><b>→</b><span>结果</span></div>
+<p>结果可能是对的，甚至经过形式化验证。</p>
+<p>但科学共同体未必因此获得了过去在得出结果的过程中逐渐形成的理解。</p>
+<p>这给 AI for Science 带来一种新的风险：发现并没有停止，但发现与理解可能脱节。</p>
+<div class="signal">通往答案的最短路径，可能恰好绕过最能孕育科学洞见的那段探索。</div>
+<p>一个数值求解器，可以让多项式求根在实际操作中不再成问题。但为什么我们期待的通用公式不存在，可能比那些根本身重要得多。</p>
+<p>由此可以区分两件事：</p>
+<div class="duality"><div><small>完成当前任务</small><strong>任务效用</strong></div><div><small>孕育新问题</small><strong>认知上的生长力</strong></div></div>
+<p><strong>任务效用 ≠ 认知上的生长力。</strong></p>
+<p>最能满足当前目标的解法，不一定是最能教会我们新东西的解法。</p>
+
+<h2>科学靠改变问题空间前进</h2>
+<p>今天的 AI 越来越擅长在既定的问题空间中搜索。但基础科学常常通过改变问题空间本身而前进。</p>
+<div class="duality"><div><small>在空间 S 内搜索</small><strong>在现有表征和目标下，最好的答案是什么？</strong></div><div><small>改变空间，S → S′</small><strong>我们一开始，是不是就用错了理解这个问题的方式？</strong></div></div>
+<p>第二种转变可以创造新对象、新抽象、新联系，以及成群的新问题。</p>
+<p>这就是理解重要的原因。</p>
+<p>理解不是发现之后，人类额外想要的一点满足感。它是让一次发现改变我们认识世界的方式，并生成下一代问题的机制之一。</p>
+<p>更完整的科学循环应该是：</p>
+<div class="flow"><span>理解</span><b>→</b><span>问题</span><b>→</b><span>发现</span><b>→</b><span>新的理解</span><b>→</b><span>新的问题</span></div>
+<p>AI 正在迅速降低从“问题”到“发现”的成本。于是，前后两个环节反而更加重要。</p>
+
+<h2>从解决问题到提出问题</h2>
+<p>因此，AI for Science 的未来，不应只被写成人与机器谁更擅长解题的竞赛。</p>
+<p>AI 可能在搜索、证明、模拟、编程和实验方面远远超过人类。这完全可能是一件好事。</p>
+<p>它能让科学家从大量技术劳动中抽身，有更多余力提出大胆的假设、连接遥远的领域、测试不寻常的表征，并探索过去因成本过高而无法尝试的想法。</p>
+<p>但前提是：发现必须重新转化为理解。</p>
+<p>当 AI 系统给出一条定理、一种机制、一个算法或一项实验结果时，接下来的科学问题还应包括：</p>
+<ul class="question-list"><li>这个方法为什么有效？</li><li>还有哪些方法失败了？</li><li>什么只适用于当前问题，什么可以推广？</li><li>有没有更好的方式表述这个结果？</li><li>它与哪些已有思想相连？</li><li>真正理解它之后，我们还能提出什么新问题？</li></ul>
+<p>这不只是给“AI 的做法”补一份解释，而是找回发现自动化之后可能流失的认知价值。</p>
+<div class="signal">AI 可以自动寻找答案。理解让答案变成认识世界的新方式；而新的认识方式，才让真正的新问题成为可能。</div>
+<div class="closing"><p>如果这一点成立，那么评价 AI for Science 的未来，就不能只看机器解决了多少问题。</p><p>还要看这些发现，是否拓展了人与机器接下来能够提出的问题。</p></div>
+<div class="sources"><h2>参考链接</h2><ol><li id="source-zh-1"><a href="https://openai.com/index/navier-stokes-solution/">OpenAI：关于纳维－斯托克斯千禧年大奖难题的报告</a></li><li id="source-zh-2"><a href="https://leidendeclaration.ai/">《关于人工智能与数学的莱顿宣言》</a></li></ol></div>
+</section>
+
+<footer class="footer">
+<div class="share"><a href="https://twitter.com/intent/tweet?text=The%20Future%20of%20AI%20for%20Science&amp;url=https://xhb120633.github.io/blog/the-future-of-ai-for-science.html" target="_blank" rel="noopener noreferrer">Share on X</a><a href="https://www.linkedin.com/sharing/share-offsite/?url=https://xhb120633.github.io/blog/the-future-of-ai-for-science.html" target="_blank" rel="noopener noreferrer">Share on LinkedIn</a><a href="mailto:?subject=The%20Future%20of%20AI%20for%20Science&amp;body=https://xhb120633.github.io/blog/the-future-of-ai-for-science.html">Share by Email</a></div>
+<div class="comments"><h2>Comments &amp; Reactions</h2><p class="meta">Sign in with GitHub to comment or leave emoji reactions.</p><script src="https://giscus.app/client.js" data-repo="xhb120633/xhb120633.github.io" data-repo-id="R_kgDOJWNfMw" data-category="General" data-category-id="DIC_kwDOJWNfM84C3Vu6" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="zh-CN" crossorigin="anonymous" async></script></div>
+</footer>
+</article>
+</main>
+<script>
+function setLanguage(lang) {
+    var blocks = document.querySelectorAll(".post-content");
+    var buttons = document.querySelectorAll("[data-lang-button]");
+    document.body.setAttribute("data-lang", lang);
+    document.documentElement.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
+    for (var i = 0; i < blocks.length; i++) blocks[i].classList.toggle("active", blocks[i].getAttribute("data-lang") === lang);
+    for (var j = 0; j < buttons.length; j++) {
+        var active = buttons[j].getAttribute("data-lang-button") === lang;
+        buttons[j].classList.toggle("active", active);
+        buttons[j].setAttribute("aria-pressed", active ? "true" : "false");
+    }
+    try { localStorage.setItem("blogLanguage", lang); } catch (error) {}
+}
+function initialLanguage() {
+    var query = new URLSearchParams(location.search).get("lang");
+    if (query === "zh" || query === "en") return query;
+    try { var saved = localStorage.getItem("blogLanguage"); if (saved === "zh" || saved === "en") return saved; } catch (error) {}
+    return "en";
+}
+var buttons = document.querySelectorAll("[data-lang-button]");
+for (var i = 0; i < buttons.length; i++) buttons[i].addEventListener("click", function(event) { setLanguage(event.currentTarget.getAttribute("data-lang-button")); });
+setLanguage(initialLanguage());
+</script>
+</body>
+</html>
