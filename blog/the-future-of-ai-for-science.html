@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AI can accelerate scientific problem solving. What happens to understanding and the formation of new questions when answers become cheap?">
+<meta name="description" content="AI can make answers abundant. The future of science may depend on turning those answers into understanding and new questions.">
 <title>The Future of AI for Science | Hanbo Xie</title>
 <style>
 :root {
@@ -51,6 +51,19 @@ h2 { margin: 2.1em 0 .55em; font-size: 1.55rem; line-height: 1.3; font-weight: 7
 .flow span { white-space: normal; }
 .flow b { color: var(--accent); font-size: 1.1rem; font-weight: 700; }
 .flow.compact { border-color: #efd1bd; background: #fff8f3; }
+.cycle { position: relative; width: 100%; max-width: 760px; aspect-ratio: 8 / 5; margin: 23px auto 30px; border: 1px solid #cfdde1; border-radius: 8px; background: #f2f7f8; overflow: hidden; }
+.cycle svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.cycle svg > path { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; }
+.cycle svg.mobile { display: none; }
+.cycle ol { margin: 0; padding: 0; list-style: none; }
+.cycle li { position: absolute; z-index: 1; display: grid; place-items: center; width: min(20%, 150px); min-height: 66px; padding: 8px 11px; transform: translate(-50%, -50%); border: 1px solid #b9c9ce; border-radius: 6px; background: #fff; color: var(--primary-dark); font-size: .95rem; font-weight: 700; line-height: 1.3; text-align: center; }
+.cycle li:nth-child(1) { left: 50%; top: 11%; }
+.cycle li:nth-child(2) { left: 82%; top: 33%; }
+.cycle li:nth-child(3) { left: 70%; top: 79%; }
+.cycle li:nth-child(4) { left: 30%; top: 79%; }
+.cycle li:nth-child(5) { left: 18%; top: 33%; }
+.cycle-core { position: absolute; top: 51%; left: 50%; width: 220px; transform: translate(-50%, -50%); color: var(--primary-dark); font-family: Georgia, "Times New Roman", "Noto Serif SC", serif; font-size: 1rem; font-style: italic; line-height: 1.4; text-align: center; }
+.cycle-core span { display: block; color: var(--accent); font-family: Arial, sans-serif; font-size: 2.1rem; font-style: normal; line-height: 1.2; }
 .duality { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 23px 0 28px; }
 .duality div { padding: 18px 20px; border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: 6px; background: var(--surface-soft); }
 .duality div:last-child { border-left-color: var(--accent); }
@@ -82,6 +95,16 @@ h2 { margin: 2.1em 0 .55em; font-size: 1.55rem; line-height: 1.3; font-weight: 7
     .footer { padding: 22px; }
     .signal { max-width: 100%; }
     .duality { grid-template-columns: 1fr; }
+    .cycle { height: 440px; aspect-ratio: auto; }
+    .cycle svg.desktop { display: none; }
+    .cycle svg.mobile { display: block; }
+    .cycle li { width: min(108px, 44%); min-height: 58px; padding: 6px 8px; font-size: .87rem; overflow-wrap: anywhere; }
+    .cycle li:nth-child(1) { left: 50%; top: 11%; }
+    .cycle li:nth-child(2) { left: 76%; top: 35%; }
+    .cycle li:nth-child(3) { left: 75%; top: 77%; }
+    .cycle li:nth-child(4) { left: 25%; top: 77%; }
+    .cycle li:nth-child(5) { left: 24%; top: 35%; }
+    .cycle-core { top: 54%; width: 145px; font-size: .88rem; }
 }
 </style>
 </head>
@@ -92,141 +115,353 @@ h2 { margin: 2.1em 0 .55em; font-size: 1.55rem; line-height: 1.3; font-weight: 7
 <header class="hero post-content active" data-lang="en">
 <p class="eyebrow">AI, science &amp; understanding</p>
 <h1>The Future of AI for Science: From Problem Solving to Problem Formation</h1>
-<p class="dek">When answers become easier to find, understanding must help us ask better questions.</p>
+<p class="dek">When answers become abundant, what will help science ask questions it could not ask before?</p>
 <p class="meta">Hanbo Xie</p>
 </header>
 <header class="hero post-content" data-lang="zh">
 <p class="eyebrow">AI、科学与理解</p>
 <h1>AI for Science 的未来：从解决问题到提出问题</h1>
-<p class="dek">当答案越来越容易得到，理解要帮助我们提出更好的问题。</p>
+<p class="dek">当答案越来越多，科学如何提出过去无法提出的问题？</p>
 <p class="meta">Hanbo Xie</p>
 </header>
 
 <section class="body post-content active" data-lang="en">
-<p>Recent advances in AI-generated mathematics have triggered an unusually strong reaction from mathematicians.</p>
-<p>OpenAI has reported solutions or substantial advances on a growing number of long-standing mathematical problems, including a proposed solution to the Navier–Stokes existence and smoothness problem, one of the Millennium Prize Problems.<sup><a href="#source-en-1">1</a></sup> These results have been met not only with excitement, but also with concern. Some mathematicians have argued that treating famous open problems primarily as benchmarks risks confusing the goals of mathematics with the production of correct answers.<sup><a href="#source-en-2">2</a></sup></p>
-<p>The anxiety is understandable.</p>
-<p>Modern science has built much of its incentive system around solving problems. A perspective may be influential, and a good question may shape a field, but the heaviest currency of a scientific career is still usually an empirical result, a theorem, an experiment, or a solved problem.</p>
-<p>Historically, this made sense. Problem solving was expensive. A single question could require years of experiments, difficult proofs, new instruments, large collaborations, or thousands of failed attempts.</p>
-<p>AI is now becoming unusually strong precisely at this part of the scientific pipeline:</p>
-<div class="flow"><span>Well-defined problem</span><b>→</b><span>Search, experiment, proof</span><b>→</b><span>New result</span></div>
-<p>So the disruption is real. But it may be less a threat to science itself than to a system in which scientific value has been heavily tied to the scarcity of problem-solving ability.</p>
+<p>Recent progress in AI-generated mathematics has made a question that used to feel hypothetical suddenly feel very concrete.</p>
+<p>OpenAI has reported a series of results on long-standing open problems in mathematics and theoretical computer science, and in September announced an AI-generated proposed solution to the Navier–Stokes Millennium Prize Problem.<sup><a href="#source-en-1">1</a></sup></p>
+<p>The reaction from mathematicians has not been uniformly celebratory. Some are excited. Some are intimidated by the pace. Others are worried about what mathematics becomes if solving famous open problems increasingly turns into an AI benchmark. The Leiden Declaration captures exactly this mixture of enthusiasm and concern.<sup><a href="#source-en-2">2</a></sup></p>
+<p>At first, the obvious question seems to be:</p>
+<div class="signal">If AI can solve problems that once occupied some of the best mathematicians in the world, what will mathematicians still be needed for?</div>
+<p>The same question applies to science more generally.</p>
+<p>If AI systems can search hypotheses, run simulations, write code, analyze data, design experiments, and eventually solve scientific problems much faster than humans, what happens to scientists?</p>
+<p>I do not think the anxiety behind this question is irrational.</p>
+<p>But I increasingly think we may be worried about the wrong thing.</p>
 
-<h2>Problem Solving Was Never Just About the Answer</h2>
-<p>The deeper issue is that solving a problem historically did more than produce a result.</p>
-<div class="signal">It also produced understanding.</div>
-<p>In mathematics, attempts to solve polynomial equations did not merely yield better formulas. The study of cubic equations helped force mathematicians to take complex quantities seriously. Later, the failure to find a general radical formula for quintic equations led to a much deeper question:</p>
-<div class="signal">What structural properties determine whether an equation is solvable?</div>
-<p>That change of question helped lead to Galois theory and group-theoretic thinking.</p>
-<p>The important point is not the historical detail itself. It is the pattern:</p>
-<div class="flow compact"><span>Solve a problem</span><b>→</b><span>Encounter an anomaly</span><b>→</b><span>Change representation</span><b>→</b><span>Create a new problem space</span></div>
-<p>Scientific progress often comes from exactly these transitions.</p>
-<p>A failed method reveals that the wrong variable is being optimized.</p>
-<p>An awkward intermediate object becomes a new concept.</p>
-<p>Two separate problems turn out to share the same underlying structure.</p>
-<p>The process of solving one question changes what future questions can even be expressed.</p>
+<h2>What exactly is being disrupted?</h2>
+<p>Science has always celebrated people who ask great questions.</p>
+<p>The names that remain foundational in a field are often not simply those who solved the largest number of difficult problems. They are the people who defined new objects, connected previously separated areas, proposed questions that occupied generations of researchers, or created entirely new ways of representing a problem.</p>
+<p>And yet this is not how most scientific careers are actually evaluated.</p>
+<p>For most researchers, the heaviest currency is still much more concrete:</p>
+<ul class="question-list"><li>What experiment did you run?</li><li>What data did you collect?</li><li>What theorem did you prove?</li><li>What empirical result did you discover?</li><li>How many important papers did you publish?</li></ul>
+<p>You can write a perspective. You can write a review. You can propose a beautiful question.</p>
+<p>But sooner or later, the system asks: what did you actually <em>solve</em>?</p>
+<p>For a long time, this made perfect sense.</p>
+<p>Problem solving was expensive.</p>
+<p>A scientific question could require years of experiments, thousands of failed attempts, new instruments, a large research team, or an extraordinarily difficult proof. The ability to turn a well-defined problem into a verified result was genuinely scarce.</p>
+<p>So perhaps what AI is destabilizing first is not science itself.</p>
+<div class="signal">It is the incentive structure built around the scarcity of problem solving.</div>
+<p>That distinction matters.</p>
 
-<h2>AI Separates Discovery From Understanding</h2>
-<p>Automated science changes this relationship.</p>
-<p>The traditional process looked roughly like this:</p>
-<div class="flow"><span>Problem</span><b>→</b><span>Human investigation</span><b>→</b><span>Discovery</span></div>
-<p>But the middle term carried enormous epistemic value. Human investigation generated failed hypotheses, alternative representations, intuitions about difficulty, reusable techniques, and connections to other problems.</p>
-<p>AI can increasingly compress this into:</p>
-<div class="flow compact"><span>Problem</span><b>→</b><span>Machine search</span><b>→</b><span>Result</span></div>
-<p>The result may be correct. It may even be formally verified.</p>
-<p>But the scientific community has not necessarily acquired the understanding that historically emerged through producing that result.</p>
-<p>This creates a new danger in AI for Science: not that discovery stops, but that discovery and understanding become decoupled.</p>
-<div class="signal">The shortest path to an answer may bypass the most scientifically fertile parts of the search.</div>
-<p>A numerical solver could make a polynomial-root problem practically disappear. But the reason an expected formula fails to exist may be far more important than the roots themselves.</p>
-<p>This suggests an important distinction:</p>
-<div class="duality"><div><small>Solving the task</small><strong>Task utility</strong></div><div><small>Opening new questions</small><strong>Epistemic fertility</strong></div></div>
-<p><strong>Task utility ≠ epistemic fertility.</strong></p>
-<p>The solution that best satisfies the current objective is not necessarily the one that teaches us the most.</p>
+<h2>But why was problem solving so valuable in the first place?</h2>
+<p>This is where I think the story becomes more interesting.</p>
+<p>Suppose the only value of solving a scientific problem were the answer itself.</p>
+<p>Then an AI that produces the answer faster should simply be better.</p>
+<p>There would not be much more to discuss.</p>
+<p>But historically, solving a problem almost never produced only an answer.</p>
+<div class="signal">The process itself generated understanding.</div>
+<p>And sometimes that understanding turned out to be much more important than the original problem.</p>
+<p>Consider polynomial equations.</p>
+<p>Mathematicians trying to solve cubic equations were not setting out to invent a huge new branch of mathematics. They were trying to find roots.</p>
+<p>But the formulas they encountered forced them to deal seriously with quantities involving square roots of negative numbers.</p>
+<p>If the only goal had been numerical prediction, one could imagine treating these strange intermediate quantities as an inconvenience and moving on.</p>
+<p>Instead, mathematicians tried to understand them.</p>
+<p>What kind of object is this?</p>
+<p>How should arithmetic work on it?</p>
+<p>Why does an apparently “imaginary” intermediate quantity appear when the final solution is real?</p>
+<p>That detour helped open the door to complex numbers and the enormous mathematical landscape that followed.</p>
+<p>The quintic gives an even cleaner example.</p>
+<p>After formulas had been found for quadratic, cubic, and quartic equations, the obvious next problem was:</p>
+<div class="signal">What is the general formula for a fifth-degree equation?</div>
+<p>Mathematicians searched for such a formula and eventually discovered that, in the expected sense, it does not exist.</p>
+<p>But the really important step was not simply proving “there is no formula.”</p>
+<p>The question changed.</p>
+<p>Instead of asking “What is the formula?”, mathematicians began asking something closer to:</p>
+<div class="signal">What structure determines whether an equation is solvable by radicals?</div>
+<p>Now the problem was no longer merely about computing roots.</p>
+<p>It became a problem about permutations, symmetry, and structure.</p>
+<p>And from that shift emerged Galois theory and group-theoretic ways of thinking.</p>
+<p>The original problem was not merely solved.</p>
+<div class="signal">The space of possible mathematical questions changed.</div>
 
-<h2>Science Advances by Changing the Space</h2>
-<p>Current AI systems are becoming very good at searching within a problem space. But foundational science often advances by changing the space itself.</p>
-<div class="duality"><div><small>Search within a space, S</small><strong>Given the current representation and objective, what is the best answer?</strong></div><div><small>Change the space, S → S′</small><strong>Is this the right representation of the problem at all?</strong></div></div>
-<p>That second move can create new objects, new abstractions, new connections, and entirely new families of questions.</p>
-<p>This is why understanding matters.</p>
-<p>Understanding is not merely a preference humans have after a discovery has been made. It is part of the mechanism by which one discovery changes our representation of the world and generates the next generation of questions.</p>
-<p>A more complete scientific loop is:</p>
-<div class="flow"><span>Understanding</span><b>→</b><span>Question</span><b>→</b><span>Discovery</span><b>→</b><span>New understanding</span><b>→</b><span>New question</span></div>
-<p>AI is rapidly reducing the cost of the middle step: question to discovery. That makes the surrounding steps more important.</p>
+<h2>Now imagine that AI had already existed</h2>
+<p>This thought experiment is what made the issue click for me.</p>
+<p>Suppose mathematicians asking about a quintic could simply hand the equation to an AI.</p>
+<p>The AI gives the roots to arbitrary numerical precision.</p>
+<p>Problem solved.</p>
+<p>Or perhaps it finds some entirely different computational procedure that works perfectly well in practice.</p>
+<p>From the standpoint of task completion, there is no problem anymore.</p>
+<p>Why spend years asking whether a beautiful symbolic formula exists?</p>
+<p>Why stare at the failed approaches?</p>
+<p>Why investigate the strange symmetry of the roots?</p>
+<p>And yet those apparently unnecessary questions were exactly where a much larger piece of mathematics came from.</p>
+<p>This makes me wonder whether we sometimes confuse two very different things:</p>
+<div class="duality"><div><small>Answering the question</small><strong>Solving the current problem</strong></div><div><small>Learning from the search</small><strong>Extracting all of its scientific value</strong></div></div>
+<p>They are not the same.</p>
+<p>In fact, the most efficient path to an answer may occasionally bypass the most scientifically fertile path.</p>
+<p>A failed proof can reveal a new structure.</p>
+<p>An awkward intermediate object can become a new concept.</p>
+<p>A second-best solution can reveal a more general principle than the optimal one.</p>
+<p>A problem that refuses to yield under the current representation can force us to invent a better representation.</p>
+<p>So perhaps there is an important distinction between <em>task utility</em> and <em>epistemic fertility</em>.</p>
+<div class="signal">The best answer to the problem we currently know how to ask is not necessarily the answer that creates the most science.</div>
 
-<h2>From Problem Solving to Problem Formation</h2>
-<p>The future of AI for Science should therefore not be framed as a competition over whether humans or machines are better at solving problems.</p>
-<p>AI may become vastly better at search, proof, simulation, coding, and experimentation. That could be enormously beneficial.</p>
-<p>It may free scientists from large amounts of technical labor and give them more capacity to ask speculative questions, connect distant fields, test unusual representations, and explore ideas that were previously too expensive to pursue.</p>
-<p>But this only works if discoveries are turned back into understanding.</p>
-<p>When an AI system produces a theorem, mechanism, algorithm, or experimental result, the next scientific questions should include:</p>
-<ul class="question-list"><li>Why did this approach work?</li><li>What alternatives failed?</li><li>What is specific to this problem and what is general?</li><li>Is there a better representation of the result?</li><li>What existing ideas does it connect?</li><li>What new questions become possible once we understand it?</li></ul>
-<p>This is not simply “explaining the AI.” It is recovering the epistemic value that can be lost when discovery becomes automated.</p>
-<div class="signal">AI can automate the search for answers. Understanding turns answers into new representations of the world. Those representations make genuinely new questions possible.</div>
-<div class="closing"><p>If that is right, the future of AI for Science should not be judged only by how many problems machines can solve.</p><p>It should also be judged by whether those discoveries expand the space of questions that humans and machines are capable of asking next.</p></div>
+<h2>This is where AI changes the old relationship</h2>
+<p>Historically, several things were bundled together:</p>
+<div class="flow"><span>Problem solving</span><b>≈</b><span>Discovery</span><b>+</b><span>Understanding</span><b>+</b><span>New problem formation</span></div>
+<p>A scientist trying to solve a problem would see the failed attempts, discover the anomaly, develop intuition, change representations, and eventually produce a result.</p>
+<p>The answer and the understanding grew together.</p>
+<p>AI begins to separate them.</p>
+<p>We may increasingly have:</p>
+<div class="flow"><span>Problem</span><b>→</b><span>Machine search</span><b>→</b><span>Discovery</span></div>
+<p>This can happen without the scientific community having gone through the process that produced that discovery.</p>
+<p>The theorem may be correct.</p>
+<p>The simulation may work.</p>
+<p>The molecule may satisfy the objective.</p>
+<p>The algorithm may outperform everything before it.</p>
+<p>But what have we actually learned?</p>
+<p>Why did it work?</p>
+<p>What did the failed alternatives reveal?</p>
+<p>Which part of the solution is specific to this case, and which part transfers?</p>
+<p>Could there be a more explanatory proof?</p>
+<p>Does this result suggest that we were using the wrong representation all along?</p>
+<p>And, perhaps most importantly:</p>
+<div class="signal">What new questions become possible now?</div>
+<p>This is where I think “understanding” becomes much more than a matter of intellectual curiosity.</p>
+
+<h2>Understanding is part of the engine of science</h2>
+<p>I used to think the argument for understanding AI-generated science was mainly about human agency.</p>
+<p>If humans do not understand what AI discovers, how can they judge it, trust it, extend it, or remain in control?</p>
+<p>I still think that matters.</p>
+<p>I explored this gap between fast-moving results and the understanding needed to judge or act on them in <a href="the-understanding-bottleneck.html?lang=en">The Understanding Bottleneck</a>.</p>
+<p>But I now think there is a stronger argument.</p>
+<div class="signal">Understanding is itself part of how science generates its next questions.</div>
+<p>A scientific cycle is not simply Q → A. It is closer to:</p>
+<figure class="cycle" aria-label="The scientific cycle">
+<svg class="desktop" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="cycle-arrow-en" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 9 4.5 L 0 9 Z" fill="#a95d35" stroke="none"/></marker></defs><path d="M 482 66 Q 535 85 570 122" marker-end="url(#cycle-arrow-en)"/><path d="M 652 205 Q 630 280 578 344" marker-end="url(#cycle-arrow-en)"/><path d="M 473 395 L 327 395" marker-end="url(#cycle-arrow-en)"/><path d="M 217 348 Q 174 280 149 207" marker-end="url(#cycle-arrow-en)"/><path d="M 223 126 Q 270 88 320 66" marker-end="url(#cycle-arrow-en)"/></svg>
+<svg class="mobile" viewBox="0 0 360 440" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="cycle-arrow-en-mobile" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 9 4.5 L 0 9 Z" fill="#a95d35" stroke="none"/></marker></defs><path d="M 223 75 Q 252 94 265 118" marker-end="url(#cycle-arrow-en-mobile)"/><path d="M 276 194 Q 280 242 274 301" marker-end="url(#cycle-arrow-en-mobile)"/><path d="M 208 339 L 152 339" marker-end="url(#cycle-arrow-en-mobile)"/><path d="M 85 301 Q 80 246 84 194" marker-end="url(#cycle-arrow-en-mobile)"/><path d="M 90 118 Q 110 88 137 87" marker-end="url(#cycle-arrow-en-mobile)"/></svg>
+<div class="cycle-core"><span aria-hidden="true">↻</span>Understanding makes the next question possible</div>
+<ol><li>Understanding</li><li>Question</li><li>Discovery</li><li>New understanding</li><li>New question</li></ol>
+</figure>
+<p>Here <em>U</em> is our current understanding, <em>Q</em> the questions that understanding makes visible, and <em>D</em> the discoveries that come from investigating them.</p>
+<p>AI is rapidly getting better at the middle: Q<sub>t</sub> → D<sub>t</sub>.</p>
+<p>But the next scientific frontier depends on what happens afterward.</p>
+<p>A discovery has to change our model of the world.</p>
+<p>That changed model makes different questions salient.</p>
+<p>Sometimes it makes entirely new questions expressible.</p>
+<p>In that sense, understanding is not something we add after discovery because humans happen to like explanations.</p>
+<p>It is one of the mechanisms by which one discovery creates the next generation of problems.</p>
+
+<h2>Perhaps this is why the future looks so different depending on how you frame it</h2>
+<p>If you think science is primarily the production of answers, recent AI progress can look like the beginning of the end.</p>
+<p>Machines are becoming extraordinarily good at producing answers.</p>
+<p>But if science is also the continual creation of better questions and better representations, the picture looks very different.</p>
+<p>AI may remove an enormous amount of technical burden from scientists.</p>
+<p>Search that once took years may take hours.</p>
+<p>Proof directions that were too expensive to explore may become cheap.</p>
+<p>Experiments may be simulated before they are run.</p>
+<p>A single researcher may be able to explore a space that previously required an entire lab.</p>
+<p>Maybe that does not reduce the room for scientific imagination.</p>
+<p>Maybe it increases its leverage.</p>
+<p>The scarce question may gradually shift from:</p>
+<div class="signal">Can we solve this?</div>
+<p>to</p>
+<div class="signal">What is worth asking?</div>
+<p>and eventually to</p>
+<div class="signal">What did the last discovery teach us that allows us to ask something we could not ask before?</div>
+<p>I do not think this means humans will have a permanent monopoly on problem formation.</p>
+<p>Future AI systems may themselves become excellent at inventing representations, connecting fields, and defining research programs.</p>
+<p>If that happens, the picture will change again.</p>
+<p>But at least today, most of what we call AI for Science is still much stronger at searching, generating, and testing than at producing the kind of conceptual reorganization that defines a new field.</p>
+<p>And even if machines eventually become excellent at that too, there remains a separate question:</p>
+<div class="signal">Will humans understand those conceptual shifts well enough to participate in them?</div>
+
+<h2>So what should AI for Science optimize for?</h2>
+<p>Certainly not less discovery.</p>
+<p>We should let AI search farther and faster than humans ever could.</p>
+<p>But perhaps the scientific workflow should not end when the answer arrives.</p>
+<p>The arrival of an AI-generated result may increasingly be the beginning of a second task:</p>
+<div class="signal">What is here for us to understand?</div>
+<p>Can we reconstruct the key conceptual move?</p>
+<p>Can we find a more illuminating proof?</p>
+<p>Can we distinguish the accidental trick from the transferable principle?</p>
+<p>Can we identify the anomaly that deserves to become a new object of study?</p>
+<p>Can we use the result to change how we represent the problem?</p>
+<p>And can that new understanding generate questions that were invisible before?</p>
+<p>Perhaps this is the real transition ahead.</p>
+<p>For a long time, one of the central scarcities in science was our ability to solve hard problems.</p>
+<p>AI may dramatically reduce that scarcity.</p>
+<p>The next bottleneck may be our ability to turn abundant discoveries into better ways of thinking.</p>
+<p>And from those better ways of thinking, better questions.</p>
+<div class="closing"><p>AI can make answers abundant. The future of science may depend on whether we can turn those answers into understanding—and that understanding into questions that did not exist before.</p></div>
 <div class="sources"><h2>Sources</h2><ol><li id="source-en-1"><a href="https://openai.com/index/navier-stokes-solution/">OpenAI, “On the Navier–Stokes Millennium Prize Problem”</a></li><li id="source-en-2"><a href="https://leidendeclaration.ai/">Leiden Declaration on Artificial Intelligence and Mathematics</a></li></ol></div>
 </section>
 
 <section class="body post-content" data-lang="zh">
-<p>最近，AI 在数学研究中取得的一系列进展，引发了数学界格外强烈的反应。</p>
-<p>OpenAI 报告称，AI 已经解决或大幅推进了越来越多悬而未决的数学问题，其中包括对千禧年大奖难题之一——纳维－斯托克斯方程解的存在性与光滑性问题——提出的解答。<sup><a href="#source-zh-1">1</a></sup> 人们既兴奋，也不安。一些数学家担心，如果主要把著名的开放问题当成衡量 AI 能力的基准，就可能把数学的目标误认为只是产出正确答案。<sup><a href="#source-zh-2">2</a></sup></p>
-<p>这种不安不难理解。</p>
-<p>现代科学的激励机制，很大程度上围绕“解决问题”建立。一个视角可以很有影响力，一个好问题也可以塑造整个领域，但在科研生涯中最被看重的，往往仍是一项实证结果、一条定理、一个实验，或者一个被解决的问题。</p>
-<p>过去这样做有其道理。解题的成本很高：一个问题可能需要多年的实验、艰难的证明、新仪器、大规模合作，或者上千次失败的尝试。</p>
-<p>而 AI 正在科学流程的这一环节变得格外强大：</p>
-<div class="flow"><span>定义清楚的问题</span><b>→</b><span>搜索、实验、证明</span><b>→</b><span>新的结果</span></div>
-<p>所以，冲击是真实的。但受到挑战的，也许不只是科学本身，更是那套把科研价值与解题能力的稀缺性紧紧绑定的体系。</p>
+<p>最近，AI 在数学领域取得的进展，让一个过去听起来像假设的问题，突然变得非常具体。</p>
+<p>OpenAI 报告了一系列关于数学和理论计算机科学长期开放问题的成果，并在九月宣布，AI 提出了纳维－斯托克斯千禧年大奖难题的一个解答。<sup><a href="#source-zh-1">1</a></sup></p>
+<p>数学家的反应并非一致的欢庆。有些人兴奋，有些人被变化的速度震住，也有人担心：如果著名的开放问题越来越像测试 AI 的基准，数学将变成什么？《莱顿宣言》恰好呈现了这种兴奋与忧虑交织的心情。<sup><a href="#source-zh-2">2</a></sup></p>
+<p>乍看之下，最直接的问题似乎是：</p>
+<div class="signal">如果 AI 能解决那些曾让世界上最优秀的数学家花费大量心力的问题，我们还需要数学家做什么？</div>
+<p>同样的问题也适用于更广义的科学。</p>
+<p>如果 AI 能搜索假设、运行模拟、编写代码、分析数据、设计实验，并最终以远快于人的速度解决科学问题，科学家又会怎样？</p>
+<p>我不觉得这种焦虑不合情理。</p>
+<p>但我越来越觉得，我们或许担心错了地方。</p>
 
-<h2>解决问题，从来不只是得到答案</h2>
-<p>更深一层的问题是：过去，解决问题带来的不只是结果。</p>
-<div class="signal">它也带来了理解。</div>
-<p>在数学史上，求解多项式方程的努力并不只是带来了更好的公式。研究三次方程时，数学家不得不认真面对复数；后来，寻找五次方程的通用根式解失败，又把人们带向一个更深的问题：</p>
-<div class="signal">什么样的结构性质，决定了一个方程能否用根式求解？</div>
-<p>正是这种提问方式的转变，推动了伽罗瓦理论和群论式的思考。</p>
-<p>这里重要的不是某个历史细节，而是背后的模式：</p>
-<div class="flow compact"><span>解决问题</span><b>→</b><span>遇到异常</span><b>→</b><span>改变表征</span><b>→</b><span>开辟新的问题空间</span></div>
-<p>科学进步常常就发生在这些转折处。</p>
-<p>一种方法失败了，我们才发现原来一直在优化错误的变量。</p>
-<p>一个看起来别扭的中间产物，后来成为新的概念。</p>
-<p>两个原本独立的问题，显露出相同的底层结构。</p>
-<p>解决一个问题的过程，改变了我们接下来能够提出什么问题。</p>
+<h2>究竟是什么正在受到冲击？</h2>
+<p>科学一向赞美那些提出伟大问题的人。</p>
+<p>一个领域里留下奠基性影响的，往往不只是解出最多难题的人。他们还定义了新的研究对象，连接起原本分离的领域，提出让几代研究者持续思考的问题，或者创造出理解问题的全新方式。</p>
+<p>但大多数科研生涯并不是这样被评价的。</p>
+<p>对大多数研究者来说，真正被当作硬通货的，仍然是更具体的东西：</p>
+<ul class="question-list"><li>你做了什么实验？</li><li>收集了什么数据？</li><li>证明了什么定理？</li><li>发现了什么实证结果？</li><li>发表了多少重要论文？</li></ul>
+<p>你可以写观点文章、写综述，也可以提出一个漂亮的问题。</p>
+<p>但迟早，评价体系还是会问：你到底<em>解决</em>了什么？</p>
+<p>很长一段时间里，这完全说得通。</p>
+<p>因为解决问题的成本很高。</p>
+<p>一个科学问题可能需要多年的实验、上千次失败、新仪器、一整个团队，或者极其艰难的证明。把一个定义清楚的问题变成经过验证的结果，确实是一种稀缺能力。</p>
+<p>所以，也许 AI 首先动摇的不是科学本身。</p>
+<div class="signal">它动摇的是围绕“解题能力稀缺”建立起来的激励机制。</div>
+<p>这个区别很重要。</p>
 
-<h2>AI 让发现与理解分开</h2>
-<p>自动化科学正在改变这种关系。</p>
-<p>传统的过程大致是：</p>
-<div class="flow"><span>问题</span><b>→</b><span>人的探索</span><b>→</b><span>发现</span></div>
-<p>中间这一步有巨大的认知价值。人在探索时，会留下失败的假设、其他可能的表征、对难点的直觉、可以复用的方法，以及与其他问题的联系。</p>
-<p>AI 越来越能把它压缩成：</p>
-<div class="flow compact"><span>问题</span><b>→</b><span>机器搜索</span><b>→</b><span>结果</span></div>
-<p>结果可能是对的，甚至经过形式化验证。</p>
-<p>但科学共同体未必因此获得了过去在得出结果的过程中逐渐形成的理解。</p>
-<p>这给 AI for Science 带来一种新的风险：发现并没有停止，但发现与理解可能脱节。</p>
-<div class="signal">通往答案的最短路径，可能恰好绕过最能孕育科学洞见的那段探索。</div>
-<p>一个数值求解器，可以让多项式求根在实际操作中不再成问题。但为什么我们期待的通用公式不存在，可能比那些根本身重要得多。</p>
-<p>由此可以区分两件事：</p>
-<div class="duality"><div><small>完成当前任务</small><strong>任务效用</strong></div><div><small>孕育新问题</small><strong>认知上的生长力</strong></div></div>
-<p><strong>任务效用 ≠ 认知上的生长力。</strong></p>
-<p>最能满足当前目标的解法，不一定是最能教会我们新东西的解法。</p>
+<h2>但解决问题为什么曾经那么有价值？</h2>
+<p>故事到这里，我觉得才真正有意思起来。</p>
+<p>假设解决科学问题的唯一价值就是得到答案。</p>
+<p>那么，AI 更快给出答案，自然就是更好的。</p>
+<p>似乎也没什么可讨论的了。</p>
+<p>但在历史上，解决问题几乎从来不只产出一个答案。</p>
+<div class="signal">探索的过程本身，也孕育了理解。</div>
+<p>有时候，这种理解甚至比最初的问题更重要。</p>
+<p>想想多项式方程。</p>
+<p>研究三次方程的数学家，起初并不是要开创一个庞大的新数学分支。他们只是想求出方程的根。</p>
+<p>但求根公式迫使他们认真面对一些含有负数平方根的量。</p>
+<p>如果目标只有数值预测，我们完全可以想象，他们会把这些奇怪的中间量当成麻烦，绕过去就是了。</p>
+<p>可他们选择去理解它们。</p>
+<p>这到底是什么样的对象？</p>
+<p>它应该遵循怎样的运算规则？</p>
+<p>为什么最终答案明明是实数，中途却会出现看似“虚构”的量？</p>
+<p>这段弯路，帮助人们打开了通往复数以及此后广阔数学天地的大门。</p>
+<p>五次方程是一个更鲜明的例子。</p>
+<p>二次、三次、四次方程都有求根公式之后，下一个自然的问题是：</p>
+<div class="signal">五次方程的通用公式是什么？</div>
+<p>数学家寻找这个公式，最后发现：至少按照原本期待的根式形式，它并不存在。</p>
+<p>但真正关键的，不只是证明“没有这样的公式”。</p>
+<p>关键是问题变了。</p>
+<p>人们不再只问“公式是什么”，而开始问一个更深的问题：</p>
+<div class="signal">什么样的结构，决定一个方程能否用根式求解？</div>
+<p>这样一来，问题就不只是计算方程的根了。</p>
+<p>它变成了关于置换、对称性与结构的问题。</p>
+<p>正是这种转变，催生了伽罗瓦理论和群论式的思考。</p>
+<p>原来的问题得到的不只是一个结论。</p>
+<div class="signal">数学能够提出的问题，整个空间都变了。</div>
 
-<h2>科学靠改变问题空间前进</h2>
-<p>今天的 AI 越来越擅长在既定的问题空间中搜索。但基础科学常常通过改变问题空间本身而前进。</p>
-<div class="duality"><div><small>在空间 S 内搜索</small><strong>在现有表征和目标下，最好的答案是什么？</strong></div><div><small>改变空间，S → S′</small><strong>我们一开始，是不是就用错了理解这个问题的方式？</strong></div></div>
-<p>第二种转变可以创造新对象、新抽象、新联系，以及成群的新问题。</p>
-<p>这就是理解重要的原因。</p>
-<p>理解不是发现之后，人类额外想要的一点满足感。它是让一次发现改变我们认识世界的方式，并生成下一代问题的机制之一。</p>
-<p>更完整的科学循环应该是：</p>
-<div class="flow"><span>理解</span><b>→</b><span>问题</span><b>→</b><span>发现</span><b>→</b><span>新的理解</span><b>→</b><span>新的问题</span></div>
-<p>AI 正在迅速降低从“问题”到“发现”的成本。于是，前后两个环节反而更加重要。</p>
+<h2>设想那时已经有了 AI</h2>
+<p>这个假想实验，让我更真切地意识到问题在哪里。</p>
+<p>假设研究五次方程的数学家，可以直接把方程交给 AI。</p>
+<p>AI 给出任意精度的数值解。</p>
+<p>问题解决了。</p>
+<p>或者，它找到另一套实际使用起来毫无问题的计算方法。</p>
+<p>从完成任务的角度看，这个问题已经不存在了。</p>
+<p>那为什么还要花几年去问，一个漂亮的符号公式到底存不存在？</p>
+<p>为什么要盯着那些失败的尝试？</p>
+<p>为什么要研究方程根之间奇特的对称关系？</p>
+<p>可更大一片数学天地，恰恰是从这些看似不必要的问题中长出来的。</p>
+<p>这让我怀疑，我们有时混淆了两件很不同的事：</p>
+<div class="duality"><div><small>完成眼前任务</small><strong>解决当前问题</strong></div><div><small>从探索中学习</small><strong>发掘问题蕴含的全部科学价值</strong></div></div>
+<p>它们不是一回事。</p>
+<p>事实上，通往答案最高效的路径，有时会绕开最能孕育科学洞见的路径。</p>
+<p>一次失败的证明，可能揭示新的结构。</p>
+<p>一个别扭的中间产物，可能成为新的概念。</p>
+<p>一个次优解，可能比最优解更能揭示普遍原理。</p>
+<p>一个在现有表征下怎么也解不开的问题，可能逼着我们发明更好的表征。</p>
+<p>所以，也许需要区分<em>任务效用</em>与<em>认知上的生长力</em>。</p>
+<div class="signal">对眼下这个问题最好的答案，未必是最能催生新科学的答案。</div>
 
-<h2>从解决问题到提出问题</h2>
-<p>因此，AI for Science 的未来，不应只被写成人与机器谁更擅长解题的竞赛。</p>
-<p>AI 可能在搜索、证明、模拟、编程和实验方面远远超过人类。这完全可能是一件好事。</p>
-<p>它能让科学家从大量技术劳动中抽身，有更多余力提出大胆的假设、连接遥远的领域、测试不寻常的表征，并探索过去因成本过高而无法尝试的想法。</p>
-<p>但前提是：发现必须重新转化为理解。</p>
-<p>当 AI 系统给出一条定理、一种机制、一个算法或一项实验结果时，接下来的科学问题还应包括：</p>
-<ul class="question-list"><li>这个方法为什么有效？</li><li>还有哪些方法失败了？</li><li>什么只适用于当前问题，什么可以推广？</li><li>有没有更好的方式表述这个结果？</li><li>它与哪些已有思想相连？</li><li>真正理解它之后，我们还能提出什么新问题？</li></ul>
-<p>这不只是给“AI 的做法”补一份解释，而是找回发现自动化之后可能流失的认知价值。</p>
-<div class="signal">AI 可以自动寻找答案。理解让答案变成认识世界的新方式；而新的认识方式，才让真正的新问题成为可能。</div>
-<div class="closing"><p>如果这一点成立，那么评价 AI for Science 的未来，就不能只看机器解决了多少问题。</p><p>还要看这些发现，是否拓展了人与机器接下来能够提出的问题。</p></div>
+<h2>AI 正在改变过去的关系</h2>
+<p>过去，几件事常常捆在一起：</p>
+<div class="flow"><span>解决问题</span><b>≈</b><span>发现</span><b>+</b><span>理解</span><b>+</b><span>形成新问题</span></div>
+<p>科学家在解题过程中，会看见失败的尝试，发现异常，积累直觉，改变表征，最终得到结果。</p>
+<p>答案与理解，是一起长出来的。</p>
+<p>AI 开始让它们分开。</p>
+<p>我们可能越来越常见到：</p>
+<div class="flow"><span>问题</span><b>→</b><span>机器搜索</span><b>→</b><span>发现</span></div>
+<p>而科学共同体并没有一起经历产出这个发现的过程。</p>
+<p>定理可能是对的。</p>
+<p>模拟可能有效。</p>
+<p>分子可能满足目标。</p>
+<p>算法可能超过此前所有方法。</p>
+<p>但我们究竟学到了什么？</p>
+<p>它为什么有效？</p>
+<p>失败的替代方案揭示了什么？</p>
+<p>解法的哪一部分只适用于这个案例，哪一部分可以迁移？</p>
+<p>有没有更能说明问题的证明？</p>
+<p>这个结果是否说明，我们一直用错了表征方式？</p>
+<p>也许最重要的是：</p>
+<div class="signal">现在，有哪些新问题变得可以提出？</div>
+<p>正是在这里，我觉得“理解”远远超出了满足求知欲的范畴。</p>
+
+<h2>理解是科学运转的动力之一</h2>
+<p>过去，我以为理解 AI 生成的科学成果，主要是为了维护人的主体性。</p>
+<p>如果人不理解 AI 的发现，又该如何判断、信任、拓展这些发现，或者继续掌握方向？</p>
+<p>我仍然觉得这很重要。</p>
+<p>我在此前的<a href="the-understanding-bottleneck.html?lang=zh">《理解的瓶颈》</a>中讨论过这个问题：成果来得太快，负责判断或接续它的人，未必来得及形成足够的理解。</p>
+<p>但现在，我觉得还有一个更强的理由。</p>
+<div class="signal">理解本身，就是科学生成下一个问题的过程的一部分。</div>
+<p>科学循环不只是 Q → A。它更接近于：</p>
+<figure class="cycle" aria-label="科学循环">
+<svg class="desktop" viewBox="0 0 800 500" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="cycle-arrow-zh" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 9 4.5 L 0 9 Z" fill="#a95d35" stroke="none"/></marker></defs><path d="M 482 66 Q 535 85 570 122" marker-end="url(#cycle-arrow-zh)"/><path d="M 652 205 Q 630 280 578 344" marker-end="url(#cycle-arrow-zh)"/><path d="M 473 395 L 327 395" marker-end="url(#cycle-arrow-zh)"/><path d="M 217 348 Q 174 280 149 207" marker-end="url(#cycle-arrow-zh)"/><path d="M 223 126 Q 270 88 320 66" marker-end="url(#cycle-arrow-zh)"/></svg>
+<svg class="mobile" viewBox="0 0 360 440" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="cycle-arrow-zh-mobile" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 9 4.5 L 0 9 Z" fill="#a95d35" stroke="none"/></marker></defs><path d="M 223 75 Q 252 94 265 118" marker-end="url(#cycle-arrow-zh-mobile)"/><path d="M 276 194 Q 280 242 274 301" marker-end="url(#cycle-arrow-zh-mobile)"/><path d="M 208 339 L 152 339" marker-end="url(#cycle-arrow-zh-mobile)"/><path d="M 85 301 Q 80 246 84 194" marker-end="url(#cycle-arrow-zh-mobile)"/><path d="M 90 118 Q 110 88 137 87" marker-end="url(#cycle-arrow-zh-mobile)"/></svg>
+<div class="cycle-core"><span aria-hidden="true">↻</span>Understanding makes the next question possible</div>
+<ol><li>Understanding</li><li>Question</li><li>Discovery</li><li>New understanding</li><li>New question</li></ol>
+</figure>
+<p>这里的 <em>U</em> 是我们当下的理解，<em>Q</em> 是这种理解让我们看见的问题，<em>D</em> 是探索这些问题带来的发现。</p>
+<p>AI 正在迅速变得更擅长中间这一步：Q<sub>t</sub> → D<sub>t</sub>。</p>
+<p>但科学的下一片前沿，取决于此后会发生什么。</p>
+<p>一次发现，必须改变我们对世界的认识。</p>
+<p>新的认识，让不同的问题变得值得关注。</p>
+<p>有时，它甚至让过去无法表达的问题第一次变得可以提出。</p>
+<p>所以，理解不是因为人类碰巧喜欢解释，才在发现之后额外添上的东西。</p>
+<p>它正是一次发现得以生成下一代问题的机制之一。</p>
+
+<h2>为什么换一种理解科学的方式，未来就会看起来很不一样？</h2>
+<p>如果你认为科学主要是在生产答案，最近的 AI 进展看起来可能像终局的开始。</p>
+<p>机器正变得异常擅长给出答案。</p>
+<p>但如果科学也在不断创造更好的问题和更好的表征，画面就完全不同了。</p>
+<p>AI 可能替科学家卸下大量技术负担。</p>
+<p>过去需要几年的搜索，也许几小时就能完成。</p>
+<p>曾经太昂贵、无法尝试的证明方向，也许很快就能探索。</p>
+<p>实验可以在实际开展之前先经过模拟。</p>
+<p>一个研究者，也许就能探索过去需要整个实验室才能涉足的空间。</p>
+<p>这未必会压缩科学想象力的空间。</p>
+<p>也许反而会让想象力发挥更大的作用。</p>
+<p>真正稀缺的问题，也许会逐渐从：</p>
+<div class="signal">我们能解出来吗？</div>
+<p>变成：</p>
+<div class="signal">什么值得问？</div>
+<p>再进一步变成：</p>
+<div class="signal">上一次发现究竟教会了我们什么，让我们终于能够提出过去提不出的问题？</div>
+<p>这并不意味着人类会永久垄断提出问题的能力。</p>
+<p>未来的 AI 也可能很擅长发明表征、连接领域、规划研究方向。</p>
+<p>如果那一天到来，整个局面又会改变。</p>
+<p>但至少在今天，我们所说的“AI for Science”，在搜索、生成和检验方面，仍比在重组概念、开辟新领域方面更强。</p>
+<p>即便未来机器也擅长后者，仍有另一个独立的问题：</p>
+<div class="signal">人类是否能充分理解这些概念上的转变，从而真正参与其中？</div>
+
+<h2>那么，AI for Science 应该追求什么？</h2>
+<p>当然不是减少发现。</p>
+<p>我们应该让 AI 搜索得比人类更远、更快。</p>
+<p>但科学的工作流程，也许不该在答案到来时就结束。</p>
+<p>AI 给出一项成果，可能越来越像是第二项任务的起点：</p>
+<div class="signal">这里有什么值得我们理解？</div>
+<p>我们能不能还原关键的概念转变？</p>
+<p>能不能找到一个更能启发人的证明？</p>
+<p>能不能分清偶然奏效的技巧与可以迁移的原理？</p>
+<p>能不能找到那个值得成为新研究对象的异常？</p>
+<p>能不能借这个结果，改变我们表征问题的方式？</p>
+<p>而新的理解，能不能生成过去看不见的问题？</p>
+<p>也许，这才是接下来真正的转变。</p>
+<p>很长一段时间里，科学的一项核心稀缺能力，是解决难题。</p>
+<p>AI 可能大幅降低这种稀缺性。</p>
+<p>下一个瓶颈，可能是我们能否把大量涌现的发现，变成更好的思考方式。</p>
+<p>再从这些新的思考方式里，长出更好的问题。</p>
+<div class="closing"><p>AI 可以让答案变得丰沛。科学的未来，也许取决于我们能否把答案变成理解，再把理解变成过去根本不存在的问题。</p></div>
 <div class="sources"><h2>参考链接</h2><ol><li id="source-zh-1"><a href="https://openai.com/index/navier-stokes-solution/">OpenAI：关于纳维－斯托克斯千禧年大奖难题的报告</a></li><li id="source-zh-2"><a href="https://leidendeclaration.ai/">《关于人工智能与数学的莱顿宣言》</a></li></ol></div>
 </section>
 
