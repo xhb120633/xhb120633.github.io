@@ -508,53 +508,43 @@
 
             <section id="research" class="page">
                 <h2>Research Highlights</h2>
-                <p class="subtitle">Selected themes connecting cognitive science, language, behavior, and AI.</p>
+                <p class="subtitle">How language can inform cognitive science, what AI-assisted inference can justify, and how people can understand what AI models learn.</p>
 
                 <div class="card">
-                    <h3>Modeling Thought from Think-Aloud Data</h3>
-                    <p>The think-aloud protocol asks participants to verbalize their thoughts while they perform psychological tasks. Traditional work has mostly relied on behavioral outputs (often button presses) to infer latent cognitive processes. In many cases, candidate cognitive models are proposed and tested by researchers, which can limit the hypothesis space and introduce bias. By directly analyzing participants' verbal reports, we gain a richer and more direct view of cognition during task performance. However, most prior think-aloud research depends on manual coding by experts, which is labor-intensive, subjective, and difficult to scale.</p>
-                    <p>Recent advances in LLMs make it possible to revisit this classic protocol with stronger computational tools. LLMs can help quantify, interpret, and even predict subsequent behavior from think-aloud language. Our work evaluates when and how these models can be used reliably, with the goal of building a more systematic and scalable framework for studying human thought processes.</p>
-                    <p><em>Representative publications:</em></p>
+                    <h3>Language as Evidence of Thought</h3>
+                    <p>Choices reveal what people do, but often leave open how they arrived there. I study think-aloud reports and strategic language as complementary evidence about beliefs, strategies, and decision processes. Language can help constrain cognitive models and expose differences that behavior alone may miss; it is not a direct readout of someone's thoughts.</p>
+                    <p>Across risky choice, sorting, and learning tasks, our work develops computational ways to connect what people say with what they do, while testing where those connections hold and where they break down.</p>
+                    <p><em>Selected work:</em></p>
                     <ul>
                         <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2023). Text2Decision: Decoding Latent Variables in Risky Decision Making from Think Aloud Text. <em>NeurIPS 2023 AI for Science Workshop</em>.</li>
                         <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2024). From Strategic Narratives to Code-Like Cognitive Models: An LLM-Based Approach in A Sorting Task. <em>First Conference on Language Modeling (COLM)</em>.</li>
-                        <li><strong>Xie, H.</strong>†, Xiong, H. D., &amp; Wilson, R. C. (2025). Rethinking Think-Aloud in the Age of Language Models. <em>PsyArXiv</em>. <a href="https://osf.io/preprints/psyarxiv/6ta3z_v1">https://osf.io/preprints/psyarxiv/6ta3z_v1</a> (<em>submitted</em>).</li>
+                        <li><strong>Xie, H.</strong>†, Xiong, H. D., &amp; Wilson, R. C. (2025). Rethinking Think-Aloud in the Age of Language Models. <em>PsyArXiv preprint</em>. <a href="https://osf.io/preprints/psyarxiv/6ta3z_v1">Preprint</a>.</li>
                         <li><strong>Xie, H.</strong>†, Jagadish, A. K., <span class="mentee">Pan, L.</span>, &amp; Wilson, R. C. (2026). Think-aloud reshapes automated cognitive model discovery beyond behavior. <em>9th Annual Conference on Cognitive Computational Neuroscience (CCN)</em>. <a href="https://doi.org/10.48550/arXiv.2605.05091">Preprint</a>.</li>
                         <li><span class="mentee">Zhang, Z.</span>*, <strong>Xie, H.</strong>*, Baker, T., Peters, M., &amp; Wilson, R. C. (2025). Linking strategies to think aloud in a stochastic learning task. In <em>Proceedings of the Annual Meeting of the Cognitive Science Society</em>.</li>
                     </ul>
                 </div>
 
                 <div class="card">
-                    <h3>Reverse Engineering Human Thoughts</h3>
-                    <p>Human thought is central to intelligence, yet it is difficult to define, measure, and model. A core challenge in both cognitive science and AI is to characterize thought processes across tasks, identify shared principles, and generalize those principles to make useful predictions. The difficulty is that thoughts are often implicit, while language is diverse and context-dependent. As a result, verbal reports are informative but still incomplete reflections of internal cognition.</p>
-                    <p>Instead of focusing only on the forward direction (how thoughts generate behavior), this project emphasizes inverse inference: given observed behavior and related measurements, can we reconstruct plausible underlying thoughts? The broader goal is to build a stronger, more general bridge between behavior and cognition. This direction also supports a human-centered understanding of machine reasoning. If the computations of complex systems (e.g., AlphaGo-like models) can be approximated by human-trained explanatory models, we may be able to describe model reasoning in natural language that is useful for teaching, interpretation, and collaboration.</p>
-                    <p>This project began during my Princeton visit and remains an active research direction.</p>
-                    <p><em>Representative publications:</em></p>
+                    <h3>AI for Cognitive Science: What We Can and Cannot Say</h3>
+                    <p>AI can generate candidate models, predict behavior, and produce plausible explanations of decisions. But these successes do not by themselves establish what computations generated the behavior. My work asks what AI-assisted methods let us infer about cognition, which alternatives remain indistinguishable, and what additional evidence would separate a predictive surrogate from a mechanistic account.</p>
+                    <p>This includes building models of human decisions, testing how process evidence changes model discovery, and examining cases where apparently successful models rely on the wrong explanatory structure.</p>
+                    <p><em>Selected work:</em></p>
                     <ul>
                         <li>Zhu, J.-Q.*, <strong>Xie, H.</strong>*, Arumugam, D., Wilson, R. C., &amp; Griffiths, T. L. (2025). Using reinforcement learning to train large language models to explain human decisions. <em>arXiv preprint arXiv:2505.11614</em>.</li>
+                        <li><strong>Xie, H.</strong>, &amp; Wilson, R. C. (2026). Successful Automatic Model Discovery Can Produce False Mechanisms. <em>OSF</em>.</li>
+                        <li><strong>Xie, H.</strong>†, Jagadish, A. K., <span class="mentee">Pan, L.</span>, &amp; Wilson, R. C. (2026). Think-aloud reshapes automated cognitive model discovery beyond behavior. <em>CCN</em>. <a href="https://doi.org/10.48550/arXiv.2605.05091">Preprint</a>.</li>
+                        <li><strong>Xie, H.</strong>*, &amp; Zhu, J*. (2025). Centaur May Have Learned a Shortcut that Explains Away Psychological Tasks. <a href="https://doi.org/10.31234/osf.io/u7z4t_v1">Preprint</a>.</li>
                     </ul>
                 </div>
 
                 <div class="card">
-                    <h3>Human Insights for Artificial Intelligence</h3>
-                    <p>This project examines AI through concepts from psychology and neuroscience. By comparing strengths and weaknesses of AI and human intelligence, we can design models that are both more capable and more interpretable. Beyond technical performance, I am interested in societal value: systems that support human decision-making, education, and collaboration. I also explore how people can learn from advanced AI models when we build the right frameworks to analyze and communicate their internal computations.</p>
-                    <p><em>Representative publications:</em></p>
+                    <h3>Improving Human Understanding of AI Models and Artifacts</h3>
+                    <p>What can we learn about an AI system from its behavior, internal representations, and the artifacts it produces? I study model exploration and social reasoning with tools from cognitive science, and ask how interpretability findings can support defensible mechanistic claims rather than attractive stories. A related goal is to make knowledge found in AI systems understandable and useful to people, while testing whether that knowledge is actually grounded in the model and transferable to humans.</p>
+                    <p>Current projects examine dynamic mentalizing and, through ShareMind, how people understand and use AI-generated artifacts. Claims about underlying mechanisms or human learning remain questions to test, not established outcomes.</p>
+                    <p><em>Selected work:</em></p>
                     <ul>
                         <li><span class="mentee">Pan, L.</span>*, <strong>Xie, H.</strong>*†, &amp; Wilson, R. C. (2025). Large Language Models Think Too Fast To Explore Effectively. <em>arXiv preprint arXiv:2501.18009</em>. NeurIPS 2025 Poster.</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Accelerating Discovery in Cognitive Science</h3>
-                    <p>The human mind is deeply complex. Although thoughts, emotions, and actions are part of everyday experience, formally describing and predicting cognition remains a major scientific challenge. Many cognitive theories are grounded in human intuition and then tested through experiments and computational models. These approaches are powerful, but they can remain constrained by the original hypothesis space.</p>
-                    <p>In the AI era, there is an opportunity to rethink discovery pipelines in cognitive science and psychology. LLMs bring broad knowledge and strong inductive biases, and modern reasoning models can perform at levels that sometimes rival expert intuition. A central question for my work is whether we can build AI-assisted workflows that help discover new behavioral phenomena, generate computational models, and propose testable theories while reducing avoidable human bias. I view this as complementary to, not a replacement for, careful empirical research.</p>
-                    <p><em>Representative publications:</em></p>
-                    <ul>
-                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2023). Text2Decision: Decoding Latent Variables in Risky Decision Making from Think Aloud Text. <em>NeurIPS 2023 AI for Science Workshop</em>.</li>
-                        <li><strong>Xie, H.</strong>, Xiong, H., &amp; Wilson, R. C. (2024). From Strategic Narratives to Code-Like Cognitive Models: An LLM-Based Approach in A Sorting Task. <em>First Conference on Language Modeling (COLM)</em>.</li>
-                        <li><strong>Xie, H.</strong>†, Jagadish, A. K., <span class="mentee">Pan, L.</span>, &amp; Wilson, R. C. (2026). Think-aloud reshapes automated cognitive model discovery beyond behavior. <em>9th Annual Conference on Cognitive Computational Neuroscience (CCN)</em>. <a href="https://doi.org/10.48550/arXiv.2605.05091">Preprint</a>.</li>
-                        <li>Zhu, J.-Q.*, <strong>Xie, H.</strong>*, Arumugam, D., Wilson, R. C., &amp; Griffiths, T. L. (2025). Using reinforcement learning to train large language models to explain human decisions. <em>arXiv preprint arXiv:2505.11614</em>. ICLR 2026.</li>
-                        <li><strong>Xie, H.</strong>*, &amp; Zhu, J*. (2025, July 12). Centaur May Have Learned a Shortcut that Explains Away Psychological Tasks. <a href="https://doi.org/10.31234/osf.io/u7z4t_v1">https://doi.org/10.31234/osf.io/u7z4t_v1</a> (submitted).</li>
+                        <li>Hu, Z., Jiang, C., <strong>Xie, H.</strong>, Murty, N. A. R., &amp; Varma, S. (2026). Mechanistic Interpretability Needs a Logic of Inference. <em>NeurIPS 2026 Workshop on Interpretability for Discovery</em> (accepted). <a href="https://osf.io/preprints/psyarxiv/tjahb_v1">Preprint</a>.</li>
                     </ul>
                 </div>
             </section>
@@ -577,6 +567,13 @@
                 <div class="pub-year">
                     <h3>2026</h3>
                     <ul class="publication-list compact">
+                        <li class="pub-item" data-topics="ai">
+                            <div class="label-row">
+                                <span class="tag tag-type">Workshop</span>
+                                <span class="tag tag-ai">AI</span>
+                            </div>
+                            Hu, Z., Jiang, C., <strong>Xie, H.</strong>, Murty, N. A. R., &amp; Varma, S. (2026). Mechanistic Interpretability Needs a Logic of Inference. <em>NeurIPS 2026 Workshop on Interpretability for Discovery</em> (accepted). <a href="https://osf.io/preprints/psyarxiv/tjahb_v1">Preprint</a>.
+                        </li>
                         <li class="pub-item" data-topics="thinkaloud,decision">
                             <div class="label-row">
                                 <span class="tag tag-type">Conference</span>
