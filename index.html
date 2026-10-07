@@ -447,6 +447,31 @@
                 grid-template-columns: 1fr;
             }
         }
+        .paper-video {
+            margin-top: 10px;
+        }
+
+        .paper-video summary {
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .paper-video summary:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 4px;
+        }
+
+        .paper-video video {
+            display: block;
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            margin-top: 12px;
+            border-radius: 8px;
+            background: #080e1a;
+        }
+
     </style>
 </head>
 <body>
@@ -544,7 +569,14 @@
                     <p>Current projects examine dynamic mentalizing and, through ShareMind, how people understand and use AI-generated artifacts. Claims about underlying mechanisms or human learning remain questions to test, not established outcomes.</p>
                     <p><em>Selected work:</em></p>
                     <ul>
-                        <li><span class="mentee">Pan, L.</span>*, <strong>Xie, H.</strong>*†, &amp; Wilson, R. C. (2025). Large Language Models Think Too Fast To Explore Effectively. <em>arXiv preprint arXiv:2501.18009</em>. NeurIPS 2025 Poster.</li>
+                        <li><span class="mentee">Pan, L.</span>*, <strong>Xie, H.</strong>*†, &amp; Wilson, R. C. (2025). Large Language Models Think Too Fast To Explore Effectively. <em>arXiv preprint arXiv:2501.18009</em>. NeurIPS 2025 Poster.
+                            <details class="paper-video">
+                                <summary>Watch explanation · English · 10:30</summary>
+                                <video controls playsinline preload="none" poster="images/llm-exploration-video.jpg" aria-label="English explanation of Large Language Models Think Too Fast To Explore Effectively">
+                                    <source src="videos/llm-exploration-en.mp4" type="video/mp4">
+                                    <a href="videos/llm-exploration-en.mp4">Watch the English explanation</a>.
+                                </video>
+                            </details></li>
                         <li>Hu, Z., Jiang, C., <strong>Xie, H.</strong>, Murty, N. A. R., &amp; Varma, S. (2026). Mechanistic Interpretability Needs a Logic of Inference. <em>NeurIPS 2026 Workshop on Interpretability for Discovery</em> (accepted). <a href="https://osf.io/preprints/psyarxiv/tjahb_v1">Preprint</a>.</li>
                     </ul>
                 </div>
@@ -635,6 +667,13 @@
                                 <span class="tag tag-decision">Decision</span>
                             </div>
                             <span class="mentee">Pan, L.</span>*, <strong>Xie, H.</strong>*†, &amp; Wilson, R. C. (2025). Large Language Models Think Too Fast To Explore Effectively. <em>arXiv preprint arXiv:2501.18009</em>. NeurIPS 2025 Poster.
+                            <details class="paper-video">
+                                <summary>Watch explanation · English · 10:30</summary>
+                                <video controls playsinline preload="none" poster="images/llm-exploration-video.jpg" aria-label="English explanation of Large Language Models Think Too Fast To Explore Effectively">
+                                    <source src="videos/llm-exploration-en.mp4" type="video/mp4">
+                                    <a href="videos/llm-exploration-en.mp4">Watch the English explanation</a>.
+                                </video>
+                            </details>
                         </li>
                         <li class="pub-item" data-topics="llm,ai">
                             <div class="label-row">
@@ -864,7 +903,14 @@
     </div>
 
     <script>
+        document.querySelectorAll('.paper-video').forEach(function (details) {
+            details.addEventListener('toggle', function () {
+                if (!details.open) details.querySelector('video').pause();
+            });
+        });
+
         function showPage(pageId, navButton) {
+            document.querySelectorAll('video').forEach(function (video) { video.pause(); });
             var pages = document.getElementsByClassName("page");
             var buttons = document.getElementsByClassName("nav-btn");
 
